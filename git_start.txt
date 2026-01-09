@@ -30,3 +30,6 @@ ESC
 w write 
 q quit
 
+
+
+git branch -d master
