@@ -21,4 +21,12 @@ git push --set-upstream origin master
 
 git checkout main
 git pull origin main
-git merge maser
+git merge maser # failed
+git merge master --allow-unrelated-histories
+(write sth )
+ESC
+:wq 
+: enter mode 
+w write 
+q quit
+
