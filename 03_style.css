@@ -31,6 +31,8 @@ page
   { padding: 72px; }
 fieldset,td
   {	padding: 11px 22px; }
+section.s4
+  {	padding: 2px 22px; }
 legend
   { padding: 0px 11px; }
 .s2 th:nth-child(1)
@@ -43,6 +45,8 @@ footer
   
 section 
   { margin-bottom: 33px; }
+section.s4
+  { margin-bottom: 15px; }
 
 legend, th
   { font-weight: 900; font-variant: small-caps; }
