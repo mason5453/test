@@ -39,10 +39,7 @@ legend
  { padding: 11px 22px; }
 footer 
   { inset: auto auto 72px calc(50% - 22px) }
- 
- 
- 
-  
+   
 section 
   { margin-bottom: 33px; }
 section.s4
@@ -65,8 +62,6 @@ td:nth-child(1), th:nth-child(1)
 , .s5 tr:hover)
   { background-color: hsla(150,100%,50%,0.1) }
   
-  
-
 
 body
   { counter-reset: section; }
@@ -74,4 +69,11 @@ body
 page footer::before{
   counter-increment: section;
   content: "Page " counter(section) " ";
+}
+
+#mos iframe{
+width: 200px;       
+height: 200px;      
+border-radius: 50%; 
+overflow: hidden;   
 }
