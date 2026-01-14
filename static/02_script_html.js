@@ -16,7 +16,7 @@ async function loadAllContent() {
       //if (mosTd.querySelector('#map_mos')) initMap('map_mos'); // 假设initMap接收地图容器ID
 
 
-      await _start();
+      // await _start();
     } else {
       console.warn('未找到id="mos"的td元素');
     }

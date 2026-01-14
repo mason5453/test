@@ -5,14 +5,17 @@ section       { margin-bottom: 33px; }
 section.s4    { margin-bottom: 15px; }
 .circle-image { margin: 0 auto; }
 
-.circle-label { text-align: center;}
-
-/* Highlight when label is focused (via click or keyboard) */
-.circle-label:focus + .circle-image,
-.circle-label:hover + .circle-image {
-  box-shadow: 0 0 0 4px rgba(0, 100, 255, 0.6);
+.circle-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0; /* Remove default <p> margin */
+  text-align: center;
+  /* Optional: style the text */
+  color: white;
+  font-weight: bold;
 }
-
 
 
 
