@@ -28,13 +28,34 @@ legend               { padding: 0px 11px; }
 .s2 th:nth-child(1)  { padding: 11px 22px; }
 
 
-body { background-color:#060 }
-page { background-color:#fff }
+body    { background-color:#004 }
+page    { background-color:#fff }
+fieldset { animation: float 4s ease-in-out infinite; }
+legend  {
+
+  font-weight: 700;
+  color: #5d4037; /* dark brown for wood theme */
+  
+  
+  /* Big, soft shadow */
+  text-shadow: 
+    0 8px 8px rgba(0, 0, 200, 0.5),
+    0 16px 16px rgba(0, 0, 200, 0.55),
+    0 24px 24px rgba(0, 0, 200, 0.5);
+
+
+
+ }
+
+
+
+
+
 :is(.s1 fieldset, .s2 tr, .s3 fieldset, .s4 tr, .s5 tr)
   { background-color: transparent }
 :is(.s1 fieldset:hover , .s2 tr:hover , .s3 fieldset:hover , .s4 tr:hover
 , .s5 tr:hover)
-  { background-color: hsla(150,100%,50%,0.1) }
+  { background-color: hsla(200, 80%, 88%, 0.5) }
 .flash-overlay 
   { background-color: #000;  }
 
@@ -45,7 +66,7 @@ page
 page, table, th, td  /* html,body, */
   { border: 0.5px dotted hsl(0, 0%, 80%); }
 fieldset, table, tr, th, td
-  { border: 1px solid hsl(0, 0%, 0%); }
+  { border: 2px double hsl(34, 44%, 69%); }
 
 page /* html,body,page */
   { width: 19cm; height: 27.7cm; }
@@ -194,4 +215,19 @@ color: #000;
   background-position: center;
   background-repeat: no-repeat;
   transform: scale(1.05);
+}
+
+
+
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
