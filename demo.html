@@ -1,1 +1,213 @@
-demo
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNG图片轮播展示</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 轮播容器：居中显示，固定宽高（可自定义） */
+        .slider-container {
+            width: 80%;
+            max-width: 1000px;
+            height: 600px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden; /* 隐藏超出容器的图片 */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        /* 图片列表：横向排列，通过transform实现滑动 */
+        .slider-images {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease; /* 滑动过渡动画 */
+        }
+
+        /* 轮播图片：自适应容器大小 */
+        .slider-image {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0; /* 防止图片被压缩 */
+        }
+        .slider-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 保持图片比例，完整显示 */
+            background-color: #f5f5f5;
+        }
+
+        /* 切换按钮：左右箭头 */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+        .slider-btn:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        .prev-btn {
+            left: 20px;
+        }
+        .next-btn {
+            right: 20px;
+        }
+
+        /* 指示器（小圆点） */
+        .slider-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .indicator.active {
+            background-color: white; /* 激活的指示器高亮 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 轮播容器 -->
+    <div class="slider-container">
+        <!-- 图片列表 -->
+        <div class="slider-images">
+            <!-- 👇 替换这里的图片路径为你上传的PNG路径 -->
+            <div class="slider-image">
+                <img src="images/1.png" alt="图片1">
+            </div>
+            <div class="slider-image">
+                <img src="images/2.png" alt="图片2">
+            </div>
+            <div class="slider-image">
+                <img src="images/3.png" alt="图片3">
+            </div>
+            <!-- 如需添加更多图片，复制上面的div并修改路径即可 -->
+        </div>
+
+        <!-- 切换按钮 -->
+        <button class="slider-btn prev-btn">&lt;</button>
+        <button class="slider-btn next-btn">&gt;</button>
+
+        <!-- 指示器（自动生成） -->
+        <div class="slider-indicators"></div>
+    </div>
+
+    <script>
+        // 核心轮播逻辑
+        const sliderContainer = document.querySelector('.slider-container');
+        const sliderImages = document.querySelector('.slider-images');
+        const sliderImageItems = document.querySelectorAll('.slider-image');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const indicatorsContainer = document.querySelector('.slider-indicators');
+
+        // 基础配置
+        const slideCount = sliderImageItems.length; // 图片总数
+        const slideWidth = sliderContainer.clientWidth; // 单张图片宽度
+        let currentIndex = 0; // 当前显示的图片索引
+        let autoPlayInterval; // 自动播放定时器
+
+        // 1. 初始化指示器（小圆点）
+        function initIndicators() {
+            for (let i = 0; i < slideCount; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = `indicator ${i === 0 ? 'active' : ''}`;
+                indicator.setAttribute('data-index', i);
+                // 点击指示器切换图片
+                indicator.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateSlider();
+                });
+                indicatorsContainer.appendChild(indicator);
+            }
+        }
+
+        // 2. 更新轮播状态（滑动图片+更新指示器）
+        function updateSlider() {
+            // 滑动图片：通过transform偏移实现
+            sliderImages.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            // 更新指示器高亮
+            document.querySelectorAll('.indicator').forEach((ind, idx) => {
+                ind.classList.toggle('active', idx === currentIndex);
+            });
+        }
+
+        // 3. 下一张图片
+        function goToNextSlide() {
+            currentIndex = (currentIndex + 1) % slideCount; // 循环切换
+            updateSlider();
+        }
+
+        // 4. 上一张图片
+        function goToPrevSlide() {
+            currentIndex = (currentIndex - 1 + slideCount) % slideCount; // 循环切换
+            updateSlider();
+        }
+
+        // 5. 自动播放
+        function startAutoPlay(interval = 3000) { // 默认3秒切换一次
+            autoPlayInterval = setInterval(goToNextSlide, interval);
+        }
+
+        // 6. 暂停自动播放（鼠标悬停时）
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        // 初始化
+        function initSlider() {
+            if (slideCount <= 1) {
+                prevBtn.disabled = true; // 只有1张图时禁用按钮
+                nextBtn.disabled = true;
+                return;
+            }
+            initIndicators();
+            startAutoPlay(3000); // 启动自动播放（3秒/次）
+
+            // 绑定按钮事件
+            prevBtn.addEventListener('click', goToPrevSlide);
+            nextBtn.addEventListener('click', goToNextSlide);
+
+            // 鼠标悬停暂停自动播放，离开恢复
+            sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+            sliderContainer.addEventListener('mouseleave', () => startAutoPlay(3000));
+
+            // 窗口大小变化时重新计算宽度
+            window.addEventListener('resize', () => {
+                location.reload(); // 简单适配：刷新页面（新手友好）
+            });
+        }
+
+        // 启动轮播
+        initSlider();
+    </script>
+</body>
+</html>
