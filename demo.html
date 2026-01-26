@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Website</title>
+  <!-- Link to your CSS file -->
+  <link rel="stylesheet" href="static/03_style.css" />
+  <script>
+    // css
+    const style = document.createElement('style');
+    style.textContent = `
+      .circle-image::before {
+        background-image: url('lightning.webp?v=${Date.now()}') !important;
+      }
+    `;
+    document.head.appendChild(style);
+    console.log('testsdflasjdfkja;jf')
+  </script>
+</head>
+<body>
+  <script src="static/02_script_html.js"></script>
+  <!--<script src="static/02_custom_thre.js" type="module"></script>-->
+</body>
+</html>
