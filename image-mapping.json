@@ -1,0 +1,50 @@
+[
+  {
+    "imageName": "001_er_diagram.png",
+    "description": "ER图（系统数据库表结构关系图）"
+  },
+  {
+    "imageName": "002_flow_chart.png",
+    "description": "流程图（系统整体访问权限与API调用流程）"
+  },
+  {
+    "imageName": "003_this_is_test_ui.png",
+    "description": "测试UI界面（系统功能测试用的前端演示界面）"
+  },
+  {
+    "imageName": "004_this_is_file_of_testing_api.png",
+    "description": "API测试文件（用于测试系统API的配置/脚本文件）"
+  },
+  {
+    "imageName": "005_testing_anonymous_api_1.png",
+    "description": "匿名API测试1（匿名访问公共内容API的测试场景1）"
+  },
+  {
+    "imageName": "006_testing_anonymous_api_2.png",
+    "description": "匿名API测试2（匿名访问公共内容API的测试场景2）"
+  },
+  {
+    "imageName": "007_testing_login_api_with_fail_reply_1.png",
+    "description": "登录API失败返回测试1（登录API调用失败的返回结果场景1）"
+  },
+  {
+    "imageName": "008_testing_login_api_with_fail_reply_2.png",
+    "description": "登录API失败返回测试2（登录API调用失败的返回结果场景2）"
+  },
+  {
+    "imageName": "009_testing_signup_api.png",
+    "description": "注册API测试（用户注册API的调用与返回结果测试）"
+  },
+  {
+    "imageName": "010_testing_login_api_get_token.png",
+    "description": "登录API获取Token（登录成功后获取访问令牌的测试）"
+  },
+  {
+    "imageName": "011_testing_login_api_with_success_reply_1.png",
+    "description": "登录API成功返回测试1（登录API调用成功的返回结果场景1）"
+  },
+  {
+    "imageName": "012_testing_login_api_with_success_reply_2.png",
+    "description": "登录API成功返回测试2（登录API调用成功的返回结果场景2）"
+  }
+]

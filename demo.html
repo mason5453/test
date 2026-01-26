@@ -71,6 +71,26 @@
             right: 20px;
         }
 
+        /* 播放/暂停按钮样式（新增） */
+        .play-pause-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 80px;
+            height: 35px;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+        .play-pause-btn:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
         /* 指示器（小圆点） */
         .slider-indicators {
             position: absolute;
@@ -92,29 +112,41 @@
         .indicator.active {
             background-color: white; /* 激活的指示器高亮 */
         }
+
+        /* 图片描述样式 */
+        .slider-description {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            background-color: rgba(0,0,0,0.5);
+            padding: 8px 15px;
+            border-radius: 5px;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
     <!-- 轮播容器 -->
     <div class="slider-container">
         <!-- 图片列表 -->
-        <div class="slider-images">
-            <!-- 👇 替换这里的图片路径为你上传的PNG路径 -->
-            <div class="slider-image">
-                <img src="images/1.png" alt="图片1">
-            </div>
-            <div class="slider-image">
-                <img src="images/2.png" alt="图片2">
-            </div>
-            <div class="slider-image">
-                <img src="images/3.png" alt="图片3">
-            </div>
-            <!-- 如需添加更多图片，复制上面的div并修改路径即可 -->
-        </div>
+        <div class="slider-images"></div>
 
         <!-- 切换按钮 -->
         <button class="slider-btn prev-btn">&lt;</button>
         <button class="slider-btn next-btn">&gt;</button>
+
+        <!-- 播放/暂停按钮（新增） -->
+        <button class="play-pause-btn" id="playPauseBtn">播放</button>
+
+        <!-- 图片描述显示区域 -->
+        <div class="slider-description">
+            <p id="imageDesc"></p>
+        </div>
 
         <!-- 指示器（自动生成） -->
         <div class="slider-indicators"></div>
@@ -124,24 +156,47 @@
         // 核心轮播逻辑
         const sliderContainer = document.querySelector('.slider-container');
         const sliderImages = document.querySelector('.slider-images');
-        const sliderImageItems = document.querySelectorAll('.slider-image');
         const prevBtn = document.querySelector('.prev-btn');
         const nextBtn = document.querySelector('.next-btn');
         const indicatorsContainer = document.querySelector('.slider-indicators');
+        const playPauseBtn = document.getElementById('playPauseBtn'); // 播放暂停按钮
 
-        // 基础配置
-        const slideCount = sliderImageItems.length; // 图片总数
-        const slideWidth = sliderContainer.clientWidth; // 单张图片宽度
-        let currentIndex = 0; // 当前显示的图片索引
+        // 全局状态（新增：默认暂停）
+        let isPlaying = false; // 播放状态：false=暂停（默认），true=播放
         let autoPlayInterval; // 自动播放定时器
+        let slideCount = 0; // 图片总数
+        let slideWidth = 0; // 单张图片宽度
+        let currentIndex = 0; // 当前显示的图片索引
+        let imageData = []; // 图片JSON数据
 
-        // 1. 初始化指示器（小圆点）
+        // 1. 加载图片映射JSON
+        async function loadImageData() {
+            try {
+                const response = await fetch('image-mapping.json');
+                imageData = await response.json();
+                slideCount = imageData.length;
+                // 动态生成图片列表
+                sliderImages.innerHTML = '';
+                imageData.forEach(item => {
+                    const imgDiv = document.createElement('div');
+                    imgDiv.className = 'slider-image';
+                    imgDiv.innerHTML = `<img src="images/${item.imageName}" alt="${item.description}">`;
+                    sliderImages.appendChild(imgDiv);
+                });
+            } catch (error) {
+                console.error("加载JSON失败：", error);
+                alert("图片描述加载失败，请检查JSON文件路径！");
+                slideCount = 0;
+            }
+        }
+
+        // 2. 初始化指示器
         function initIndicators() {
+            indicatorsContainer.innerHTML = '';
             for (let i = 0; i < slideCount; i++) {
                 const indicator = document.createElement('div');
                 indicator.className = `indicator ${i === 0 ? 'active' : ''}`;
                 indicator.setAttribute('data-index', i);
-                // 点击指示器切换图片
                 indicator.addEventListener('click', () => {
                     currentIndex = i;
                     updateSlider();
@@ -150,59 +205,91 @@
             }
         }
 
-        // 2. 更新轮播状态（滑动图片+更新指示器）
+        // 3. 更新轮播状态（滑动图片+更新指示器+描述）
         function updateSlider() {
-            // 滑动图片：通过transform偏移实现
+            if (slideCount === 0) return;
+            // 滑动图片
             sliderImages.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            // 更新指示器高亮
+            // 更新指示器
             document.querySelectorAll('.indicator').forEach((ind, idx) => {
                 ind.classList.toggle('active', idx === currentIndex);
             });
+            // 更新图片描述
+            document.getElementById('imageDesc').textContent = imageData[currentIndex].description;
         }
 
-        // 3. 下一张图片
+        // 4. 下一张图片（手动切换不受播放状态影响）
         function goToNextSlide() {
-            currentIndex = (currentIndex + 1) % slideCount; // 循环切换
+            currentIndex = (currentIndex + 1) % slideCount;
             updateSlider();
         }
 
-        // 4. 上一张图片
+        // 5. 上一张图片（手动切换不受播放状态影响）
         function goToPrevSlide() {
-            currentIndex = (currentIndex - 1 + slideCount) % slideCount; // 循环切换
+            currentIndex = (currentIndex - 1 + slideCount) % slideCount;
             updateSlider();
         }
 
-        // 5. 自动播放
-        function startAutoPlay(interval = 3000) { // 默认3秒切换一次
+        // 6. 启动自动播放（新增）
+        function startAutoPlay(interval = 3000) {
+            if (slideCount <= 1) return; // 只有1张图时不自动播放
             autoPlayInterval = setInterval(goToNextSlide, interval);
+            isPlaying = true;
+            playPauseBtn.textContent = "暂停"; // 更新按钮文字
         }
 
-        // 6. 暂停自动播放（鼠标悬停时）
+        // 7. 停止自动播放（新增）
         function stopAutoPlay() {
             clearInterval(autoPlayInterval);
+            isPlaying = false;
+            playPauseBtn.textContent = "播放"; // 更新按钮文字
         }
 
-        // 初始化
-        function initSlider() {
+        // 8. 切换播放/暂停状态（新增核心函数）
+        function togglePlayPause() {
             if (slideCount <= 1) {
-                prevBtn.disabled = true; // 只有1张图时禁用按钮
-                nextBtn.disabled = true;
+                alert("只有1张图片，无需自动播放！");
                 return;
             }
+            if (isPlaying) {
+                stopAutoPlay(); // 当前播放中，点击则暂停
+            } else {
+                startAutoPlay(); // 当前暂停中，点击则播放
+            }
+        }
+
+        // 9. 初始化轮播（默认暂停）
+        async function initSlider() {
+            await loadImageData(); // 先加载JSON
+            if (slideCount <= 1) {
+                prevBtn.disabled = true;
+                nextBtn.disabled = true;
+                playPauseBtn.disabled = true; // 只有1张图时禁用播放暂停按钮
+                playPauseBtn.textContent = "无播放";
+                return;
+            }
+
+            slideWidth = sliderContainer.clientWidth;
             initIndicators();
-            startAutoPlay(3000); // 启动自动播放（3秒/次）
+            updateSlider(); // 初始化显示第一张图片和描述
+            // 默认暂停：不调用startAutoPlay()，按钮默认显示“播放”
 
             // 绑定按钮事件
             prevBtn.addEventListener('click', goToPrevSlide);
             nextBtn.addEventListener('click', goToNextSlide);
+            playPauseBtn.addEventListener('click', togglePlayPause); // 绑定播放暂停切换
 
-            // 鼠标悬停暂停自动播放，离开恢复
-            sliderContainer.addEventListener('mouseenter', stopAutoPlay);
-            sliderContainer.addEventListener('mouseleave', () => startAutoPlay(3000));
+            // 鼠标悬停时：如果正在播放则暂停，离开后如果是播放状态则恢复
+            sliderContainer.addEventListener('mouseenter', () => {
+                if (isPlaying) stopAutoPlay();
+            });
+            sliderContainer.addEventListener('mouseleave', () => {
+                if (isPlaying) startAutoPlay();
+            });
 
             // 窗口大小变化时重新计算宽度
             window.addEventListener('resize', () => {
-                location.reload(); // 简单适配：刷新页面（新手友好）
+                location.reload();
             });
         }
 
