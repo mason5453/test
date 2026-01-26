@@ -1,0 +1,10 @@
+  
+  CREATE TABLE IF NOT EXISTS User (
+      UserId INTEGER NOT NULL PRIMARY KEY  AUTOINCREMENT ,
+      UserName TEXT NOT NULL,
+      Password TEXT NOT NULL,
+      Email TEXT,
+      CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+      LastLogin DATETIME
+      
+  );

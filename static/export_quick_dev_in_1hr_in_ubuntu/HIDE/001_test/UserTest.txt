@@ -1,0 +1,1 @@
+http://localhost:8081/User/create	{"UserName":"user1","Password":"pwd1","Email":"john@example.com","CreatedAt":"2026-01-15 10:30:00","LastLogin":null}	POST
