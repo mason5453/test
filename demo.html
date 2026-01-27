@@ -17,7 +17,11 @@
             background-color: #f0f0f0;
             padding: 20px 0;
         }
-
+        h1 {
+        text-align: center;
+        margin: 0 auto; /* Optional: helps if setting width */
+        /* width: 100%; not needed usually, as h1 is block-level */
+        }
         /* 轮播容器：核心布局，内边距防止控件贴边，所有元素绝对定位不重叠图片 */
         .slider-container {
             width: 90%;
@@ -188,6 +192,8 @@
     </style>
 </head>
 <body>
+    <!-- 轮播容器 -->
+    <h1>一小時快速製作14大API</h1>
     <!-- 轮播容器 -->
     <div class="slider-container">
         <!-- 图片容器：纯图片区域，无任何控件重叠 -->
