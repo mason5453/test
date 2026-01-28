@@ -102,12 +102,24 @@ window.initSkillMatcher = function() {
             
             // 检查每个技能
             Array.from(grid.children).forEach(skillDiv => {
+                const skillDisplayName = skillDiv.textContent; // e.g., "JavaScript"
                 const skill = skillDiv.dataset.skill; // e.g., "javascript"
                 let isMatched = false;
                 
-                // ✅ YOUR DESIGN: Check if search text CONTAINS the skill
+                // ✅ 1. Check if search text contains the skill name
                 if (searchText.includes(skill)) {
                     isMatched = true;
+                }
+                
+                // ✅ 2. Check if search text contains any alias
+                if (!isMatched && aliasMap[skillDisplayName]) {
+                    const aliases = aliasMap[skillDisplayName];
+                    for (const alias of aliases) {
+                        if (searchText.includes(alias.toLowerCase())) {
+                            isMatched = true;
+                            break;
+                        }
+                    }
                 }
                 
                 // 更新样式
