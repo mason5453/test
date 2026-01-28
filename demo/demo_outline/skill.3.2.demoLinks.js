@@ -14,7 +14,7 @@ const demoLinks = {
     "CSS3": null,
     "SCSS": null,
     "Bootstrap": null,
-    "Tailwind CSS": null,
+    "Tailwind CSS": "https://test-nine-iota-75.vercel.app/demo/tailwind_demo/tailwind_css_demo.html#",
     "jQuery": null,
     "React": null,
     "Next.js": null,
