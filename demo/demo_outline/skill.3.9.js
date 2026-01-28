@@ -1,139 +1,204 @@
-
-// Initialize the skill display
-function initializeSkills() {
-    Object.entries(skillsData).forEach(([category, skills]) => {
-        const container = document.getElementById(category);
-        container.innerHTML = '';
-        
-        skills.forEach(skill => {
-            const skillElement = document.createElement('div');
-            skillElement.className = 'skill-item';
-            skillElement.textContent = skill;
-            skillElement.dataset.skill = skill;
-            
-            // Add click handler if demo link exists
-            if (demoLinks[skill]) {
-                skillElement.classList.add('skill-with-demo');
-                skillElement.title = `Click to view ${skill} demo`;
-                skillElement.addEventListener('click', () => openDemo(skill));
-            }
-            
-            container.appendChild(skillElement);
-        });
-    });
-}
-
-// Match skills against search text
-function matchSkills() {
-    const searchText = document.getElementById('searchBox').value.toLowerCase().trim();
-    let totalMatched = 0;
-    
-    // Process each category
-    Object.entries(skillsData).forEach(([category, skills]) => {
-        const container = document.getElementById(category);
-        const skillElements = container.querySelectorAll('.skill-item');
-        let categoryMatched = 0;
-        
-        skillElements.forEach(element => {
-            const skillName = element.dataset.skill;
-            const aliases = aliasMap[skillName] || [skillName.toLowerCase()];
-            
-            // Check if any alias matches the search text
-            const isMatched = aliases.some(alias => 
-                searchText.includes(alias.toLowerCase())
-            );
-            
-            // Update element classes based on match
-            element.classList.toggle('matched', isMatched);
-            element.classList.toggle('unmatched', !isMatched && searchText !== '');
-            
-            // Enable/disable click based on match
-            if (isMatched && demoLinks[skillName]) {
-                element.style.cursor = 'pointer';
-                element.style.opacity = '1';
-            } else {
-                element.style.cursor = isMatched ? 'pointer' : 'default';
-            }
-            
-            if (isMatched) categoryMatched++;
-        });
-        
-        // Update stats for this category
-        const statsContainer = container.closest('.skill-section').querySelector('.stats-container');
-        statsContainer.querySelector('.matched-count').textContent = categoryMatched;
-        totalMatched += categoryMatched;
-    });
-    
-    return totalMatched;
-}
-
-// Open demo in modal
-function openDemo(skillName) {
-    const demoUrl = demoLinks[skillName];
-    if (!demoUrl) return;
-    
-    // Create or get modal
-    let modal = document.getElementById('demoModal');
-    if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'demoModal';
-        modal.className = 'demo-modal';
-        modal.innerHTML = `
-            <div class="demo-modal-content">
-                <div class="demo-modal-header">
-                    <h3><span class="demo-skill-name"></span> Demo</h3>
-                    <button class="demo-modal-close" onclick="closeDemo()">&times;</button>
-                </div>
-                <div class="demo-modal-body">
-                    <iframe class="demo-iframe" frameborder="0"></iframe>
-                </div>
-                <div class="demo-modal-footer">
-                    <a href="${demoUrl}" target="_blank" class="demo-open-external">Open in New Tab</a>
-                    <button onclick="closeDemo()" class="demo-close-btn">Close</button>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(modal);
-    }
-    
-    // Set skill name and URL
-    modal.querySelector('.demo-skill-name').textContent = skillName;
-    modal.querySelector('.demo-iframe').src = demoUrl;
-    modal.querySelector('.demo-open-external').href = demoUrl;
-    
-    // Show modal
-    modal.style.display = 'flex';
-    
-    // Prevent background scrolling
-    document.body.style.overflow = 'hidden';
-}
-
-// Close demo modal
-function closeDemo() {
-    const modal = document.getElementById('demoModal');
-    if (modal) {
-        modal.style.display = 'none';
-        // Clear iframe to stop loading
-        const iframe = modal.querySelector('.demo-iframe');
-        iframe.src = '';
-    }
-    document.body.style.overflow = 'auto';
-}
-
-// Close modal when clicking outside
-document.addEventListener('click', (e) => {
-    const modal = document.getElementById('demoModal');
-    if (modal && modal.style.display === 'flex' && e.target === modal) {
-        closeDemo();
-    }
-});
-
 // ✅ NEW: Initialization function to be called AFTER HTML is loaded
 window.initSkillMatcher = function() {
-    initializeSkills();
-    matchSkills(); // Initial match with example text
     
-    // Setup search listener with debounce
+    // ========== 技能数据 ==========
+    const skillsData = {
+        "programming-languages": ["C#", ".NET", "PHP", "JavaScript", "TypeScript", "Python", "Java", "C++", "HTML5", "CSS3", "VBs"],
+        "frontend-technologies": ["React", "Vue", "Angular", "jQuery", "Bootstrap", "SCSS", "Next.js", "React Native"],
+        "backend-technologies": [".NET Base framework", "ASP.NET", "Flask", "WordPress", "GraphQL", "Node.js", "Express", "MVC"],
+        "databases": ["MSSQL", "MySQL", "PostgreSQL", "Redis", "NoSQL"],
+        "database-operations": ["ETL", "SQL Optimization", "Database Architecture", "API Design"],
+        "web-servers": ["IIS", "Apache", "Nginx", "Tomcat", "Lighty"],
+        "version-control": ["Git", "SVN"],
+        "ides-editors": ["Visual Studio", "VS Code", "NetBeans", "IntelliJ", "Sublime Text"],
+        "devops-tools": ["Docker", "CI/CD", "Vercel", "Netlify", "Postman"],
+        "operating-systems": ["Windows", "Linux"],
+        "package-managers": ["npm", "pnpm", "Composer"],
+        "ai-machine-learning": ["AI Agent", "AI-Base framework", "Machine Learning", "Neural Networks", "Tree Forest", "Supervised Learning"],
+        "productivity-tools": ["Excel", "Outlook", "SSRS", "Figma", "Filezilla", "WinSCP", "AnyDesk"],
+        "development-environments": ["XAMPP", "MSTSC", "SSH", "Putty"],
+        "design-prototyping": ["Figma", "Flowchart Tools", "MVC Pattern"],
+        "database-tools": ["SSMS", "MySQL Tool", "Tortoise"],
+        "analytics-tracking": ["Google Analytics", "Custom Tracking"],
+        "design-patterns": ["Factory Pattern", "MVC", "Singleton"],
+        "other-technologies": ["WebAssembly", "Arduino", "3D Software", "Powershell", "Batch"]
+    };
+    
+    // ========== 分类名称映射 ==========
+    const categoryNames = {
+        "programming-languages": "Programming Languages",
+        "frontend-technologies": "Frontend Technologies",
+        "backend-technologies": "Backend Technologies",
+        "databases": "Databases",
+        "database-operations": "Database Operations",
+        "web-servers": "Web Servers",
+        "version-control": "Version Control",
+        "ides-editors": "IDEs & Code Editors",
+        "devops-tools": "DevOps & Tools",
+        "operating-systems": "Operating Systems",
+        "package-managers": "Package Managers",
+        "ai-machine-learning": "AI & Machine Learning",
+        "productivity-tools": "Productivity & Office Tools",
+        "development-environments": "Development Environments",
+        "design-prototyping": "Design & Prototyping",
+        "database-tools": "Database Tools",
+        "analytics-tracking": "Analytics & Tracking",
+        "design-patterns": "Design Patterns",
+        "other-technologies": "Other Technologies"
+    };
+    
+    // ========== 初始化技能显示 ==========
+    function initializeSkills() {
+        Object.keys(skillsData).forEach(category => {
+            const grid = document.getElementById(category);
+            if (!grid) return;
+            
+            const skills = skillsData[category];
+            
+            // 显示所有技能
+            skills.forEach(skill => {
+                const skillDiv = document.createElement('div');
+                skillDiv.className = 'skill-item';
+                skillDiv.textContent = skill;
+                skillDiv.dataset.skill = skill.toLowerCase();
+                grid.appendChild(skillDiv);
+            });
+            
+            // 更新统计
+            updateStats(category, 0, skills.length);
+        });
+    }
+    
+    // ========== 更新统计信息 ==========
+    function updateStats(category, matched, total) {
+        const grid = document.getElementById(category);
+        if (!grid) return;
+        
+        const section = grid.closest('.skill-section');
+        if (!section) return;
+        
+        const matchedCountEl = section.querySelector('.matched-count');
+        const totalCountEl = section.querySelector('.total-count');
+        
+        if (matchedCountEl) matchedCountEl.textContent = matched;
+        if (totalCountEl) totalCountEl.textContent = total;
+    }
+    
+    // ========== 搜索和匹配技能 ==========
+    function matchSkills() {
+        const searchBox = document.getElementById('searchBox');
+        if (!searchBox) return;
+        
+        const searchText = searchBox.value.toLowerCase();
+        const searchWords = searchText.split(/\s+/).filter(word => word.length > 2);
+        
+        let categoryMatches = {};
+        
+        // 遍历所有技能进行匹配
+        Object.keys(skillsData).forEach(category => {
+            const grid = document.getElementById(category);
+            if (!grid) return;
+            
+            const skills = skillsData[category];
+            let matchedCount = 0;
+            
+            // 检查每个技能
+            Array.from(grid.children).forEach(skillDiv => {
+                const skill = skillDiv.dataset.skill;
+                let isMatched = false;
+                
+                // 检查是否匹配任何搜索词
+                searchWords.forEach(word => {
+                    if (skill.includes(word)) {
+                        isMatched = true;
+                    }
+                });
+                
+                // 更新样式
+                if (isMatched) {
+                    skillDiv.classList.add('matched');
+                    matchedCount++;
+                } else {
+                    skillDiv.classList.remove('matched');
+                }
+            });
+            
+            // 更新统计
+            updateStats(category, matchedCount, skills.length);
+            categoryMatches[category] = matchedCount;
+        });
+        
+        // 更新导航栏
+        updateNavigation(categoryMatches);
+    }
+    
+    // ========== 更新导航栏显示 ==========
+    function updateNavigation(categoryMatches) {
+        const nav = document.getElementById('categoriesNav');
+        if (!nav) return;
+        
+        nav.innerHTML = '';
+        
+        Object.keys(categoryNames).forEach(category => {
+            const matched = categoryMatches[category] || 0;
+            const total = skillsData[category].length;
+            
+            const navItem = document.createElement('div');
+            navItem.className = 'nav-item';
+            
+            const navLink = document.createElement('a');
+            navLink.href = `#section-${category}`;
+            navLink.className = 'nav-link';
+            navLink.textContent = categoryNames[category];
+            
+            // 添加匹配数量徽章（如果有匹配）
+            if (matched > 0) {
+                const badge = document.createElement('span');
+                badge.className = 'badge matched';
+                badge.textContent = matched;
+                navLink.appendChild(badge);
+            }
+            
+            // 添加总数徽章
+            const totalBadge = document.createElement('span');
+            totalBadge.className = 'badge';
+            totalBadge.textContent = total;
+            navLink.appendChild(totalBadge);
+            
+            navItem.appendChild(navLink);
+            nav.appendChild(navItem);
+        });
+    }
+    
+    // ========== 平滑滚动到分类 ==========
+    function setupNavigation() {
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('nav-link')) {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // 高亮当前分类
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    e.target.classList.add('active');
+                }
+            }
+        });
+    }
+    
+    // ========== 初始化 ==========
+    initializeSkills();
+    matchSkills(); // 初始匹配（空搜索）
+    
+    // 设置搜索监听器（带防抖）
     let timeoutId;
     const searchBox = document.getElementById('searchBox');
     if (searchBox) {
@@ -142,4 +207,9 @@ window.initSkillMatcher = function() {
             timeoutId = setTimeout(matchSkills, 300);
         });
     }
+    
+    // 设置导航
+    setupNavigation();
+    
+    console.log('✅ Skill Matcher initialized successfully!');
 };
