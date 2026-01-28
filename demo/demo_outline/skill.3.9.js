@@ -2,27 +2,7 @@
 window.initSkillMatcher = function() {
     
     // ========== 技能数据 ==========
-    const skillsData = {
-        "programming-languages": ["C#", ".NET", "PHP", "JavaScript", "TypeScript", "Python", "Java", "C++", "HTML5", "CSS3", "VBs"],
-        "frontend-technologies": ["React", "Vue", "Angular", "jQuery", "Bootstrap", "SCSS", "Next.js", "React Native"],
-        "backend-technologies": [".NET Base framework", "ASP.NET", "Flask", "WordPress", "GraphQL", "Node.js", "Express", "MVC"],
-        "databases": ["MSSQL", "MySQL", "PostgreSQL", "Redis", "NoSQL"],
-        "database-operations": ["ETL", "SQL Optimization", "Database Architecture", "API Design"],
-        "web-servers": ["IIS", "Apache", "Nginx", "Tomcat", "Lighty"],
-        "version-control": ["Git", "SVN"],
-        "ides-editors": ["Visual Studio", "VS Code", "NetBeans", "IntelliJ", "Sublime Text"],
-        "devops-tools": ["Docker", "CI/CD", "Vercel", "Netlify", "Postman"],
-        "operating-systems": ["Windows", "Linux"],
-        "package-managers": ["npm", "pnpm", "Composer"],
-        "ai-machine-learning": ["AI Agent", "AI-Base framework", "Machine Learning", "Neural Networks", "Tree Forest", "Supervised Learning"],
-        "productivity-tools": ["Excel", "Outlook", "SSRS", "Figma", "Filezilla", "WinSCP", "AnyDesk"],
-        "development-environments": ["XAMPP", "MSTSC", "SSH", "Putty"],
-        "design-prototyping": ["Figma", "Flowchart Tools", "MVC Pattern"],
-        "database-tools": ["SSMS", "MySQL Tool", "Tortoise"],
-        "analytics-tracking": ["Google Analytics", "Custom Tracking"],
-        "design-patterns": ["Factory Pattern", "MVC", "Singleton"],
-        "other-technologies": ["WebAssembly", "Arduino", "3D Software", "Powershell", "Batch"]
-    };
+
     
     // ========== 分类名称映射 ==========
     const categoryNames = {
