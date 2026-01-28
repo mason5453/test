@@ -1,80 +1,83 @@
 const demoLinks = {
     // Programming Languages
-    "C#": null,
-    "PHP": null,
-    "JavaScript": null,
-    "TypeScript": null,
-    "Python": null,
-    "Java": null,
-    "C++": null,
-    "Kotlin": null,
+    "c#": null,
+    "php": null,
+    "javascript": null,
+    "typescript": null,
+    "python": null,
+    "java": null,
+    "c++": null,
+    "kotlin": null,
     
     // Frontend Technologies
-    "HTML5": null,
-    "CSS3": null,
-    "SCSS": null,
-    "Bootstrap": null,
-    "Tailwind CSS": "https://test-nine-iota-75.vercel.app/demo/tailwind_demo/tailwind_css_demo.html#",
-    "jQuery": null,
-    "React": null,
-    "Next.js": null,
-    "Vue.js": null,
-    "Angular": null,
-    "React Native": null,
-    "Ant Design": null,
+    "html5": null,
+    "css3": null,
+    "scss": null,
+    "bootstrap": null,
+    "tailwind css": "https://test-nine-iota-75.vercel.app/demo/tailwind_demo/tailwind_css_demo.html",
+    "jquery": null,
+    "react": null,
+    "next.js": null,
+    "vue.js": null,
+    "angular": null,
+    "react native": null,
+    "ant design": null,
     
     // Backend Technologies
-    ".NET": null,
-    "ASP.NET": null,
-    "Node.js": null,
-    "WordPress": null,
-    "GraphQL": null,
+    ".net": null,
+    "asp.net": null,
+    "node.js": null,
+    "wordpress": null,
+    "graphql": null,
     
     // Databases
-    "MySQL": null,
-    "PostgreSQL": null,
-    "Redis": null,
+    "mysql": null,
+    "postgresql": null,
+    "redis": null,
     
     // Web Servers
-    "Apache": null,
-    "Nginx": null,
-    "Tomcat": null,
+    "apache": null,
+    "nginx": null,
+    "tomcat": null,
     
     // Version Control
-    "Git": null,
-    "SVN": null,
+    "git": null,
+    "svn": null,
     
     // IDEs & Editors
-    "Visual Studio Code (VSC)": null,
-    "IntelliJ IDEA": null,
-    "Android Studio": null,
-    "Sublime Text": null,
+    "visual studio code (vsc)": null,
+    "intellij idea": null,
+    "android studio": null,
+    "sublime text": null,
     
     // DevOps & Tools
-    "Docker": null,
-    "Postman": null,
-    "PowerShell": null,
+    "docker": null,
+    "postman": null,
+    "powershell": null,
     
     // Package Managers
-    "NPM": null,
-    "PNPM": null,
+    "npm": null,
+    "pnpm": null,
     
     // AI & Machine Learning
-    "Machine learning": null,
-    "Neural Networks (NN)": null,
-    "AI frameworks": null,
+    "machine learning": null,
+    "neural networks (nn)": null,
+    "ai frameworks": null,
     
     // Productivity Tools
-    "Excel": null,
-    "Outlook": null,
-    "PowerPoint": null,
+    "excel": null,
+    "outlook": null,
+    "powerpoint": null,
     
     // Design & Prototyping
-    "Figma": null,
+    "figma": null,
     
     // Analytics & Tracking
-    "Google Analytics": null,
+    "google analytics": null,
     
     // Other
-    "Map technologies/APIs": null
+    "map technologies/apis": null,
+    
+    // Default fallback
+    "default": "https://example.com/demo"
 };
