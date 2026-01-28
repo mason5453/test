@@ -9,6 +9,33 @@ const skillsData = {
     ]
 };
 
+// Demo URLs for each skill
+const demoLinks = {
+    // Programming Languages
+    "C#": "https://dotnetfiddle.net/",
+    "PHP": "https://3v4l.org/",
+    "JavaScript": "https://jsfiddle.net/",
+    "TypeScript": "https://www.typescriptlang.org/play",
+    "Python": "https://replit.com/languages/python3",
+    "Java": "https://www.jdoodle.com/online-java-compiler",
+    "C++": "https://www.onlinegdb.com/online_c++_compiler",
+    "Kotlin": "https://play.kotlinlang.org/",
+    
+    // Frontend Technologies
+    "HTML5": "https://codepen.io/pen/",
+    "CSS3": "https://codepen.io/pen/",
+    "SCSS": "https://sassmeister.com/",
+    "Bootstrap": "https://codeply.com/new",
+    "Tailwind CSS": "https://play.tailwindcss.com/",
+    "jQuery": "https://jsfiddle.net/",
+    "React": "https://codesandbox.io/s/new",
+    "Next.js": "https://stackblitz.com/fork/nextjs",
+    "Vue.js": "https://play.vuejs.org/",
+    "Angular": "https://stackblitz.com/fork/angular",
+    "React Native": "https://snack.expo.dev/",
+    "Ant Design": "https://codesandbox.io/s/antd-reproduction-template-6e93z"
+};
+
 // Comprehensive alias mapping for intelligent matching
 const aliasMap = {
     // Programming Languages
@@ -47,6 +74,14 @@ function initializeSkills() {
             skillElement.className = 'skill-item';
             skillElement.textContent = skill;
             skillElement.dataset.skill = skill;
+            
+            // Add click handler if demo link exists
+            if (demoLinks[skill]) {
+                skillElement.classList.add('skill-with-demo');
+                skillElement.title = `Click to view ${skill} demo`;
+                skillElement.addEventListener('click', () => openDemo(skill));
+            }
+            
             container.appendChild(skillElement);
         });
     });
@@ -76,6 +111,14 @@ function matchSkills() {
             element.classList.toggle('matched', isMatched);
             element.classList.toggle('unmatched', !isMatched && searchText !== '');
             
+            // Enable/disable click based on match
+            if (isMatched && demoLinks[skillName]) {
+                element.style.cursor = 'pointer';
+                element.style.opacity = '1';
+            } else {
+                element.style.cursor = isMatched ? 'pointer' : 'default';
+            }
+            
             if (isMatched) categoryMatched++;
         });
         
@@ -87,6 +130,67 @@ function matchSkills() {
     
     return totalMatched;
 }
+
+// Open demo in modal
+function openDemo(skillName) {
+    const demoUrl = demoLinks[skillName];
+    if (!demoUrl) return;
+    
+    // Create or get modal
+    let modal = document.getElementById('demoModal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'demoModal';
+        modal.className = 'demo-modal';
+        modal.innerHTML = `
+            <div class="demo-modal-content">
+                <div class="demo-modal-header">
+                    <h3><span class="demo-skill-name"></span> Demo</h3>
+                    <button class="demo-modal-close" onclick="closeDemo()">&times;</button>
+                </div>
+                <div class="demo-modal-body">
+                    <iframe class="demo-iframe" frameborder="0"></iframe>
+                </div>
+                <div class="demo-modal-footer">
+                    <a href="${demoUrl}" target="_blank" class="demo-open-external">Open in New Tab</a>
+                    <button onclick="closeDemo()" class="demo-close-btn">Close</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+    
+    // Set skill name and URL
+    modal.querySelector('.demo-skill-name').textContent = skillName;
+    modal.querySelector('.demo-iframe').src = demoUrl;
+    modal.querySelector('.demo-open-external').href = demoUrl;
+    
+    // Show modal
+    modal.style.display = 'flex';
+    
+    // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
+}
+
+// Close demo modal
+function closeDemo() {
+    const modal = document.getElementById('demoModal');
+    if (modal) {
+        modal.style.display = 'none';
+        // Clear iframe to stop loading
+        const iframe = modal.querySelector('.demo-iframe');
+        iframe.src = '';
+    }
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('demoModal');
+    if (modal && modal.style.display === 'flex' && e.target === modal) {
+        closeDemo();
+    }
+});
 
 // ✅ NEW: Initialization function to be called AFTER HTML is loaded
 window.initSkillMatcher = function() {
