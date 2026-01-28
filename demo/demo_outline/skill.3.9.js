@@ -1,31 +1,18 @@
 // ✅ NEW: Initialization function to be called AFTER HTML is loaded
 window.initSkillMatcher = function() {
     
-    // ========== 技能数据 ==========
-
     
-    // ========== 分类名称映射 ==========
-    const categoryNames = {
-        "programming-languages": "Programming Languages",
-        "frontend-technologies": "Frontend Technologies",
-        "backend-technologies": "Backend Technologies",
-        "databases": "Databases",
-        "database-operations": "Database Operations",
-        "web-servers": "Web Servers",
-        "version-control": "Version Control",
-        "ides-editors": "IDEs & Code Editors",
-        "devops-tools": "DevOps & Tools",
-        "operating-systems": "Operating Systems",
-        "package-managers": "Package Managers",
-        "ai-machine-learning": "AI & Machine Learning",
-        "productivity-tools": "Productivity & Office Tools",
-        "development-environments": "Development Environments",
-        "design-prototyping": "Design & Prototyping",
-        "database-tools": "Database Tools",
-        "analytics-tracking": "Analytics & Tracking",
-        "design-patterns": "Design Patterns",
-        "other-technologies": "Other Technologies"
-    };
+    // ========== 获取演示链接 ==========
+    function getDemoLink(skillName) {
+        const normalized = skillName.toLowerCase().trim();
+        return demoLinks[normalized] || demoLinks["default"];
+    }
+    
+    // ========== 检查技能是否有演示链接 ==========
+    function hasDemo(skillName) {
+        const normalized = skillName.toLowerCase().trim();
+        return demoLinks[normalized] !== undefined || demoLinks["default"] !== undefined;
+    }
     
     // ========== 初始化技能显示 ==========
     function initializeSkills() {
@@ -39,14 +26,46 @@ window.initSkillMatcher = function() {
             skills.forEach(skill => {
                 const skillDiv = document.createElement('div');
                 skillDiv.className = 'skill-item';
+                
+                // 如果有演示链接，添加可点击样式
+                if (hasDemo(skill)) {
+                    skillDiv.classList.add('skill-clickable');
+                    skillDiv.title = 'Click to view demo';
+                }
+                
                 skillDiv.textContent = skill;
                 skillDiv.dataset.skill = skill.toLowerCase();
+                
+                // 添加点击事件（如果有演示链接）
+                if (hasDemo(skill)) {
+                    skillDiv.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        openDemo(skill);
+                    });
+                }
+                
                 grid.appendChild(skillDiv);
             });
             
             // 更新统计
             updateStats(category, 0, skills.length);
         });
+    }
+    
+    // ========== 打开演示页面 ==========
+    function openDemo(skillName) {
+        const link = getDemoLink(skillName);
+        
+        // 显示确认对话框（可选）
+        const confirmed = confirm(`Open demo for "${skillName}"?\n\n${link}`);
+        
+        if (confirmed) {
+            // 在新标签页打开
+            window.open(link, '_blank');
+            
+            // 或者在同一窗口打开（取消注释下面这行）
+            // window.location.href = link;
+        }
     }
     
     // ========== 更新统计信息 ==========
