@@ -12,29 +12,31 @@ const skillsData = {
 // Demo URLs for each skill
 const demoLinks = {
     // Programming Languages
-    "C#": "https://dotnetfiddle.net/",
-    "PHP": "https://3v4l.org/",
-    "JavaScript": "https://jsfiddle.net/",
-    "TypeScript": "https://www.typescriptlang.org/play",
-    "Python": "https://replit.com/languages/python3",
-    "Java": "https://www.jdoodle.com/online-java-compiler",
-    "C++": "https://www.onlinegdb.com/online_c++_compiler",
-    "Kotlin": "https://play.kotlinlang.org/",
+    "C#": null,
+    "PHP": null,
+    "JavaScript": null,
+    "TypeScript": null,
+    "Python": null,
+    "Java": null,
+    "C++": null,
+    "Kotlin": null,
     
     // Frontend Technologies
-    "HTML5": "https://codepen.io/pen/",
-    "CSS3": "https://codepen.io/pen/",
-    "SCSS": "https://sassmeister.com/",
-    "Bootstrap": "https://codeply.com/new",
-    "Tailwind CSS": "https://play.tailwindcss.com/",
-    "jQuery": "https://jsfiddle.net/",
-    "React": "https://codesandbox.io/s/new",
-    "Next.js": "https://stackblitz.com/fork/nextjs",
-    "Vue.js": "https://play.vuejs.org/",
-    "Angular": "https://stackblitz.com/fork/angular",
-    "React Native": "https://snack.expo.dev/",
-    "Ant Design": "https://codesandbox.io/s/antd-reproduction-template-6e93z"
+    "HTML5": null,
+    "CSS3": null,
+    "SCSS": null,
+    "Bootstrap": null,
+    "Tailwind CSS": null,
+    "jQuery": null,
+    "React": null,
+    "Next.js": null,
+    "Vue.js": null,
+    "Angular": null,
+    "React Native": null,
+    "Ant Design": null
 };
+    
+
 
 // Comprehensive alias mapping for intelligent matching
 const aliasMap = {
