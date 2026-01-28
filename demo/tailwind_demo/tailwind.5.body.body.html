@@ -1,4 +1,204 @@
-  <!-- Layout: Grid of Features -->
+  <!-- Interactive Feature Grid -->
+  <div class="max-w-7xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <!-- Card 1: 3D Hover Effect -->
+    <div class="group bg-white rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:rotate-1">
+      <div class="relative h-40 mb-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl overflow-hidden">
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
+        <div class="absolute bottom-4 left-4 text-white font-bold text-xl">3D Effect</div>
+      </div>
+      <h3 class="text-2xl font-bold mb-3 text-gray-800">Advanced Hover States</h3>
+      <p class="text-gray-600 mb-4">Subtle 3D tilt effect with shadow depth changes</p>
+      <div class="flex gap-2">
+        <div class="w-8 h-8 bg-blue-500 rounded-full animate-bounce"></div>
+        <div class="w-8 h-8 bg-purple-500 rounded-full animate-bounce animation-delay-100"></div>
+        <div class="w-8 h-8 bg-indigo-500 rounded-full animate-bounce animation-delay-200"></div>
+      </div>
+    </div>
+
+    <!-- Card 2: Interactive Form with Validation -->
+    <div class="bg-white rounded-2xl shadow-xl p-6">
+      <h3 class="text-2xl font-bold mb-4 text-gray-800">Smart Form Validation</h3>
+      <form class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+          <input 
+            type="email" 
+            placeholder="you@company.com"
+            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-all peer"
+          />
+          <p class="mt-1 text-xs text-gray-500 invisible peer-focus:visible peer-invalid:visible peer-invalid:text-red-500">
+            Must be a valid email format
+          </p>
+        </div>
+        <button class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 transition-all shadow-lg">
+          Submit Form
+        </button>
+      </form>
+    </div>
+
+    <!-- Card 3: Animated Progress -->
+    <div class="bg-white rounded-2xl shadow-xl p-6">
+      <h3 class="text-2xl font-bold mb-4 text-gray-800">Animated Progress</h3>
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-sm font-medium">HTML/CSS</span>
+            <span class="text-sm font-medium text-blue-600">95%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full animate-pulse" style="width: 95%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-sm font-medium">JavaScript</span>
+            <span class="text-sm font-medium text-purple-600">85%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-purple-600 h-2.5 rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+      </div>
+      <button class="mt-4 w-full bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold py-2 rounded-lg hover:from-green-500 hover:to-blue-600 transition-all">
+        View Full Report
+      </button>
+    </div>
+
+    <!-- Card 4: Data Visualization -->
+    <div class="bg-white rounded-2xl shadow-xl p-6">
+      <h3 class="text-2xl font-bold mb-4 text-gray-800">Data Visualization</h3>
+      <div class="h-40 flex items-end justify-around">
+        <div class="relative group">
+          <div class="w-12 bg-blue-500 rounded-t-lg" style="height: 40%"></div>
+          <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+            40%
+          </div>
+        </div>
+        <div class="relative group">
+          <div class="w-12 bg-purple-500 rounded-t-lg" style="height: 60%"></div>
+          <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+            60%
+          </div>
+        </div>
+        <div class="relative group">
+          <div class="w-12 bg-indigo-500 rounded-t-lg" style="height: 80%"></div>
+          <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+            80%
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5: Accessibility Features -->
+    <div class="bg-white rounded-2xl shadow-xl p-6">
+      <h3 class="text-2xl font-bold mb-4 text-gray-800">Accessibility First</h3>
+      <div class="space-y-4">
+        <button class="w-full flex items-center gap-3 p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <svg class="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+          </svg>
+          <span class="font-medium">WCAG 2.1 Compliant</span>
+        </button>
+        <button class="w-full flex items-center gap-3 p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <svg class="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          <span class="font-medium">Keyboard Navigable</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Card 6: Dark Mode Toggle -->
+    <div class="bg-gray-800 text-white rounded-2xl shadow-xl p-6">
+      <h3 class="text-2xl font-bold mb-4">🌓 Dark Mode Ready</h3>
+      <p class="text-gray-300 mb-4">Toggle between light and dark themes</p>
+      <div class="flex items-center">
+        <span class="mr-3">Light</span>
+        <button class="relative w-14 h-7 bg-gray-700 rounded-full p-1 transition-colors peer focus:outline-none focus:ring-4 focus:ring-blue-300">
+          <div class="w-5 h-5 bg-white rounded-full shadow-md transform transition-transform peer-checked:translate-x-7"></div>
+        </button>
+        <input type="checkbox" class="sr-only peer" />
+        <span class="ml-3">Dark</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Performance Stats -->
+  <div class="max-w-5xl mx-auto mt-16 bg-white rounded-2xl shadow-xl p-8">
+    <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Performance Metrics</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="text-center">
+        <div class="text-4xl font-bold text-blue-600 mb-2">98/100</div>
+        <div class="text-gray-600">Lighthouse Score</div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold text-green-600 mb-2">1.2s</div>
+        <div class="text-gray-600">Load Time</div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold text-purple-600 mb-2">100%</div>
+        <div class="text-gray-600">Accessibility</div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold text-indigo-600 mb-2">100%</div>
+        <div class="text-gray-600">Mobile Friendly</div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<!-- Layout: Grid of Features -->
   <div class="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
     <!-- Card: Positioning & Layout -->
