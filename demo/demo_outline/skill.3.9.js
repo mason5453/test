@@ -89,7 +89,6 @@ window.initSkillMatcher = function() {
         if (!searchBox) return;
         
         const searchText = searchBox.value.toLowerCase();
-        const searchWords = searchText.split(/\s+/).filter(word => word.length > 2);
         
         let categoryMatches = {};
         
@@ -103,15 +102,13 @@ window.initSkillMatcher = function() {
             
             // 检查每个技能
             Array.from(grid.children).forEach(skillDiv => {
-                const skill = skillDiv.dataset.skill;
+                const skill = skillDiv.dataset.skill; // e.g., "javascript"
                 let isMatched = false;
                 
-                // 检查是否匹配任何搜索词
-                searchWords.forEach(word => {
-                    if (skill.includes(word)) {
-                        isMatched = true;
-                    }
-                });
+                // ✅ YOUR DESIGN: Check if search text CONTAINS the skill
+                if (searchText.includes(skill)) {
+                    isMatched = true;
+                }
                 
                 // 更新样式
                 if (isMatched) {
