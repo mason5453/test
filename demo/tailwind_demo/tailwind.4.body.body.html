@@ -1,0 +1,71 @@
+  <!-- Layout: Grid of Features -->
+  <div class="max-w-6xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+    <!-- Card: Positioning & Layout -->
+    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+      <div class="relative w-full h-32 bg-gray-100 rounded-lg mb-4 overflow-hidden">
+        <div class="absolute top-2 left-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">R</div>
+        <div class="absolute bottom-2 right-2 w-6 h-6 bg-blue-500 rounded-full animate-pulse"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">Relative + Absolute</div>
+      </div>
+      <h3 class="font-semibold text-gray-800 mb-2">Advanced Positioning</h3>
+      <p class="text-sm text-gray-600">Demonstrates relative/absolute positioning, z-index, and responsive layouts.</p>
+    </div>
+
+    <!-- Card: Forms & Inputs -->
+    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+      <label class="block text-gray-700 font-medium mb-2">Interactive Input</label>
+      <input 
+        type="text" 
+        placeholder="Type something..." 
+        class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+      />
+      <div class="mt-4 flex items-center gap-2">
+        <input type="checkbox" class="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-300" />
+        <span class="text-sm text-gray-700">Remember me</span>
+      </div>
+    </div>
+
+    <!-- Card: Animations -->
+    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+      <h3 class="font-semibold text-gray-800 mb-4">Custom Animations</h3>
+      <button class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors animate-bounce-slow">
+        Hover & Bounce
+      </button>
+      <div class="mt-4 flex justify-around">
+        <span class="text-sm font-medium text-purple-600 animate-pulse">Pulse</span>
+        <span class="text-sm font-medium text-pink-600 animate-bounce">Bounce</span>
+        <span class="text-sm font-medium text-indigo-600 animate-spin">Spin</span>
+      </div>
+    </div>
+
+    <!-- Card: Grid Layout -->
+    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+      <h3 class="font-semibold text-gray-800 mb-4">Responsive Grid</h3>
+      <div class="grid grid-cols-3 gap-3">
+        <div class="bg-blue-100 rounded h-16 flex items-center justify-center">1</div>
+        <div class="bg-blue-100 rounded h-16 flex items-center justify-center">2</div>
+        <div class="bg-blue-100 rounded h-16 flex items-center justify-center">3</div>
+      </div>
+    </div>
+
+    <!-- Card: Typography & Alignment -->
+    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+      <h3 class="font-semibold text-gray-800 mb-4">Typography Mastery</h3>
+      <p class="text-center text-gray-700 bg-gray-100 py-4 rounded-lg">
+        🎯 Perfectly centered text using <code class="text-blue-600">align-middle</code> & flexbox
+      </p>
+    </div>
+
+    <!-- Card: Dark Mode Ready -->
+    <div class="bg-gray-800 text-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+      <h3 class="font-semibold mb-4">🌙 Dark Mode Styling</h3>
+      <p class="text-gray-300 text-sm mb-4">
+        This card adapts to dark themes. You can toggle it with JavaScript!
+      </p>
+      <button class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded text-white font-medium transition-colors">
+        Enable Dark Mode
+      </button>
+    </div>
+
+  </div>
