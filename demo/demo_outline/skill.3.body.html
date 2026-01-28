@@ -1,0 +1,54 @@
+    <div class="container">
+        <header>
+            <h1>Talent Skill Matcher</h1>
+            <p class="subtitle">Paste a job description or requirements to instantly find matching skills</p>
+        </header>
+        
+        <div class="search-container">
+            <h2>Search for Skills</h2>
+            <p>Describe the talent you're looking for. The system will automatically highlight matching skills below:</p>
+            <textarea id="searchBox" placeholder="Example: We need a developer experienced with JavaScript, React, and CSS for our frontend team. Knowledge of TypeScript and Next.js is a plus.">We are looking for a frontend developer with strong JavaScript and CSS skills. Experience with React, TypeScript, and modern frameworks like Next.js or Vue.js is required. Knowledge of build tools and responsive design with Tailwind CSS would be beneficial.</textarea>
+            <div class="example-text">
+                Try pasting this example: "Need a full-stack developer proficient in JavaScript, React, Node.js, and MongoDB. Experience with TypeScript and Next.js is a plus. Must know CSS3 and responsive design."
+            </div>
+        </div>
+        
+        <div class="skills-container">
+            <div class="skill-section">
+                <h2>Programming Languages</h2>
+                <div class="skills-grid" id="programming-languages">
+                    <!-- Skills will be inserted here by JavaScript -->
+                </div>
+                <div class="stats-container">
+                    <span>Matched: <span class="matched-count">0</span></span>
+                    <span>Total: <span class="total-count">8</span></span>
+                </div>
+            </div>
+            
+            <div class="skill-section">
+                <h2>Frontend Technologies</h2>
+                <div class="skills-grid" id="frontend-technologies">
+                    <!-- Skills will be inserted here by JavaScript -->
+                </div>
+                <div class="stats-container">
+                    <span>Matched: <span class="matched-count">0</span></span>
+                    <span>Total: <span class="total-count">13</span></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h2>How It Works</h2>
+            <ul>
+                <li>Type or paste a job description in the text area above (e.g., "Looking for a developer who knows <span class="highlight">js</span> and <span class="highlight">css</span>")</li>
+                <li>The system will automatically scan for matching skills using intelligent pattern matching</li>
+                <li>Skills that match your description will be <span class="highlight">highlighted in blue</span></li>
+                <li>Common abbreviations are recognized (e.g., "js" matches JavaScript, "css" matches CSS3)</li>
+                <li>Real-time filtering happens as you type or paste text</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Talent Skill Matcher Demo &copy; 2026 | Intelligent Skill Matching Technology</p>
+        </footer>
+    </div>
