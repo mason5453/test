@@ -9,7 +9,7 @@ async function loadAllContent() {
     const bodyHeaderHtml = await loadHtml('tailwind.4.body.header.html');
     const bodyBodyHtml   = await loadHtml('tailwind.4.body.body.html');
     const bodyFooterHtml = await loadHtml('tailwind.4.body.footer.html');
-    document.body.innerHTML = bodyHtml;
+    document.body.innerHTML = bodyHeaderHtml + bodyBodyHtml + bodyFooterHtml;
   } catch (err) {
     console.error('加载XML失败：', err);
   }
