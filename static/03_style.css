@@ -29,7 +29,7 @@ legend               { padding: 0px 11px; }
 
 
 body    { background-color:#004 }
-page    { background-color:#fff }
+page    { background-color:#fff;}
 /*
 page {
   margin: 0;
@@ -38,7 +38,7 @@ page {
   position: relative;
 }
   */
-
+page    { opacity: 0.9;}
 page::before {
   content: "";
   position: absolute;
