@@ -25,11 +25,11 @@
   },
   {
     "imageName": "007_testing_login_api_with_fail_reply_1.png",
-    "description": "登录API失败返回测试1（登录API调用失败的返回结果场景1）"
+    "description": "因為沒有登入1"
   },
   {
     "imageName": "008_testing_login_api_with_fail_reply_2.png",
-    "description": "登录API失败返回测试2（登录API调用失败的返回结果场景2）"
+    "description": "因為沒有登入2"
   },
   {
     "imageName": "009_testing_signup_api.png",

@@ -52,7 +52,7 @@
         // 加载JSON图片数据
         async function loadImageData() {
             try {
-                const response = await fetch('image-mapping.json');
+                const response = await fetch('demo-image-mapping.json');
                 imageData = await response.json();
                 slideCount = imageData.length;
                 // 动态生成图片列表
