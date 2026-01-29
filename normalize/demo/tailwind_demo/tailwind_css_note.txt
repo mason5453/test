@@ -1,0 +1,56 @@
+animate-bounce bg-blue-500 text-white p-3 rounded
+
+
+
+appearance-none  
+bg-gray-100
+grid
+p-2
+rounded
+
+
+explain:
+
+<div class="relative w-64 h-32 bg-gray-200">
+  <div class="absolute top-2 left-2 bg-red-500 w-4 h-4"></div>
+</div>
+
+<div class="relative w-64 h-32 bg-gray-200">
+  <div class="absolute top-2 right-2 bg-red-500 w-4 h-4"></div>
+</div>
+
+<input type="checkbox" class="accent-pink-500 w-5 h-5">
+
+animate-pulse bg-green-500 text-white p-3 rounded
+
+animate-spin (rotates)
+animate-ping (pulses)
+animate-bounce
+animate-pulse
+
+
+grid grid-flow-col auto-cols-fr gap-4
+
+grid is display block?
+the rest is ...
+
+cant test:
+align-baseline (default)
+align-top
+align-middle
+align-bottom
+align-text-top
+align-text-bottom
+<span class="align-middle">Centered text</span>
+<img src="icon.png" class="align-top w-6 h-6"> <!-- Icon aligns to top -->
+auto-cols-auto
+auto-cols-min
+auto-cols-max
+auto-cols-fr
+
+not work:
+p-x-2
+p-y-2
+
+error:
+<div style="width:500px;" class="align-middle">Centered text</div>
