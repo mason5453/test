@@ -1,0 +1,20 @@
+
+
+
+# Install globally
+npm install -g terser
+
+# Minify single file
+terser input.js -o output.min.js -c -m
+
+# Minify with source maps (for debugging)
+terser input.js -o output.min.js -c -m --source-map
+
+
+
+
+npm install -g uglify-js
+uglifyjs input.js -o output.min.js -c -m
+
+npm install -g cssnano-cli
+cssnano demo.css demo.min.css
