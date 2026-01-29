@@ -1,20 +1,15 @@
 
-
-
-# Install globally
+# html : html-minifier , js : terser , # css : cssnano-cli
+npm install -g html-minifier-terser
+npm install -g html-minifier
 npm install -g terser
-
-# Minify single file
-terser input.js -o output.min.js -c -m
-
-# Minify with source maps (for debugging)
-terser input.js -o output.min.js -c -m --source-map
-
-
-
-
-npm install -g uglify-js
-uglifyjs input.js -o output.min.js -c -m
-
 npm install -g cssnano-cli
+
+#usage : html, js, css 
+html-minifier --collapse-whitespace --remove-comments index.html -o index.html
+terser input.js -o input.js -c -m
 cssnano demo.css demo.min.css
+
+
+
+
