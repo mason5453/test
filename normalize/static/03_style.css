@@ -99,7 +99,7 @@ fieldset, table, tr, th, td
   { border: 2px double hsl(34, 44%, 69%); }
 
 page /* html,body,page */
-  { width: 19cm; height: 27.7cm; }
+  { width: 19cm; height: 27cm; }
 fieldset, table
   { width: 570px; }
 .s2 th:nth-child(1)
