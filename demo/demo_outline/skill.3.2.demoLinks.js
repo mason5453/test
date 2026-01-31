@@ -28,7 +28,7 @@ const demoLinks = {
     // Backend Technologies
     ".net": "https://test-nine-iota-75.vercel.app/demo/dotnet_demo/dotnet.html",
     "asp.net": null,
-    "node.js": null,
+    "node.js": baseUrl1 + "nodejs_demo/nodejs.html",
     "wordpress": null,
     "graphql": null,
     
@@ -55,7 +55,7 @@ const demoLinks = {
     // DevOps & Tools
     "docker": null,
     "postman": null,
-    "powershell": null,
+    "powershell": baseUrl1 + "powershell_demo/powershell.html",
     
     // Package Managers
     "npm": null,
