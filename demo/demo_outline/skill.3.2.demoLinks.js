@@ -2,7 +2,7 @@ const demoLinks = {
     // Programming Languages
     "c#": "https://test-nine-iota-75.vercel.app/demo/CS_demo/CS.html",
     "php": "https://test-nine-iota-75.vercel.app/demo/php_demo/php.html",
-    "javascript": null,
+    "javascript": "https://test-nine-iota-75.vercel.app/demo/js_demo/js.html",
     "typescript": null,
     "python": null,
     "java": null,
