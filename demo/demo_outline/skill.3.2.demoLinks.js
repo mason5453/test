@@ -3,7 +3,7 @@ const demoLinks = {
     "c#": "https://test-nine-iota-75.vercel.app/demo/CS_demo/CS.html",
     "php": "https://test-nine-iota-75.vercel.app/demo/php_demo/php.html",
     "javascript": "https://test-nine-iota-75.vercel.app/demo/js_demo/js.html",
-    "typescript": null,
+    "typescript": "https://test-nine-iota-75.vercel.app/demo/ts_demo/ts.html",
     "python": null,
     "java": null,
     "c++": null,
