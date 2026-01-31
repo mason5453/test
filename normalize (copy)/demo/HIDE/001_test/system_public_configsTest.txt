@@ -1,0 +1,3 @@
+http://localhost:8081/system_public_configs/select		GET
+http://localhost:8081/system_public_configs/create	{"system_public_configs_config_key":"site_name","system_public_configs_config_value":"Demo Site","system_public_configs_is_public":true,"system_public_configs_update_time":"2026-01-15 10:30:00"}	POST
+http://localhost:8081/system_public_configs/update/1	{"system_public_configs_config_key":"site_name","system_public_configs_config_value":"Demo Site","system_public_configs_is_public":true,"system_public_configs_update_time":"2026-01-15 10:30:00"}	POST

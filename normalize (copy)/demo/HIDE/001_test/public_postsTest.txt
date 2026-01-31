@@ -1,0 +1,3 @@
+http://localhost:8081/public_posts/select		GET
+http://localhost:8081/public_posts/create	{"public_posts_title":"Sample Public Post","public_posts_content":"This is sample content.","public_posts_author_nickname":"AnonymousUser","public_posts_view_count":0,"public_posts_create_time":"2026-01-15 10:30:00","public_posts_update_time":"2026-01-15 10:30:00"}	POST
+http://localhost:8081/public_posts/update/1	{"public_posts_title":"Sample Public Post","public_posts_content":"This is sample content.","public_posts_author_nickname":"AnonymousUser","public_posts_view_count":0,"public_posts_create_time":"2026-01-15 10:30:00","public_posts_update_time":"2026-01-15 10:30:00"}	POST

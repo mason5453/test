@@ -1,0 +1,1 @@
+http://localhost:8081/Login/select?UserName=user1&Password=pwd1		GET

@@ -1,0 +1,47 @@
+/* ========== 可点击技能项样式 ========== */
+.skill-clickable {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.skill-clickable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.skill-clickable::after {
+    content: '🔗';
+    position: absolute;
+    right: 8px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.skill-clickable:hover::after {
+    opacity: 1;
+}
+
+/* 匹配且可点击的技能 */
+.skill-item.matched.skill-clickable {
+    background: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.skill-item.matched.skill-clickable:hover {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+}
+
+/* 点击动画 */
+@keyframes clickAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.skill-clickable:active {
+    animation: clickAnimation 0.2s ease;
+}
