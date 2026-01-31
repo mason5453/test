@@ -8,8 +8,8 @@ const demoLinks = {
     "typescript": baseUrl1 + "ts_demo/ts.html",
     "python":     baseUrl1 + "python_demo/python.html",
     "java":       baseUrl1 + "java_demo/java.html",
-    "c++":        null,
-    "kotlin":     null,
+    "c++":        baseUrl1 + "cpp_demo/cpp.html",
+    "kotlin":     baseUrl1 + "kotlin_demo/kotlin.html",
     
     // Frontend Technologies
     "html5":         null,
