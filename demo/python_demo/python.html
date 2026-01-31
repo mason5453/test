@@ -1,0 +1,99 @@
+
+<table>
+<tr><th>TITLE</th><th>CODE</th></tr>
+<tr><td><pre>Python CLI: Check version</pre></td><td><pre>python3 --version</pre></td></tr>
+<tr><td><pre>Python CLI: Install SDK</pre></td><td><pre>sudo apt update && sudo apt install -y python3</pre></td></tr>
+<tr><td><pre>Python CLI: Create console app</pre></td><td><pre>echo 'print("Hello World")' > app.py</pre></td></tr>
+<tr><td><pre>Python CLI: Build project</pre></td><td><pre>N/A (interpreted language)</pre></td></tr>
+<tr><td><pre>Python CLI: Run with args</pre></td><td><pre>python3 app.py 1 2</pre></td></tr>
+<tr><td><pre>Python CLI: Execute script</pre></td><td><pre>python3 app.py 1 2</pre></td></tr>
+<tr><td><pre>BASIC: Import</pre></td><td><pre>import module or from module import something</pre></td></tr>
+<tr><td><pre>BASIC: Namespace</pre></td><td><pre>No explicit namespace (use modules/packages)</pre></td></tr>
+<tr><td><pre>BASIC: Class</pre></td><td><pre>class Program:</pre></td></tr>
+<tr><td><pre>BASIC: Main method</pre></td><td><pre>if __name__ == "__main__":</pre></td></tr>
+<tr><td><pre>BASIC: String</pre></td><td><pre>str = "text"</pre></td></tr>
+<tr><td><pre>BASIC: Integer</pre></td><td><pre>num = 42</pre></td></tr>
+<tr><td><pre>BASIC: Long</pre></td><td><pre>num = 9223372036854775807 (int is arbitrary precision)</pre></td></tr>
+<tr><td><pre>BASIC: Float</pre></td><td><pre>num = 3.14</pre></td></tr>
+<tr><td><pre>BASIC: Double</pre></td><td><pre>num = 3.14 (same as float)</pre></td></tr>
+<tr><td><pre>BASIC: Char</pre></td><td><pre>c = 'C' (single-character string)</pre></td></tr>
+<tr><td><pre>BASIC: Boolean</pre></td><td><pre>bool = True</pre></td></tr>
+<tr><td><pre>BASIC: Constant</pre></td><td><pre>MAX = 100 (convention)</pre></td></tr>
+<tr><td><pre>BASIC: Scientific notation (positive)</pre></td><td><pre>35000</pre></td></tr>
+<tr><td><pre>BASIC: Scientific notation (negative)</pre></td><td><pre>0.035</pre></td></tr>
+<tr><td><pre>BASIC: Implicit casting</pre></td><td><pre>Automatic (e.g., int + float → float)</pre></td></tr>
+<tr><td><pre>BASIC: Explicit casting</pre></td><td><pre>int(value), float(value), str(value)</pre></td></tr>
+<tr><td><pre>BASIC: Arithmetic operators</pre></td><td><pre>+ - * / % ** (no ++ --)</pre></td></tr>
+<tr><td><pre>BASIC: Assignment operators</pre></td><td><pre>// = += -= *= /= %= **= //= %= &= ;= ^= >>= <<=</pre></td></tr>
+<tr><td><pre>BASIC: Comparison operators</pre></td><td><pre>// == != > < >= <= is is not</pre></td></tr>
+<tr><td><pre>BASIC: Logical operators</pre></td><td><pre>and or not</pre></td></tr>
+<tr><td><pre>CODE: Print output</pre></td><td><pre>print("text")</pre></td></tr>
+<tr><td><pre>CODE: Read input</pre></td><td><pre>input() (user) or sys.argv[2] (CLI)</pre></td></tr>
+<tr><td><pre>CODE: Exit method</pre></td><td><pre>sys.exit(0)</pre></td></tr>
+<tr><td><pre>CODE: String concat (operator)</pre></td><td><pre>str1 + str2 </pre></td></tr>
+<tr><td><pre>CODE: String concat (method) </pre></td><td><pre>"".join([str1, str2])</pre></td></tr>
+<tr><td><pre>CODE: String interpolation</pre></td><td><pre>f"Hello {name}" or "Hello {}".format(name)</pre></td></tr>
+<tr><td><pre>CODE: Access string char</pre></td><td><pre>s[0]</pre></td></tr>
+<tr><td><pre>CODE: String IndexOf</pre></td><td><pre>s.find("e") or s.index("e")</pre></td></tr>
+<tr><td><pre>CODE: String Substring</pre></td><td><pre>s[start:end]</pre></td></tr>
+<tr><td><pre>CODE: String Length</pre></td><td><pre>len(s)</pre></td></tr>
+<tr><td><pre>CODE: String ToUpper</pre></td><td><pre>s.upper()</pre></td></tr>
+<tr><td><pre>CODE: String ToLower</pre></td><td><pre>s.lower()</pre></td></tr>
+<tr><td><pre>CODE: String escape chars</pre></td><td><pre>\' \" \\ \n \t \b \r \$</pre></td></tr>
+<tr><td><pre>CODE: if/else</pre></td><td><pre>if cond: ... elif cond2: ... else: ...</pre></td></tr>
+<tr><td><pre>CODE: Ternary operator</pre></td><td><pre>true_val if cond else false_val</pre></td></tr>
+<tr><td><pre>CODE: switch</pre></td><td><pre>match x: case 1: ... case _: ... (Python 3.10+)</pre></td></tr>
+<tr><td><pre>CODE: break</pre></td><td><pre>break</pre></td></tr>
+<tr><td><pre>CODE: continue</pre></td><td><pre>continue</pre></td></tr>
+<tr><td><pre>CODE: for loop</pre></td><td><pre>for i in range(n):</pre></td></tr>
+<tr><td><pre>CODE: while loop</pre></td><td><pre>while cond:</pre></td></tr>
+<tr><td><pre>CODE: do-while loop</pre></td><td><pre>No direct equivalent (use while True with break)</pre></td></tr>
+<tr><td><pre>CODE: foreach loop</pre></td><td><pre>for item in iterable:</pre></td></tr>
+<tr><td><pre>CODE: Convert type</pre></td><td><pre>int(str), float(num), str(val)</pre></td></tr>
+<tr><td><pre>CODE: Math.Max</pre></td><td><pre>max(a, b)</pre></td></tr>
+<tr><td><pre>CODE: Math.Min</pre></td><td><pre>min(a, b)</pre></td></tr>
+<tr><td><pre>CODE: Math.Sqrt</pre></td><td><pre>math.sqrt(64)</pre></td></tr>
+<tr><td><pre>CODE: Math.Abs</pre></td><td><pre>abs(-4.7)</pre></td></tr>
+<tr><td><pre>CODE: Math.Round</pre></td><td><pre>round(9.99)</pre></td></tr>
+<tr><td><pre>CODE: Array define (init)</pre></td><td><pre>arr = [1, 2, 3]</pre></td></tr>
+<tr><td><pre>CODE: Array define (new)</pre></td><td><pre>arr = [0] * 5</pre></td></tr>
+<tr><td><pre>CODE: Array element</pre></td><td><pre>arr[i]</pre></td></tr>
+<tr><td><pre>CODE: Array Length</pre></td><td><pre>len(arr)</pre></td></tr>
+<tr><td><pre>CODE: Array Sort</pre></td><td><pre>arr.sort()</pre></td></tr>
+<tr><td><pre>CODE: Array Max</pre></td><td><pre>max(arr)</pre></td></tr>
+<tr><td><pre>CODE: Array Min</pre></td><td><pre>min(arr)</pre></td></tr>
+<tr><td><pre>CODE: Array Sum</pre></td><td><pre>sum(arr)</pre></td></tr>
+<tr><td><pre>CODE: 2D Array define</pre></td><td><pre>mat = [[1,2], [3,4]]</pre></td></tr>
+<tr><td><pre>CODE: 2D Array access</pre></td><td><pre>mat[0][1]</pre></td></tr>
+<tr><td><pre>CODE: 2D Array GetLength</pre></td><td><pre>len(mat) / len(mat[0])</pre></td></tr>
+<tr><td><pre>CODE: Method definition</pre></td><td><pre>def my_func():</pre></td></tr>
+<tr><td><pre>CODE: Method params</pre></td><td><pre>def m(a, b):</pre></td></tr>
+<tr><td><pre>CODE: Method default param</pre></td><td><pre>def m(c="default"):</pre></td></tr>
+<tr><td><pre>CODE: Method return</pre></td><td><pre>return value</pre></td></tr>
+<tr><td><pre>CODE: Method return type</pre></td><td><pre>def add(a, b) -> int: return a + b</pre></td></tr>
+<tr><td><pre>CODE: Method overloading</pre></td><td><pre>Not supported (use *args, **kwargs)</pre></td></tr>
+<tr><td><pre>OOP: Definition</pre></td><td><pre>Encapsulation, inheritance, polymorphism</pre></td></tr>
+<tr><td><pre>OOP: Field/Member</pre></td><td><pre>class Car: color = "red"</pre></td></tr>
+<tr><td><pre>OOP: Constructor</pre></td><td><pre>def __init__(self, color): self.color = color</pre></td></tr>
+<tr><td><pre>OOP: Access modifiers</pre></td><td><pre>Convention: _ (protected), __ (private)</pre></td></tr>
+<tr><td><pre>OOP: Property</pre></td><td><pre>@property decorator for getters/setters</pre></td></tr>
+<tr><td><pre>OOP: Inheritance</pre></td><td><pre>class Child(Parent):</pre></td></tr>
+<tr><td><pre>OOP: Polymorphism</pre></td><td><pre>Override methods in child classes</pre></td></tr>
+<tr><td><pre>OOP: Abstract class</pre></td><td><pre>from abc import ABC, abstractmethod; class A(ABC): @abstractmethod; def m(self): pass</pre></td></tr>
+<tr><td><pre>OOP: Interface</pre></td><td><pre>Protocols (typing.Protocol) or ABCs</pre></td></tr>
+<tr><td><pre>OOP: Multiple interfaces</pre></td><td><pre>class C(I1, I2):</pre></td></tr>
+<tr><td><pre>OOP: Enum</pre></td><td><pre>from enum import Enum; class Level(Enum): Low = 1; Medium = 2; High = 3</pre></td></tr>
+<tr><td><pre>IMPORT: LINQ</pre></td><td><pre>List comprehensions: [x for x in items if cond]</pre></td></tr>
+<tr><td><pre>IMPORT: File I/O</pre></td><td><pre>import os, shutil</pre></td></tr>
+<tr><td><pre>File: Append text</pre></td><td><pre>with open("file.txt", "a") as f: f.write("text")</pre></td></tr>
+<tr><td><pre>File: Copy file</pre></td><td><pre>shutil.copy("src", "dest")</pre></td></tr>
+<tr><td><pre>File: Create file</pre></td><td><pre>open("file.txt", "w").close()</pre></td></tr>
+<tr><td><pre>File: Delete file</pre></td><td><pre>os.remove("file.txt")</pre></td></tr>
+<tr><td><pre>File: Exists</pre></td><td><pre>os.path.exists("file.txt")</pre></td></tr>
+<tr><td><pre>File: Read all text</pre></td><td><pre>with open("file.txt") as f: content = f.read()</pre></td></tr>
+<tr><td><pre>File: Replace file</pre></td><td><pre>os.rename("src", "dest")</pre></td></tr>
+<tr><td><pre>File: Write all text</pre></td><td><pre>with open("file.txt", "w") as f: f.write("content")</pre></td></tr>
+<tr><td><pre>Exception: try-catch</pre></td><td><pre>try: ... except Exception as e: ...</pre></td></tr>
+
+
+</table>
