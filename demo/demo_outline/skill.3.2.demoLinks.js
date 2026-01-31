@@ -24,7 +24,7 @@ const demoLinks = {
     "ant design": null,
     
     // Backend Technologies
-    ".net": null,
+    ".net": "https://test-nine-iota-75.vercel.app/demo/dotnet_demo/dotnet.html",
     "asp.net": null,
     "node.js": null,
     "wordpress": null,
