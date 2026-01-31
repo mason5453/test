@@ -29,7 +29,7 @@ legend               { padding: 0px 11px; }
 
 
 body      { background-color:#004 }
-body:after{ content:"";position:absolute;top:0;right:0;bottom:0;left:19cm;background:linear-gradient(180deg,#f5d7a6,#e6c28b,#d4a97a);z-index:1}
+body:after{ content:"";position:fixed;top:0;right:0;bottom:0;left:19cm;background:linear-gradient(180deg,#f5d7a6,#e6c28b,#d4a97a);z-index:1;height: 100vh; min-height:100%;}
 
 page    { background-color:#fff;}
 page    { opacity: 0.95;}
