@@ -7,7 +7,7 @@ const demoLinks = {
     "javascript": baseUrl1 + "js_demo/js.html",
     "typescript": baseUrl1 + "ts_demo/ts.html",
     "python":     baseUrl1 + "python_demo/python.html",
-    "java":       null,
+    "java":       baseUrl1 + "java_demo/java.html",
     "c++":        null,
     "kotlin":     null,
     

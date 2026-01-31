@@ -1,0 +1,103 @@
+
+<table>
+<tr><th>TITLE</th><th>CODE</th></tr>
+<tr><td><pre>Java CLI: Check version</pre></td><td><pre>java -version</pre></td></tr>
+<tr><td><pre>Java CLI: Install SDK</pre></td><td><pre>sudo apt update && sudo apt install -y openjdk-17-jdk</pre></td></tr>
+<tr><td><pre>Java CLI: Create console app</pre></td><td><pre>echo 'public class App { public static void main(String[] args) { System.out.println("Hello World"); } }' > App.java</pre></td></tr>
+<tr><td><pre>Java CLI: Build project</pre></td><td><pre>javac App.java</pre></td></tr>
+<tr><td><pre>Java CLI: Run with args</pre></td><td><pre>java App 1 2</pre></td></tr>
+<tr><td><pre>Java CLI: Execute class</pre></td><td><pre>java App</pre></td></tr>
+<tr><td><pre>BASIC: Import</pre></td><td><pre>import java.util.*;</pre></td></tr>
+<tr><td><pre>BASIC: Package</pre></td><td><pre>package com.example;</pre></td></tr>
+<tr><td><pre>BASIC: Class</pre></td><td><pre>public class Program { }</pre></td></tr>
+<tr><td><pre>BASIC: Main method</pre></td><td><pre>public static void main(String[] args) { }</pre></td></tr>
+<tr><td><pre>BASIC: String</pre></td><td><pre>String str = "text";</pre></td></tr>
+<tr><td><pre>BASIC: Integer</pre></td><td><pre>int num = 42; (primitive) / Integer num = 42; (object)</pre></td></tr>
+<tr><td><pre>BASIC: Long</pre></td><td><pre>long num = 100L;</pre></td></tr>
+<tr><td><pre>BASIC: Float</pre></td><td><pre>float num = 3.14F;</pre></td></tr>
+<tr><td><pre>BASIC: Double</pre></td><td><pre>double num = 3.14;</pre></td></tr>
+<tr><td><pre>BASIC: Char</pre></td><td><pre>char c = 'C';</pre></td></tr>
+<tr><td><pre>BASIC: Boolean</pre></td><td><pre>boolean bool = true;</pre></td></tr>
+<tr><td><pre>BASIC: Constant</pre></td><td><pre>final int MAX = 100;</pre></td></tr>
+<tr><td><pre>BASIC: Scientific notation (positive)</pre></td><td><pre>35000</pre></td></tr>
+<tr><td><pre>BASIC: Scientific notation (negative)</pre></td><td><pre>0.035</pre></td></tr>
+<tr><td><pre>BASIC: Implicit casting</pre></td><td><pre>int small = 5; double big = small; (widening)</pre></td></tr>
+<tr><td><pre>BASIC: Explicit casting</pre></td><td><pre>int num = (int) bigDouble;</pre></td></tr>
+<tr><td><pre>BASIC: Arithmetic operators</pre></td><td><pre>+ - * / % ++ --</pre></td></tr>
+Err:510
+Err:510
+<tr><td><pre>BASIC: Logical operators</pre></td><td><pre>&& || !</pre></td></tr>
+<tr><td><pre>CODE: Print output</pre></td><td><pre>System.out.println("text");</pre></td></tr>
+<tr><td><pre>CODE: Read input</pre></td><td><pre>Scanner sc = new Scanner(System.in); String s = sc.nextLine();</pre></td></tr>
+<tr><td><pre>CODE: Exit method</pre></td><td><pre>System.exit(0);</pre></td></tr>
+<tr><td><pre>CODE: String concat (operator)</pre></td><td><pre>str1 + str2</pre></td></tr>
+<tr><td><pre>CODE: String concat (method)</pre></td><td><pre>str1.concat(str2) or StringBuilder</pre></td></tr>
+<tr><td><pre>CODE: String interpolation</pre></td><td><pre>System.out.printf("Hello %s", name); or "Hello " + name</pre></td></tr>
+<tr><td><pre>CODE: Access string char</pre></td><td><pre>str.charAt(0)</pre></td></tr>
+<tr><td><pre>CODE: String IndexOf</pre></td><td><pre>str.indexOf("e")</pre></td></tr>
+<tr><td><pre>CODE: String Substring</pre></td><td><pre>str.substring(startIndex, endIndex)</pre></td></tr>
+<tr><td><pre>CODE: String Length</pre></td><td><pre>str.length()</pre></td></tr>
+<tr><td><pre>CODE: String ToUpper</pre></td><td><pre>str.toUpperCase()</pre></td></tr>
+<tr><td><pre>CODE: String ToLower</pre></td><td><pre>str.toLowerCase()</pre></td></tr>
+<tr><td><pre>CODE: String escape chars</pre></td><td><pre>\' \" \\ \n \t \b \r \f</pre></td></tr>
+<tr><td><pre>CODE: if/else</pre></td><td><pre>if (cond) { } else if (cond2) { } else { }</pre></td></tr>
+<tr><td><pre>CODE: Ternary operator</pre></td><td><pre>cond ? trueVal : falseVal</pre></td></tr>
+<tr><td><pre>CODE: switch</pre></td><td><pre>switch (x) { case 1: break; default: break; } (Java 14+: yield)</pre></td></tr>
+<tr><td><pre>CODE: break</pre></td><td><pre>break;</pre></td></tr>
+<tr><td><pre>CODE: continue</pre></td><td><pre>continue;</pre></td></tr>
+<tr><td><pre>CODE: for loop</pre></td><td><pre>for (int i = 0; i < n; i++) { }</pre></td></tr>
+<tr><td><pre>CODE: while loop</pre></td><td><pre>while (cond) { }</pre></td></tr>
+<tr><td><pre>CODE: do-while loop</pre></td><td><pre>do { } while (cond);</pre></td></tr>
+<tr><td><pre>CODE: foreach loop</pre></td><td><pre>for (Type item : collection) { }</pre></td></tr>
+<tr><td><pre>CODE: Convert type</pre></td><td><pre>Integer.parseInt(str), Double.parseDouble(str), String.valueOf(num)</pre></td></tr>
+<tr><td><pre>CODE: Math.Max</pre></td><td><pre>Math.max(a, b)</pre></td></tr>
+<tr><td><pre>CODE: Math.Min</pre></td><td><pre>Math.min(a, b)</pre></td></tr>
+<tr><td><pre>CODE: Math.Sqrt</pre></td><td><pre>Math.sqrt(64)</pre></td></tr>
+<tr><td><pre>CODE: Math.Abs</pre></td><td><pre>Math.abs(-4.7)</pre></td></tr>
+<tr><td><pre>CODE: Math.Round</pre></td><td><pre>Math.round(9.99)</pre></td></tr>
+<tr><td><pre>CODE: Array define (init)</pre></td><td><pre>int[] arr = {1, 2, 3};</pre></td></tr>
+<tr><td><pre>CODE: Array define (new)</pre></td><td><pre>int[] arr = new int[5];</pre></td></tr>
+<tr><td><pre>CODE: Array element</pre></td><td><pre>arr[i]</pre></td></tr>
+<tr><td><pre>CODE: Array Length</pre></td><td><pre>arr.length</pre></td></tr>
+<tr><td><pre>CODE: Array Sort</pre></td><td><pre>Arrays.sort(arr);</pre></td></tr>
+<tr><td><pre>CODE: Array Max</pre></td><td><pre>Arrays.stream(arr).max().getAsInt()</pre></td></tr>
+<tr><td><pre>CODE: Array Min</pre></td><td><pre>Arrays.stream(arr).min().getAsInt()</pre></td></tr>
+<tr><td><pre>CODE: Array Sum</pre></td><td><pre>Arrays.stream(arr).sum()</pre></td></tr>
+<tr><td><pre>CODE: 2D Array define</pre></td><td><pre>int[][] mat = { {1,2}, {3,4} };</pre></td></tr>
+<tr><td><pre>CODE: 2D Array access</pre></td><td><pre>mat[0][1]</pre></td></tr>
+<tr><td><pre>CODE: 2D Array GetLength</pre></td><td><pre>mat.length / mat[0].length</pre></td></tr>
+<tr><td><pre>CODE: Method definition</pre></td><td><pre>public void myMethod() { }</pre></td></tr>
+<tr><td><pre>CODE: Method params</pre></td><td><pre>public void m(int a, String b) { }</pre></td></tr>
+<tr><td><pre>CODE: Method default param</pre></td><td><pre>Not supported (use method overloading)</pre></td></tr>
+<tr><td><pre>CODE: Method return</pre></td><td><pre>return value;</pre></td></tr>
+<tr><td><pre>CODE: Method return type</pre></td><td><pre>public int add(int a, int b) { return a + b; }</pre></td></tr>
+<tr><td><pre>CODE: Method overloading</pre></td><td><pre>public void m(int a) { } public void m(String s) { }</pre></td></tr>
+<tr><td><pre>OOP: Definition</pre></td><td><pre>Encapsulation, inheritance, polymorphism</pre></td></tr>
+<tr><td><pre>OOP: Field/Member</pre></td><td><pre>public class Car { private String color = "red"; }</pre></td></tr>
+<tr><td><pre>OOP: Constructor</pre></td><td><pre>public ClassName(String color) { this.color = color; }</pre></td></tr>
+<tr><td><pre>OOP: Access modifiers</pre></td><td><pre>public private protected (no package-private keyword)</pre></td></tr>
+<tr><td><pre>OOP: Property</pre></td><td><pre>Getter/setter methods (no built-in properties)</pre></td></tr>
+<tr><td><pre>OOP: Inheritance</pre></td><td><pre>public class Child extends Parent { }</pre></td></tr>
+<tr><td><pre>OOP: Polymorphism</pre></td><td><pre>@Override methods, interface implementation</pre></td></tr>
+<tr><td><pre>OOP: Abstract class</pre></td><td><pre>abstract class A { abstract void m(); }</pre></td></tr>
+<tr><td><pre>OOP: Interface</pre></td><td><pre>interface I { void m(); }</pre></td></tr>
+<tr><td><pre>OOP: Multiple interfaces</pre></td><td><pre>public class C implements I1, I2 { }</pre></td></tr>
+<tr><td><pre>OOP: Enum</pre></td><td><pre>enum Level { LOW, MEDIUM, HIGH }</pre></td></tr>
+<tr><td><pre>IMPORT: Collections</pre></td><td><pre>import java.util.*;</pre></td></tr>
+<tr><td><pre>IMPORT: File I/O</pre></td><td><pre>import java.io.*; import java.nio.file.*;</pre></td></tr>
+<tr><td><pre>File: Append text</pre></td><td><pre>try (FileWriter fw = new FileWriter("file.txt", true)) { fw.write("text"); }</pre></td></tr>
+<tr><td><pre>File: Copy file</pre></td><td><pre>Files.copy(Paths.get("src"), Paths.get("dest"), StandardCopyOption.REPLACE_EXISTING);</pre></td></tr>
+<tr><td><pre>File: Create file</pre></td><td><pre>Files.createFile(Paths.get("file.txt"));</pre></td></tr>
+<tr><td><pre>File: Delete file</pre></td><td><pre>Files.delete(Paths.get("file.txt"));</pre></td></tr>
+<tr><td><pre>File: Exists</pre></td><td><pre>Files.exists(Paths.get("file.txt"));</pre></td></tr>
+<tr><td><pre>File: Read all text</pre></td><td><pre>String content = Files.readString(Paths.get("file.txt"));</pre></td></tr>
+<tr><td><pre>File: Replace file</pre></td><td><pre>Files.move(Paths.get("src"), Paths.get("dest"), StandardCopyOption.REPLACE_EXISTING);</pre></td></tr>
+<tr><td><pre>File: Write all text</pre></td><td><pre>Files.writeString(Paths.get("file.txt"), "content");</pre></td></tr>
+<tr><td><pre>Exception: try-catch</pre></td><td><pre>try { } catch (Exception e) { }</pre></td></tr>
+<tr><td><pre>Exception: finally</pre></td><td><pre>try { } finally { }</pre></td></tr>
+<tr><td><pre>Exception: throw</pre></td><td><pre>throw new Exception("msg");</pre></td></tr>
+<tr><td><pre>Exception: Catch general</pre></td><td><pre>catch (Exception e)</pre></td></tr>
+<tr><td><pre>Exception: Catch specific</pre></td><td><pre>catch (IOException e) or catch (ArithmeticException e)</pre></td></tr>
+
+
+</table>
