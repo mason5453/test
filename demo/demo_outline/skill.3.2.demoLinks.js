@@ -1,7 +1,7 @@
 const baseUrl1 = "https://test-nine-iota-75.vercel.app/demo/";
 
 const demoLinks = {
-    // Programming Languages
+    // Programming
     "c#":         baseUrl1 + "CS_demo/CS.html",
     "c++":        baseUrl1 + "cpp_demo/cpp.html",
     "java":       baseUrl1 + "java_demo/java.html",

@@ -1,5 +1,5 @@
 const skillsData = {
-    "programming-languages": [
+    "programming": [
         "C#", ".NET", "PHP", "JavaScript", "TypeScript", 
         "Python", "Java", "C++", "Kotlin", "HTML5", "CSS3", "VBs","Shell"
     ],

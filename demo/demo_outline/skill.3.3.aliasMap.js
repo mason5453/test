@@ -2,7 +2,7 @@
 
 // Comprehensive alias mapping for intelligent matching
 const aliasMap = {
-    // Programming Languages
+    // Programming
     "C#":         ["c#", "csharp", "c sharp"],
     "C++":        ["c++", "cpp", "c plus plus"],
     "Java":       ["java"],
