@@ -1,7 +1,7 @@
   
     // ========== 分类名称映射 ==========
     const categoryNames = {
-        "programming-languages": "Programming Languages",
+        "programming": "Programming",
         "frontend-technologies": "Frontend Technologies",
         "backend-technologies": "Backend Technologies",
         "databases": "Databases",

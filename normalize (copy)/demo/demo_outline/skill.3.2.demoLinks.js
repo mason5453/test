@@ -1,5 +1,5 @@
 const demoLinks = {
-    // Programming Languages
+    // Programming
     "c#": null,
     "php": null,
     "javascript": null,
