@@ -1,60 +1,86 @@
+<html lang="en"><head>
+    <title>Teachable Machine</title>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=yes">
+    <link rel="stylesheet" href="assets/style.css">
+    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-9MEMVC6S98&amp;cx=c&amp;gtm=4e61r1"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-PJ46M7W"></script><script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+    <link rel="shortcut icon" href="/assets/img/favicon.png">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Cat Classifier</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest"></script>
-</head>
-<body>
-  <h1>Cat Classifier</h1>
-  <input type="file" id="upload" accept="image/*">
-  <br><br>
-  <img id="preview" width="300" />
-  <p id="result">Upload an image to check...</p>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Teachable Machine">
+    <meta name="description" content="Train a computer to recognize your own images, sounds, &amp; poses.
+        A fast, easy way to create machine learning models for your sites, apps, and more – no expertise or coding required.">
 
-  <script>
-    const URL = "https://teachablemachine.withgoogle.com/tm-models/olef7ed8H/";
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://teachablemachine.withgoogle.com/">
+    <meta property="og:title" content="Teachable Machine">
+    <meta property="og:description" content="Train a computer to recognize your own images, sounds, &amp; poses.
+        A fast, easy way to create machine learning models for your sites, apps, and more – no expertise or coding required.">
+    <meta property="og:image" content="https://teachablemachine.withgoogle.com/assets/img/Hero_image_16x9.jpg">
 
-    let model;
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://teachablemachine.withgoogle.com/">
+    <meta property="twitter:title" content="Teachable Machine">
+    <meta property="twitter:description" content="Train a computer to recognize your own images, sounds, &amp; poses.
+        A fast, easy way to create machine learning models for your sites, apps, and more – no expertise or coding required.">
+    <meta property="twitter:image" content="https://teachablemachine.withgoogle.com/assets/img/Hero_image_16x9.jpg">
+    <style>
+      body,
+      html {
+        height: 100%;
+      }
 
-    async function loadModel() {
-      model = await tmImage.load(URL + "model.json", URL + "metadata.json");
-      console.log("Model loaded");
-    }
+      tm-classifier-drawer .error-message {
+        font-weight: bold;
+        color: #e05534;
+      }
+    </style>
 
-    loadModel();
+    <script>
+      window.dataLayer = window.dataLayer || []
 
-    const upload = document.getElementById("upload");
-    const preview = document.getElementById("preview");
-    const result = document.getElementById("result");
+      function getRedactedPathname() {
+        let p = window.location.pathname
+        p = p.replace(/(?<=\/models\/)(\w+)(\/.+)?/gi, '[redacted_id]$2')
+        p = p.replace(
+          /(\/train\/\w+\/)(\w+)(\/.+)?/gi,
+          '$1[redacted_drive_id]$3'
+        )
+        p = p.replace(/(\/drive.+)(\"\w+\")(.+)/gi, '$1[redacted_drive_id]$3')
+        p = p.replace(/(\/train.+id=)(\w+)(&.+)/gi, '$1[redacted_drive_id]$3')
+        return p
+      }
 
-    upload.addEventListener("change", async function() {
-      const file = upload.files[0];
-      if (!file) return;
+      window.dataLayer.push({
+        page_path: getRedactedPathname(),
+        page_referrer: document.referrer.split('?')[0],
+      })
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+      ;(function (w, d, s, l, i) {
+        w[l] = w[l] || []
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : ''
+        j.async = true
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+        f.parentNode.insertBefore(j, f)
+      })(window, document, 'script', 'dataLayer', 'GTM-PJ46M7W')
+    </script>
+    <!-- End Google Tag Manager -->
 
-      // Show preview
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        preview.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
+    <!-- Cookie Consent CSS -->
+    <link href="https://www.gstatic.com/glue/cookienotificationbar/cookienotificationbar.min.css" rel="stylesheet">
+  </head>
 
-      // Wait for preview to load before prediction
-      preview.onload = async function() {
-        const prediction = await model.predict(preview);
-        console.log(prediction);
+  <body><!----><tm-model-preview-app style="
+    height: 100%;
+    display: block;
+"></tm-model-preview-app><!---->
 
-        // Find the "Cat" class
-        const catPrediction = prediction.find(p => p.className.toLowerCase() === "cat");
-        if (catPrediction) {
-          result.textContent = `Cat probability: ${(catPrediction.probability * 100).toFixed(2)}%`;
-        } else {
-          result.textContent = "No 'Cat' class found in model.";
-        }
-      };
-    });
-  </script>
-</body>
-</html>
+</body></html>
