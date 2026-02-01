@@ -3,14 +3,16 @@
 // Comprehensive alias mapping for intelligent matching
 const aliasMap = {
     // Programming Languages
-    "C#": ["c#", "csharp", "c sharp"],
-    "PHP": ["php"],
+    "C#":         ["c#", "csharp", "c sharp"],
+    "C++":        ["c++", "cpp", "c plus plus"],
+    "Java":       ["java"],
     "JavaScript": ["javascript", "js", "ecmascript"],
+    "Kotlin":     ["kotlin"],
+    "PHP":        ["php"],
+    "Python":     ["python", "py"],
+    "Shell":      ["shell","bash","sh"],
     "TypeScript": ["typescript", "ts"],
-    "Python": ["python", "py"],
-    "Java": ["java"],
-    "C++": ["c++", "cpp", "c plus plus"],
-    "Kotlin": ["kotlin"],
+    "Vbs":        ["vb", "vbs", "VisualBasic", "Visual Basic"],
     
     // Frontend Technologies
     "HTML5": ["html5", "html", "hypertext markup language"],

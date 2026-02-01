@@ -1,7 +1,7 @@
 const skillsData = {
     "programming-languages": [
         "C#", ".NET", "PHP", "JavaScript", "TypeScript", 
-        "Python", "Java", "C++", "Kotlin", "HTML5", "CSS3", "VBs"
+        "Python", "Java", "C++", "Kotlin", "HTML5", "CSS3", "VBs","Shell"
     ],
     "frontend-technologies": [
         "HTML5", "CSS3", "SCSS", "Bootstrap", "Tailwind CSS", "jQuery", 
