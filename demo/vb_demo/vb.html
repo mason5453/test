@@ -1,0 +1,70 @@
+
+<table>
+<tr><th>TITLE</th><th>CODE</th></tr>
+<tr><td><pre>Comment</pre></td><td><pre>' This is a comment</pre></td></tr>
+<tr><td><pre>Output to console</pre></td><td><pre>WScript.Echo "Hello World"</pre></td></tr>
+<tr><td><pre>Output via popup</pre></td><td><pre>MsgBox "Hello"</pre></td></tr>
+<tr><td><pre>Read from console (use with cscript)</pre></td><td><pre>Dim input: input = WScript.StdIn.ReadLine()</pre></td></tr>
+<tr><td><pre>Exit script</pre></td><td><pre>WScript.Quit</pre></td></tr>
+<tr><td><pre>String variable</pre></td><td><pre>Dim s: s = "text"</pre></td></tr>
+<tr><td><pre>Integer variable</pre></td><td><pre>Dim n: n = 42</pre></td></tr>
+<tr><td><pre>Float/Double variable</pre></td><td><pre>Dim x: x = 3.14</pre></td></tr>
+<tr><td><pre>Boolean variable</pre></td><td><pre>Dim b: b = True</pre></td></tr>
+<tr><td><pre>Constant</pre></td><td><pre>Const MAX = 100</pre></td></tr>
+<tr><td><pre>Scientific notation (positive)</pre></td><td><pre>Dim v: v = 3.50E+04</pre></td></tr>
+<tr><td><pre>Scientific notation (negative)</pre></td><td><pre>Dim v: v = 3.50E-02</pre></td></tr>
+<tr><td><pre>String concatenation</pre></td><td><pre>s = "Hello" & " World"</pre></td></tr>
+<tr><td><pre>Get string length</pre></td><td><pre>Len(s)</pre></td></tr>
+<tr><td><pre>Convert to uppercase</pre></td><td><pre>UCase(s)</pre></td></tr>
+<tr><td><pre>Convert to lowercase</pre></td><td><pre>LCase(s)</pre></td></tr>
+<tr><td><pre>Substring</pre></td><td><pre>Mid(s, start, length)  ' Note: 1-based index</pre></td></tr>
+<tr><td><pre>Find substring</pre></td><td><pre>InStr(s, "needle")  ' Returns 1-based position, 0 if not found</pre></td></tr>
+<tr><td><pre>Replace substring</pre></td><td><pre>Replace(s, "old", "new")</pre></td></tr>
+<tr><td><pre>Escape quotes</pre></td><td><pre>s = "He said ""Hello"""</pre></td></tr>
+<tr><td><pre>If statement</pre></td><td><pre>If condition Then ... End If</pre></td></tr>
+<tr><td><pre>If-Else</pre></td><td><pre>If condition Then ... Else ... End If</pre></td></tr>
+<tr><td><pre>If-ElseIf</pre></td><td><pre>If condition Then ... ElseIf condition2 Then ... Else ... End If</pre></td></tr>
+<tr><td><pre>Ternary operator</pre></td><td><pre>N/A (use If...Then...Else on separate lines)</pre></td></tr>
+<tr><td><pre>Select Case</pre></td><td><pre>Select Case x: Case 1: ... Case Else: ... End Select</pre></td></tr>
+<tr><td><pre>For loop</pre></td><td><pre>For i = 1 To 10: ... Next</pre></td></tr>
+<tr><td><pre>For loop with step</pre></td><td><pre>For i = 1 To 10 Step 2: ... Next</pre></td></tr>
+<tr><td><pre>While loop</pre></td><td><pre>While condition: ... Wend</pre></td></tr>
+<tr><td><pre>Do While loop</pre></td><td><pre>Do While condition: ... Loop</pre></td></tr>
+<tr><td><pre>Do Until loop</pre></td><td><pre>Do Until condition: ... Loop</pre></td></tr>
+<tr><td><pre>Exit loop</pre></td><td><pre>Exit For  or  Exit Do</pre></td></tr>
+<tr><td><pre>Continue loop</pre></td><td><pre>N/A (no direct equivalent; use If to skip)</pre></td></tr>
+<tr><td><pre>Array declaration</pre></td><td><pre>Dim arr: arr = Array(1, 2, 3)</pre></td></tr>
+<tr><td><pre>Create empty array</pre></td><td><pre>Dim arr(4)  ' 5 elements (0–4)</pre></td></tr>
+<tr><td><pre>Access array element</pre></td><td><pre>arr(0)</pre></td></tr>
+<tr><td><pre>Array length</pre></td><td><pre>UBound(arr) + 1  ' because 0-based</pre></td></tr>
+<tr><td><pre>Redimension array</pre></td><td><pre>ReDim Preserve arr(newSize)</pre></td></tr>
+<tr><td><pre>Math: Max</pre></td><td><pre>Not built-in (use If...Then or custom function)</pre></td></tr>
+<tr><td><pre>Math: Min</pre></td><td><pre>Not built-in</pre></td></tr>
+<tr><td><pre>Math: Sqrt</pre></td><td><pre>Sqr(x)</pre></td></tr>
+<tr><td><pre>Math: Abs</pre></td><td><pre>Abs(-4.7)</pre></td></tr>
+<tr><td><pre>Math: Round</pre></td><td><pre>Round(9.99)</pre></td></tr>
+<tr><td><pre>Random number</pre></td><td><pre>Randomize: Rnd()</pre></td></tr>
+<tr><td><pre>Random integer (1–10)</pre></td><td><pre>Randomize: Int((10 * Rnd) + 1)</pre></td></tr>
+<tr><td><pre>Type conversion: String to Integer</pre></td><td><pre>CInt(str)</pre></td></tr>
+<tr><td><pre>Type conversion: String to Double</pre></td><td><pre>CDbl(str)</pre></td></tr>
+<tr><td><pre>Type conversion: Number to String</pre></td><td><pre>CStr(num)</pre></td></tr>
+<tr><td><pre>Current date</pre></td><td><pre>Date()</pre></td></tr>
+<tr><td><pre>Current time</pre></td><td><pre>Time()</pre></td></tr>
+<tr><td><pre>Current datetime</pre></td><td><pre>Now()</pre></td></tr>
+<tr><td><pre>File: Check if exists</pre></td><td><pre>Set fso = CreateObject("Scripting.FileSystemObject"): If fso.FileExists("file.txt") Then ...</pre></td></tr>
+<tr><td><pre>File: Read all text</pre></td><td><pre>Set fso = CreateObject("Scripting.FileSystemObject"): Set file = fso.OpenTextFile("file.txt", 1): content = file.ReadAll: file.Close</pre></td></tr>
+<tr><td><pre>File: Write all text</pre></td><td><pre>Set fso = CreateObject("Scripting.FileSystemObject"): Set file = fso.CreateTextFile("file.txt", True): file.Write "content": file.Close</pre></td></tr>
+<tr><td><pre>File: Append text</pre></td><td><pre>Set fso = CreateObject("Scripting.FileSystemObject"): Set file = fso.OpenTextFile("file.txt", 8, True): file.WriteLine "new line": file.Close</pre></td></tr>
+<tr><td><pre>File: Delete file</pre></td><td><pre>Set fso = CreateObject("Scripting.FileSystemObject"): fso.DeleteFile "file.txt"</pre></td></tr>
+<tr><td><pre>Folder: Create</pre></td><td><pre>Set fso = CreateObject("Scripting.FileSystemObject"): fso.CreateFolder "C:\temp"</pre></td></tr>
+<tr><td><pre>Error handling</pre></td><td><pre>On Error Resume Next</pre></td></tr>
+<tr><td><pre>Check last error</pre></td><td><pre>If Err.Number <> 0 Then WScript.Echo Err.Description</pre></td></tr>
+<tr><td><pre>Clear error</pre></td><td><pre>Err.Clear</pre></td></tr>
+<tr><td><pre>Raise error</pre></td><td><pre>Err.Raise 1001, , "Custom error"</pre></td></tr>
+<tr><td><pre>Get command-line arguments</pre></td><td><pre>Set args = WScript.Arguments: For i = 0 To args.Count - 1: WScript.Echo args(i): Next</pre></td></tr>
+<tr><td><pre>Sleep (pause)</pre></td><td><pre>WScript.Sleep 1000  ' milliseconds</pre></td></tr>
+<tr><td><pre>Run external command</pre></td><td><pre>Set shell = CreateObject("WScript.Shell"): shell.Run "notepad.exe", 1, True</pre></td></tr>
+<tr><td><pre>Get environment variable</pre></td><td><pre>Set shell = CreateObject("WScript.Shell"): val = shell.Environment("PROCESS")("PATH")</pre></td></tr>
+
+
+</table>
