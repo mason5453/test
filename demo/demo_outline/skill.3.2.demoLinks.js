@@ -12,8 +12,8 @@ const demoLinks = {
     "typescript": baseUrl1 + "ts_demo/ts.png",
     "vbs":        baseUrl1 + "vb_demo/vb.png",
     // OS
-    "Windows":    baseUrl1 + "win_cmd_demo/win_cmd.html",
-    "Linux":      baseUrl1 + "shell_demo/shell.html",
+    "windows":    baseUrl1 + "win_cmd_demo/win_cmd.html",
+    "linux":      baseUrl1 + "shell_demo/shell.html",
 
     // Frontend Technologies
     "html5":         null,
