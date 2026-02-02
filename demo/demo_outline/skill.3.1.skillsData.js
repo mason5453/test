@@ -2,11 +2,11 @@ const skillsData = {
     //1
     "programming": [
         "C#", ".NET", "PHP", "JavaScript", "TypeScript", 
-        "Python", "Java", "C++", "Kotlin", "HTML5", "CSS3", "VBs","Shell"
+        "Python", "Java", "C++", "Kotlin", "HTML5", "CSS3", "VBs"
     ],
     //2
     "operating-systems": [
-        "Windows (bat)", "Linux (Vi, Nano, Shell)"
+        "Windows", "Linux"
     ],
     //2
     "frontend-technologies": [
