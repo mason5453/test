@@ -28,7 +28,7 @@ sliderImages.innerHTML = '';
 imageData.forEach(item => {
 const imgDiv = document.createElement('div');
 imgDiv.className = 'slider-image';
-imgDiv.innerHTML = `<img src="demo/${item.imageName}" alt="${item.description}">`;
+imgDiv.innerHTML = `<img src="demo/img/${item.imageName}" alt="${item.description}">`;
 sliderImages.appendChild(imgDiv);
 });
 } catch (error) {

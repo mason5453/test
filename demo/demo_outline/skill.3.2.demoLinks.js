@@ -2,15 +2,15 @@ const baseUrl1 = "https://test-nine-iota-75.vercel.app/demo/";
 
 const demoLinks = {
     // Programming
-    "c#":         baseUrl1 + "CS_demo/CS.html",
+    "c#":         baseUrl1 + "CS_demo/CS.png",
     "c++":        baseUrl1 + "cpp_demo/cpp.html",
-    "java":       baseUrl1 + "java_demo/java.html",
+    "java":       baseUrl1 + "java_demo/java.png",
     "javascript": baseUrl1 + "js_demo/js.html",
-    "kotlin":     baseUrl1 + "kotlin_demo/kotlin.html",
+    "kotlin":     baseUrl1 + "kotlin_demo/kotlin.png",
     "php":        baseUrl1 + "php_demo/php.html",
     "python":     baseUrl1 + "python_demo/python.html",
     "shell":      baseUrl1 + "shell_demo/shell.html",
-    "typescript": baseUrl1 + "ts_demo/ts.html",
+    "typescript": baseUrl1 + "ts_demo/ts.png",
     "vbs":        null,
     
     // Frontend Technologies
