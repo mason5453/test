@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SCSS Skills Demo</title>
   <link rel="stylesheet" href="scss-demo.css">
+  <style>
+    /* Additional styles for the SCSS badge */
+    .scss-badge-container {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 2px dashed #cbd5e1;
+    }
+    
+    .scss-badge {
+      
+      height: auto;
+      filter: drop-shadow(0 4px 8px rgba(37, 99, 235, 0.3));
+      transition: transform 0.3s ease;
+    }
+    
+    .scss-badge:hover {
+      transform: scale(1.05);
+    }
+    
+    .badge-label {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #1d4ed8;
+      font-size: 1.1rem;
+    }
+    
+    /* Ensure the badge is visible even if image doesn't load */
+    .scss-badge::after {
+      content: "SCSS";
+      display: block;
+      margin-top: 0.5rem;
+      font-weight: bold;
+      color: #2563eb;
+      font-size: 1.2rem;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -13,7 +54,7 @@
       <p class="subtitle">Professional Sass implementation with variables, mixins, and modular structure</p>
     </header>
 
-    <main>
+    <main style="float:left;width:500px;">
       <div class="demo-grid">
         <div class="card card-1">
           <div class="card-header">Variables & Maps</div>
@@ -61,10 +102,14 @@
       </div>
     </main>
 
-    <footer>
-      <p>Created by Mason Tsoi • Professional SCSS Architecture</p>
-      <p>Compiled to efficient CSS • No external dependencies</p>
-    </footer>
+
+    <!-- SCSS Badge Section -->
+    <div class="scss-badge-container" style="display: block; float:left;width: 900px;height: 700px;">
+      <img src="scss.png" style="max-width:auto;" alt="SCSS Skills Badge" class="scss-badge" onerror="this.style.display='none'">
+      <div class="badge-label">Professional SCSS Implementation</div>
+    </div>
+
+
   </div>
 </body>
 </html>
