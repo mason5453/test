@@ -14,8 +14,8 @@ const aliasMap = {
     "Vbs":        ["vb", "vbs", "VisualBasic", "Visual Basic"],
 
     // Operating Systems
-    "bat": ["windows", "Windows ( bat, cmd, batch, dos )"],
-    "shell": ["linux", "vi", "nano", "ubuntu", "centos","shell","bash","sh", "Linux (Vi, Nano, Shell)"],
+    "Windows": ["windows", "Windows ( bat, cmd, batch, dos )"],
+    "Linux": ["linux", "vi", "nano", "ubuntu", "centos","shell","bash","sh", "Linux (Vi, Nano, Shell)"],
 
     // Frontend Technologies
     "HTML5": ["html5", "html", "hypertext markup language"],
