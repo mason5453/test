@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mason Tsoi | jQuery Skills Demo</title>
+  <!-- Bootstrap 5 CSS (for base styling) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 3rem 0;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-title {
+      font-size: 2.8rem;
+      background: linear-gradient(90deg, #1d4ed8, #2563eb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .interactive-card {
+      border-left: 4px solid var(--primary);
+    }
+
+    .counter-display {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .dynamic-list {
+      min-height: 150px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .list-item {
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.5s ease;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <h1 class="hero-title">jQuery Proficiency</h1>
+      <p class="lead text-muted">Professional implementation with dynamic interactions and DOM manipulation</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Interactive Cards -->
+      <div class="row g-4 mb-5">
+        <div class="col-md-6">
+          <div class="card interactive-card h-100">
+            <div class="card-header bg-light fw-bold">
+              Dynamic Counter
+            </div>
+            <div class="card-body text-center">
+              <div class="counter-display" id="counter">0</div>
+              <div class="mt-3">
+                <button class="btn btn-primary me-2" id="increment">+ Increment</button>
+                <button class="btn btn-outline-secondary" id="decrement">- Decrement</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card interactive-card h-100">
+            <div class="card-header bg-light fw-bold">
+              Dynamic List Manager
+            </div>
+            <div class="card-body">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" id="newItem" placeholder="Add new item...">
+                <button class="btn btn-success" id="addItem">Add</button>
+              </div>
+              <div class="dynamic-list" id="itemList">
+                <div class="text-muted text-center">No items yet</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animation Demo -->
+      <div class="card mt-4">
+        <div class="card-header bg-light fw-bold">
+          Animation Showcase
+        </div>
+        <div class="card-body">
+          <div class="d-flex flex-wrap gap-3">
+            <button class="btn btn-primary" id="fadeInBtn">Fade In</button>
+            <button class="btn btn-warning" id="fadeOutBtn">Fade Out</button>
+            <button class="btn btn-success" id="slideToggleBtn">Slide Toggle</button>
+            <button class="btn btn-danger" id="highlightBtn">Highlight</button>
+          </div>
+          <div class="mt-3 p-3 bg-white rounded border" id="animationTarget">
+            This element demonstrates jQuery animations
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center">
+      <p class="mb-1">Created by Mason Tsoi • Professional jQuery Implementation</p>
+      <p class="mb-0">Leveraging jQuery 3.7.1 with modern best practices • CDN hosted</p>
+    </footer>
+  </div>
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap JS (optional) -->
+  <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom jQuery Logic -->
+  <script>
+    $(document).ready(function() {
+      // ===== COUNTER FUNCTIONALITY =====
+      let count = 0;
+      const $counter = $('#counter');
+      
+      $('#increment').click(function() {
+        count++;
+        $counter.text(count).addClass('text-success').fadeOut(100).fadeIn(100);
+      });
+      
+      $('#decrement').click(function() {
+        if (count > 0) {
+          count--;
+          $counter.text(count).addClass('text-danger').fadeOut(100).fadeIn(100);
+        }
+      });
+
+      // ===== DYNAMIC LIST MANAGER =====
+      const $itemList = $('#itemList');
+      const $newItemInput = $('#newItem');
+      
+      function addItem(text) {
+        if (text.trim() === '') return;
+        
+        const $item = $(`
+          <div class="list-item">
+            <span>${text}</span>
+            <button class="btn btn-sm btn-outline-danger remove-item">Remove</button>
+          </div>
+        `);
+        
+        // Add fade-in effect
+        $item.hide().appendTo($itemList).fadeIn(300);
+        
+        // Clear input and focus
+        $newItemInput.val('').focus();
+        
+        // Update empty state
+        $('.text-muted').remove();
+      }
+      
+      $('#addItem').click(function() {
+        addItem($newItemInput.val());
+      });
+      
+      $newItemInput.keypress(function(e) {
+        if (e.which === 13) { // Enter key
+          addItem($(this).val());
+        }
+      });
+      
+      // Remove item with animation
+      $(document).on('click', '.remove-item', function() {
+        const $item = $(this).closest('.list-item');
+        $item.addClass('fade-out');
+        setTimeout(() => {
+          $item.remove();
+          // Show empty state if no items
+          if ($itemList.children().length === 0) {
+            $itemList.html('<div class="text-muted text-center">No items yet</div>');
+          }
+        }, 500);
+      });
+
+      // ===== ANIMATION SHOWCASE =====
+      const $animationTarget = $('#animationTarget');
+      
+      $('#fadeInBtn').click(function() {
+        $animationTarget.fadeIn(500);
+      });
+      
+      $('#fadeOutBtn').click(function() {
+        $animationTarget.fadeOut(500);
+      });
+      
+      $('#slideToggleBtn').click(function() {
+        $animationTarget.slideToggle(500);
+      });
+      
+      $('#highlightBtn').click(function() {
+        $animationTarget
+          .stop(true)
+          .css('background-color', '#fef3c7')
+          .animate({ backgroundColor: '#ffffff' }, 1000);
+      });
+
+      // ===== ADDITIONAL JQUERY BEST PRACTICES =====
+      // Event delegation example
+      $('body').on('mouseenter', '.card', function() {
+        $(this).find('.card-header').addClass('bg-primary text-white');
+      }).on('mouseleave', '.card', function() {
+        $(this).find('.card-header').removeClass('bg-primary text-white');
+      });
+
+      // Utility method demonstration
+      $.fn.flashText = function(color = 'red') {
+        return this.each(function() {
+          const $el = $(this);
+          const originalColor = $el.css('color');
+          $el.css('color', color);
+          setTimeout(() => $el.css('color', originalColor), 300);
+        });
+      };
+
+      // Use custom plugin
+      $('#counter').click(function() {
+        $(this).flashText('#2563eb');
+      });
+    });
+  </script>
+</body>
+</html>

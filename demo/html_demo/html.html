@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mason Tsoi | Frontend Demo</title>
+  <style>
+    /* ===== BASE STYLES ===== */
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --border: #e2e8f0;
+      --success: #10b981;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(90%, 1200px);
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      text-align: center;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+    }
+
+    .tagline {
+      color: var(--gray);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===== CARD GRID ===== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+
+    .card-header {
+      background: var(--primary);
+      color: white;
+      padding: 1.25rem;
+      font-weight: 600;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-body ul {
+      padding-left: 1.25rem;
+      margin: 1rem 0;
+    }
+
+    .card-body li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* ===== INTERACTIVE ELEMENTS ===== */
+    .interactive-demo {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+    }
+
+    .demo-title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--primary-dark);
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: scale(1.03);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-success:hover {
+      filter: brightness(1.1);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 1rem;
+      }
+      
+      header {
+        padding: 2rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Frontend Skills Showcase</h1>
+      <p class="tagline">Clean, responsive, and accessible HTML/CSS implementation</p>
+    </header>
+
+    <main>
+      <div class="cards">
+        <div class="card">
+          <div class="card-header">Semantic HTML</div>
+          <div class="card-body">
+            <p>Proper use of HTML5 elements:</p>
+            <ul>
+              <li><code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code></li>
+              <li><code>&lt;section&gt;</code> and <code>&lt;article&gt;</code></li>
+              <li>Accessible form elements</li>
+              <li>Meaningful heading hierarchy</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Modern CSS</div>
+          <div class="card-body">
+            <p>Professional styling techniques:</p>
+            <ul>
+              <li>CSS Variables for theming</li>
+              <li>Flexbox & Grid layouts</li>
+              <li>Responsive design</li>
+              <li>Smooth transitions & hover effects</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Performance</div>
+          <div class="card-body">
+            <p>Optimized for speed and efficiency:</p>
+            <ul>
+              <li>Single HTML file (no external requests)</li>
+              <li>Minimal, efficient CSS</li>
+              <li>No JavaScript required</li>
+              <li>Print-friendly layout</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="interactive-demo">
+        <h2 class="demo-title">Interactive Elements</h2>
+        <div class="btn-group">
+          <button class="btn btn-primary">Primary Action</button>
+          <button class="btn btn-success">Success Action</button>
+          <button class="btn" style="background:#e2e8f0;">Default Button</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Created by Mason Tsoi • Demonstrates clean, maintainable frontend code</p>
+      <p>All code contained in a single HTML file • No external dependencies</p>
+    </footer>
+  </div>
+</body>
+</html>

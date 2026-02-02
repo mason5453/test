@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mason Tsoi | React-Style Demo</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --light: #f1f5f9;
+      --dark: #0f172a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--light) 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--dark);
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+    }
+
+    .container {
+      width: min(90%, 1200px);
+      margin: 0 auto;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 3rem 0;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-title {
+      font-size: 2.8rem;
+      background: linear-gradient(90deg, #1d4ed8, #2563eb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .card-header {
+      padding: 1.25rem;
+      background: #f8fafc;
+      font-weight: 700;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .counter-display {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .list-item {
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dynamic-list {
+      min-height: 150px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: #1d4ed8; }
+    
+    .btn-success { background: var(--success); color: white; }
+    .btn-success:hover { background: #0da271; }
+    
+    .btn-outline { 
+      background: transparent; 
+      border: 1px solid var(--primary); 
+      color: var(--primary); 
+    }
+    .btn-outline:hover { background: rgba(37, 99, 235, 0.1); }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      color: #64748b;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.2rem; }
+      .container { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <h1 class="hero-title">React-Style Implementation</h1>
+      <p class="lead text-muted">Component-based architecture with state management - built with vanilla JS</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+        <!-- Counter Component -->
+        <div class="card" id="counterComponent">
+          <div class="card-header">Dynamic Counter</div>
+          <div class="card-body">
+            <div class="counter-display" id="counterValue">0</div>
+            <div style="text-align: center;">
+              <button class="btn btn-primary" onclick="counter.increment()">+ Increment</button>
+              <button class="btn btn-outline" onclick="counter.decrement()" style="margin-left: 0.5rem;">- Decrement</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- List Manager Component -->
+        <div class="card" id="listComponent">
+          <div class="card-header">Dynamic List Manager</div>
+          <div class="card-body">
+            <div style="margin-bottom: 1rem;">
+              <input 
+                type="text" 
+                id="newItemInput" 
+                placeholder="Add new item..."
+                style="padding: 0.5rem; width: 70%; border: 1px solid #cbd5e1; border-radius: 4px;"
+                onkeypress="if(event.key==='Enter') listManager.addItem()"
+              >
+              <button class="btn btn-success" onclick="listManager.addItem()" style="margin-left: 0.5rem;">Add</button>
+            </div>
+            <div class="dynamic-list" id="itemList">
+              <div class="text-muted text-center">No items yet</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animation Demo -->
+      <div class="card">
+        <div class="card-header">State-Driven Animations</div>
+        <div class="card-body">
+          <div style="margin-bottom: 1rem;">
+            <button class="btn btn-primary" onclick="animationDemo.show()">Show Element</button>
+            <button class="btn btn-warning" style="background: var(--warning); color: black; margin-left: 0.5rem;" onclick="animationDemo.hide()">Hide Element</button>
+            <button class="btn btn-success" style="margin-left: 0.5rem;" onclick="animationDemo.toggle()">Toggle</button>
+          </div>
+          <div id="animatedElement" style="padding: 1rem; background: white; border-radius: 8px; border: 1px solid #e2e8f0; transition: all 0.3s ease;">
+            This element demonstrates state-driven visibility
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p class="mb-1">Created by Mason Tsoi • React-Style Architecture</p>
+      <p class="mb-0">Component-based design with state management • Vanilla JavaScript implementation</p>
+    </footer>
+  </div>
+
+  <!-- React-Style State Management -->
+  <script>
+    // ===== COUNTER COMPONENT =====
+    const counter = {
+      state: 0,
+      element: document.getElementById('counterValue'),
+      
+      increment() {
+        this.state++;
+        this.render();
+      },
+      
+      decrement() {
+        if (this.state > 0) {
+          this.state--;
+          this.render();
+        }
+      },
+      
+      render() {
+        this.element.textContent = this.state;
+        // Add subtle animation
+        this.element.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+          this.element.style.transform = 'scale(1)';
+        }, 150);
+      }
+    };
+
+    // ===== LIST MANAGER COMPONENT =====
+    const listManager = {
+      state: [],
+      listElement: document.getElementById('itemList'),
+      inputElement: document.getElementById('newItemInput'),
+      
+      addItem() {
+        const text = this.inputElement.value.trim();
+        if (text) {
+          this.state.push({ id: Date.now(), text });
+          this.inputElement.value = '';
+          this.render();
+        }
+      },
+      
+      removeItem(id) {
+        this.state = this.state.filter(item => item.id !== id);
+        this.render();
+      },
+      
+      render() {
+        if (this.state.length === 0) {
+          this.listElement.innerHTML = '<div class="text-muted text-center">No items yet</div>';
+          return;
+        }
+        
+        this.listElement.innerHTML = this.state.map(item => `
+          <div class="list-item" data-id="${item.id}">
+            <span>${item.text}</span>
+            <button class="btn btn-sm" style="background: #fee2e2; color: #ef4444; padding: 0.25rem 0.5rem;" 
+                    onclick="listManager.removeItem(${item.id})">
+              Remove
+            </button>
+          </div>
+        `).join('');
+      }
+    };
+
+    // ===== ANIMATION DEMO =====
+    const animationDemo = {
+      element: document.getElementById('animatedElement'),
+      isVisible: true,
+      
+      show() {
+        this.isVisible = true;
+        this.element.style.display = 'block';
+      },
+      
+      hide() {
+        this.isVisible = false;
+        this.element.style.display = 'none';
+      },
+      
+      toggle() {
+        this.isVisible = !this.isVisible;
+        this.element.style.display = this.isVisible ? 'block' : 'none';
+      }
+    };
+
+    // Initialize
+    counter.render();
+    listManager.render();
+  </script>
+</body>
+</html>
