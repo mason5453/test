@@ -2,6 +2,7 @@
     // ========== 分类名称映射 ==========
     const categoryNames = {
         "programming": "Programming",
+        "operating-systems": "Operating Systems",
         "frontend-technologies": "Frontend Technologies",
         "backend-technologies": "Backend Technologies",
         "databases": "Databases",
@@ -10,7 +11,6 @@
         "version-control": "Version Control",
         "ides-editors": "IDEs & Code Editors",
         "devops-tools": "DevOps & Tools",
-        "operating-systems": "Operating Systems",
         "package-managers": "Package Managers",
         "ai-machine-learning": "AI & Machine Learning",
         "productivity-tools": "Productivity & Office Tools",

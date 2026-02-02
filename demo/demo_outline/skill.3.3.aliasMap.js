@@ -10,10 +10,13 @@ const aliasMap = {
     "Kotlin":     ["kotlin"],
     "PHP":        ["php"],
     "Python":     ["python", "py"],
-    "Shell":      ["shell","bash","sh"],
     "TypeScript": ["typescript", "ts"],
     "Vbs":        ["vb", "vbs", "VisualBasic", "Visual Basic"],
-    
+
+    // Operating Systems
+    "Windows ( bat, cmd, batch, dos )": ["windows"],
+    "Linux (Vi, Nano, Shell)": ["linux", "vi", "nano", "ubuntu", "centos","shell","bash","sh"],
+
     // Frontend Technologies
     "HTML5": ["html5", "html", "hypertext markup language"],
     "CSS3": ["css3", "css", "cascading style sheets"],
@@ -82,9 +85,6 @@ const aliasMap = {
     "Remote Desktop (MSTSC)": ["mstsc", "remote desktop", "rdp"],
     "Flowchart tools": ["flowchart", "diagram"],
     
-    // Operating Systems
-    "Windows": ["windows"],
-    "Linux (Vi, Nano)": ["linux", "vi", "nano", "ubuntu", "centos"],
     
     // Package Managers
     "NPM": ["npm"],
