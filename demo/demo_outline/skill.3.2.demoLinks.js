@@ -13,7 +13,10 @@ const demoLinks = {
     "vbs":        baseUrl1 + "vb_demo/vb.png",
     // OS
     "windows":    baseUrl1 + "win_cmd_demo/win_cmd.html",
+    "bat":        baseUrl1 + "win_cmd_demo/win_cmd.html",
+    "batch":      baseUrl1 + "win_cmd_demo/win_cmd.html",
     "linux":      baseUrl1 + "shell_demo/shell.html",
+    "shell":      baseUrl1 + "shell_demo/shell.html",
 
     // Frontend Technologies
     "html5":         null,

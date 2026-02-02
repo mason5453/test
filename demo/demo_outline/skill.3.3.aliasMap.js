@@ -62,9 +62,8 @@ const aliasMap = {
     "Tomcat": ["tomcat", "apache tomcat"],
     
     // Version Control
-    "Git": ["git"],
-    "SVN": ["svn", "subversion"],
-    "TortoiseGit/TortoiseSVN": ["tortoise", "tortoisegit", "tortoisesvn"],
+    "Git": ["git", "tortoisegit"],
+    "SVN": ["svn", "subversion" ,"tortoisesvn"],
     
     // IDEs & Editors
     "Visual Studio Code (VSC)": ["vscode", "vsc", "visual studio code"],

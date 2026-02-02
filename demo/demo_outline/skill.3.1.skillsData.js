@@ -2,7 +2,7 @@ const skillsData = {
     //1
     "programming": [
         "C#", ".NET", "PHP", "JavaScript", "TypeScript", 
-        "Python", "Java", "C++", "Kotlin", "HTML5", "CSS3", "VBs"
+        "Python", "Java", "C++", "Kotlin", "VBs"
     ],
     //2
     "operating-systems": [
@@ -36,7 +36,7 @@ const skillsData = {
     ],
     //7
     "version-control": [
-        "Git", "SVN", "TortoiseGit/TortoiseSVN"
+        "Git", "SVN"
     ],
     "ides-editors": [
         "Visual Studio", "VS Code", "Visual Studio Code (VSC)", 
@@ -64,7 +64,7 @@ const skillsData = {
         "ZIP compression", "7-Zip"
     ],
     "development-environments": [
-        "XAMPP", "MSTSC", "SSH", "Putty", "Batch scripting (BAT)", "VBScript (VBS)"
+        "XAMPP", "MSTSC", "SSH", "Putty", "bat", "Vbs"
     ],
     "design-prototyping": [
         "Figma", "Flowchart Tools", "MVC Pattern", "3D software/animation"
