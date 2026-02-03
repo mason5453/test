@@ -145,7 +145,7 @@
             
             for (let i = 1; i <= 9; i++) {
                 try {
-                    const response = await fetch(`${i}.txt`);
+                    const response = await fetch(`static/ttt/${i}.txt`);
                     if (!response.ok) {
                         throw new Error(`File ${i}.txt not found`);
                     }
