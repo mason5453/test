@@ -269,42 +269,6 @@ color: #000;
 }
 
 
-/* Base link style */
-a {
-    color: #0066cc; /* Blue - good contrast on white */
-    text-decoration: none; /* Remove underline by default */
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-/* Underline effect on hover */
-a:hover {
-    color: #004499; /* Darker blue */
-    text-decoration: none; /* Remove underline by default */
-    text-decoration-thickness: 2px;
-    text-underline-offset: 2px;
-}
-
-/* Active state (when clicking) */
-a:active {
-    color: #003377; /* Even darker */
-    transform: scale(0.98);
-}
-
-/* Visited state */
-a:visited {
-    color: #009966; /* Purple - indicates visited */
-}
-
-/* Focus state (accessibility) */
-a:focus {
-    outline: 2px solid #0066cc;
-    outline-offset: 2px;
-    border-radius: 3px;
-}
-
-
 /* Base link style - with subtle shadow for depth */
 a {
     color: #0066cc; /* Blue - good contrast on white */
