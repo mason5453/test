@@ -47,7 +47,7 @@ const demoLinks = {
     // Web Servers
     "apache": null,
     "nginx": null,
-    "tomcat": null,
+    "tomcat": baseUrl1 + "java_demo/JSP.mp4",
     
     // Version Control
     "git": null,
