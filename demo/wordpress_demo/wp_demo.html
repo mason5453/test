@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mason Tsoi | WordPress Development Portfolio</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #10b981;
+            --light: #f1f5f9;
+            --dark: #0f172a;
+            --gray: #94a3b8;
+            --card-bg: white;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--light) 0%, #e2e8f0 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+        }
+
+        .container {
+            width: min(90%, 1200px);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #1d4ed8, #2563eb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Video Thumbnail */
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--primary);
+        }
+
+        /* Card Content */
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .card-description {
+            color: var(--gray);
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .device-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Device Icons (SVG) */
+        .device-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .video-grid { gap: 1.5rem; }
+            .card-title { font-size: 1.2rem; }
+        }
+
+        /* Video placeholder styling */
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 0;
+        }
+
+        .video-placeholder span {
+            font-size: 1.1rem;
+            max-width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>WordPress Development Portfolio</h1>
+            <p class="subtitle">Professional WordPress implementations showcasing backend administration, desktop, and mobile responsiveness</p>
+        </header>
+
+        <div class="video-grid">
+            <!-- Backoffice Video -->
+            <div class="video-card" onclick="playVideo('wp-bo.mp4')">
+                <div class="video-thumbnail">
+                    <div class="video-placeholder">
+                        <span>Backoffice Dashboard<br><small>Admin Login & Management</small></span>
+                    </div>
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">WordPress Backoffice</h3>
+                    <p class="card-description">Full admin dashboard experience showing custom post types, user management, and backend functionality.</p>
+                    <div class="card-meta">
+                        <div class="device-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        Admin Dashboard | Backend Implementation
+                    </div>
+                </div>
+            </div>
+
+            <!-- PC Version -->
+            <div class="video-card" onclick="playVideo('wp-pc.mp4')">
+                <div class="video-thumbnail">
+                    <div class="video-placeholder">
+                        <span>Company Website<br><small>Desktop Experience</small></span>
+                    </div>
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Desktop Website</h3>
+                    <p class="card-description">Complete company website optimized for desktop browsers with responsive design principles.</p>
+                    <div class="card-meta">
+                        <div class="device-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 3H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4 10H9v-2h4v2zm0-4H9V7h4v2z"/>
+                            </svg>
+                        </div>
+                        Desktop View | Full-Width Layout
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Version -->
+            <div class="video-card" onclick="playVideo('wp-mobile.mp4')">
+                <div class="video-thumbnail">
+                    <div class="video-placeholder">
+                        <span>Mobile Experience<br><small>Responsive Design</small></span>
+                    </div>
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Mobile Website</h3>
+                    <p class="card-description">Same content optimized for mobile devices with touch-friendly navigation and responsive layouts.</p>
+                    <div class="card-meta">
+                        <div class="device-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 3H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4 10H9v-2h4v2zm0-4H9V7h4v2z"/>
+                            </svg>
+                        </div>
+                        Mobile View | Touch-Optimized
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px var(--shadow); margin-bottom: 2rem;">
+            <h3 style="color: var(--dark); margin-bottom: 1rem;">How to View</h3>
+            <ul style="padding-left: 1.5rem; color: var(--gray);">
+                <li>Click any card to play the corresponding video</li>
+                <li>Videos are stored locally in same directory as this HTML file</li>
+                <li>Works best in modern browsers (Chrome, Firefox, Safari)</li>
+                <li>All videos demonstrate real WordPress implementations</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Mason Tsoi | WordPress Developer</p>
+            <p>Created for technical evaluation • Demonstrates full-stack WordPress expertise</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple video playback function
+        function playVideo(filename) {
+            // In a real implementation, you'd use:
+            // const video = document.createElement('video');
+            // video.src = filename;
+            // video.controls = true;
+            // video.autoplay = true;
+            // video.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;background:#000;';
+            // document.body.appendChild(video);
+            
+            // For demo purposes, show alert with filename
+            alert(`Playing: ${filename}\n\nIn production, this would launch the video player.`);
+            
+            // Optional: Add actual video player implementation below
+        }
+
+        // Enhanced version with modal player (uncomment when ready)
+        /*
+        function playVideo(filename) {
+            const modal = document.createElement('div');
+            modal.id = 'video-modal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 100%;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                align-items: center;
+                justify-content: center

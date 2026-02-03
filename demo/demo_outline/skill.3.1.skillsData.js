@@ -41,7 +41,7 @@ const skillsData = {
     "ides-editors": [
         "Visual Studio", "VS Code", "Visual Studio Code (VSC)", 
         "NetBeans", "IntelliJ", "IntelliJ IDEA", "Sublime Text", 
-        "Notepad++ (NPP)", "Android Studio"
+        "Notepad++ (NPP)", "AndroidStudio"
     ],
     "devops-tools": [
         "Docker", "CI/CD", "Vercel", "Netlify", "Postman",

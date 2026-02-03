@@ -69,7 +69,7 @@ const aliasMap = {
     "Visual Studio Code (VSC)": ["vscode", "vsc", "visual studio code"],
     "IntelliJ IDEA": ["intellij", "idea"],
     "NetBeans": ["netbeans"],
-    "Android Studio": ["android studio"],
+    "AndroidStudio": ["android studio"],
     "Sublime Text": ["sublime", "sublime text"],
     "Notepad++ (NPP)": ["notepad++", "npp", "notepad"],
     

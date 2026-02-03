@@ -33,10 +33,10 @@ const demoLinks = {
     "ant design": null,
     
     // Backend Technologies
-    ".net": "https://test-nine-iota-75.vercel.app/demo/dotnet_demo/dotnet.html",
+    ".net":          baseUrl1 + "dotnet_demo/dotnet.html",
     "asp.net": null,
-    "node.js": baseUrl1 + "nodejs_demo/nodejs.html",
-    "wordpress": null,
+    "node.js":       baseUrl1 + "nodejs_demo/nodejs.html",
+    "wordpress":     baseUrl1 + "wordpress_demo/wp_demo.html",
     "graphql": null,
     
     // Databases
@@ -56,7 +56,7 @@ const demoLinks = {
     // IDEs & Editors
     "visual studio code (vsc)": null,
     "intellij idea": null,
-    "android studio": null,
+    "androidstudio":     baseUrl1 + "android_demo/android_ai_demo.mp4",
     "sublime text": null,
     
     // DevOps & Tools
