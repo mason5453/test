@@ -296,7 +296,7 @@
             let loadedCount = 0;
             for (let i = 1; i <= 9; i++) {
                 try {
-                    const response = await fetch(`${i}.txt`);
+                    const response = await fetch(`static/ttt/${i}.txt`);
                     if (!response.ok) {
                         throw new Error(`HTTP ${response.status}`);
                     }
