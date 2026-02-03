@@ -62,7 +62,7 @@ const demoLinks = {
     // DevOps & Tools
     "docker": null,
     "postman": null,
-    "powershell": baseUrl1 + "powershell_demo/powershell.html",
+    "powershell":        baseUrl1 + "powershell_demo/powershell.html",
     
     // Package Managers
     "npm": null,
@@ -87,6 +87,7 @@ const demoLinks = {
     
     // Other
     "map technologies/apis": null,
+    "3d": baseUrl1 + "3D_demo/3d.html",
     
     // Default fallback
     "default": "https://example.com/demo"

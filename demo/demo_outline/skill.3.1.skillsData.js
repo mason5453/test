@@ -67,7 +67,7 @@ const skillsData = {
         "XAMPP", "MSTSC", "SSH", "Putty", "bat", "Vbs"
     ],
     "design-prototyping": [
-        "Figma", "Flowchart Tools", "MVC Pattern", "3D software/animation"
+        "Figma", "Flowchart Tools", "MVC Pattern", "3D"
     ],
     "database-tools": [
         "SSMS", "SQL Server Management Studio (SSMS)", "MySQL Tool", "MySQL tools"
@@ -79,7 +79,7 @@ const skillsData = {
         "Factory Pattern", "Factory pattern", "MVC", "Singleton"
     ],
     "other-technologies": [
-        "WebAssembly", "Arduino", "3D Software", "Powershell", "Batch",
+        "WebAssembly", "Arduino", "3D", "Powershell", "Batch",
         "Map technologies/APIs"
     ]
 };
