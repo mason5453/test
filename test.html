@@ -1,120 +1,59 @@
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
-<!-- Semantic button (not <a>!) + hidden accessible label + custom tooltip -->
-<button 
-  class="note-btn" 
-  aria-label="Open notes section" 
-  data-tooltip="Notes">
-  <span class="note-icon">📒</span>
-</button>
+<a href="#" class="cycling-spotlight">
+  <span></span>
+  <span></span>
+  <span></span>
+</a>
 
 <style>
-.note-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  position: relative;
-  border-radius: 4px;
-  transition: transform 0.2s, filter 0.2s;
+.cycling-spotlight {
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  /* Subtle focus ring for keyboard users */
-  outline-offset: 2px;
+  gap: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: #f7fafc;
 }
 
-/* Hover animation: gentle lift + glow */
-.note-btn:hover {
-  transform: translateY(-2px);
-  filter: drop-shadow(0 0 6px rgba(70, 130, 180, 0.7));
+.cycling-spotlight span {
+  display: inline-block;
+  font-size: 0.6em;
+  opacity: 0.4;
+  color: #718096;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Shine animation on hover (subtle sweep) */
-.note-btn:hover .note-icon::after {
-  animation: shine 0.8s forwards;
-}
-
-.note-icon {
-  font-size: 1.4em;
-  position: relative;
-  display: block;
-  line-height: 1;
-}
-
-/* Shine effect layer */
-.note-icon::after {
-  content: '';
-  position: absolute;
-  top: -50%; left: -100%;
-  width: 200%; height: 200%;
-  background: linear-gradient(
-    90deg, 
-    transparent, 
-    rgba(255,255,255,0.8) 40%, 
-    rgba(255,255,255,0.3) 60%, 
-    transparent
-  );
-  transform: rotate(25deg);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-@keyframes shine {
-  to { 
-    left: 100%; 
-    opacity: 0; 
-  }
-}
-
-/* CUSTOM TOOLTIP (better than title="") */
-.note-btn::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(8px) scale(0.95);
-  opacity: 0;
-  background: #2563eb;
-  color: white;
-  font-size: 0.85rem;
-  padding: 3px 8px;
-  border-radius: 4px;
-  white-space: nowrap;
-  pointer-events: none;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-.note-btn:hover::after {
+.cycling-spotlight span.big {
+  font-size: 1.8em;
+  font-weight: 700;
   opacity: 1;
-  transform: translateX(-50%) translateY(0) scale(1);
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
-}
-
-/* Arrow for tooltip */
-.note-btn::before {
-  content: '';
-  position: absolute;
-  bottom: calc(100% - 4px);
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg) scale(0);
-  opacity: 0;
-  width: 8px; height: 8px;
-  background: #2563eb;
-  transition: all 0.25s ease;
-  z-index: 1000;
-}
-
-.note-btn:hover::before {
-  opacity: 1;
-  transform: translateX(-50%) rotate(45deg) scale(1);
-}
-
-/* Focus state for keyboard users */
-.note-btn:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
+  color: #2b6cb0;
+  transform: translateY(-4px);
+  text-shadow: 0 2px 8px rgba(43, 108, 176, 0.3);
 }
 </style>
+
+<script>
+// Auto-cycle which word is big every 1 second
+const spotlight = document.querySelector('.cycling-spotlight');
+const words = spotlight.querySelectorAll('span');
+let currentIndex = 0;
+
+function cycleBigWord() {
+  // Remove 'big' from all words
+  words.forEach(word => word.classList.remove('big'));
+  
+  // Add 'big' to current word
+  words[currentIndex].classList.add('big');
+  
+  // Move to next word (loop back to start)
+  currentIndex = (currentIndex + 1) % words.length;
+}
+
+// Start cycling every 1000ms (1 second)
+setInterval(cycleBigWord, 1000);
+
+// Initial call to show first word big immediately
+cycleBigWord();
+</script>
