@@ -72,6 +72,7 @@ const demoLinks = {
     "machine learning": null,
     "neural networks (nn)": null,
     "ai frameworks": null,
+    "ai": baseUrl1 + "ai_demo/ai.html",
     
     // Productivity Tools
     "excel": null,

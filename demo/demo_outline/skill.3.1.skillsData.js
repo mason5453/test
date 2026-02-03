@@ -52,7 +52,7 @@ const skillsData = {
         "npm", "NPM", "pnpm", "PNPM", "Composer"
     ],
     "ai-machine-learning": [
-        "AI Agent", "AI-Base framework", "Machine Learning", "Machine learning",
+        "AI", "AI Agent", "AI-Base framework", "Machine Learning", "Machine learning",
         "Neural Networks", "Neural Networks (NN)", "Tree Forest", 
         "Decision Trees/Random Forest", "Supervised Learning", "Supervised learning",
         "Game AI development", "AI model deployment", "AI frameworks", 

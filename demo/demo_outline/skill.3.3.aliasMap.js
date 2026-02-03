@@ -98,6 +98,7 @@ const aliasMap = {
     "AI model deployment": ["ai deployment", "model deployment"],
     "AI frameworks": ["ai framework", "tensorflow", "pytorch"],
     "AI agents": ["ai agent"],
+    "ai": ["ai"],
     "Chat AI tools (Qwen, DeepSeek, etc.)": ["chat ai", "qwen", "deepseek", "chatbot"],
     
     // Productivity Tools
