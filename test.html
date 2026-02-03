@@ -1,86 +1,358 @@
-<html lang="en"><head>
-    <title>Teachable Machine</title>
-    <base href="/">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=yes">
-    <link rel="stylesheet" href="https://teachablemachine.withgoogle.com/assets/style.css">
-    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-9MEMVC6S98&amp;cx=c&amp;gtm=4e61r1"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-PJ46M7W"></script><script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
-    <link rel="shortcut icon" href="/assets/img/favicon.png">
-
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="Teachable Machine">
-    <meta name="description" content="Train a computer to recognize your own images, sounds, &amp; poses.
-        A fast, easy way to create machine learning models for your sites, apps, and more – no expertise or coding required.">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://teachablemachine.withgoogle.com/">
-    <meta property="og:title" content="Teachable Machine">
-    <meta property="og:description" content="Train a computer to recognize your own images, sounds, &amp; poses.
-        A fast, easy way to create machine learning models for your sites, apps, and more – no expertise or coding required.">
-    <meta property="og:image" content="https://teachablemachine.withgoogle.com/assets/img/Hero_image_16x9.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://teachablemachine.withgoogle.com/">
-    <meta property="twitter:title" content="Teachable Machine">
-    <meta property="twitter:description" content="Train a computer to recognize your own images, sounds, &amp; poses.
-        A fast, easy way to create machine learning models for your sites, apps, and more – no expertise or coding required.">
-    <meta property="twitter:image" content="https://teachablemachine.withgoogle.com/assets/img/Hero_image_16x9.jpg">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe AI</title>
     <style>
-      body,
-      html {
-        height: 100%;
-      }
-
-      tm-classifier-drawer .error-message {
-        font-weight: bold;
-        color: #e05534;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            margin: 20px auto;
+        }
+        
+        .cell {
+            width: 100px;
+            height: 100px;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .cell:hover {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
+        
+        .cell.x {
+            color: #e74c3c;
+        }
+        
+        .cell.o {
+            color: #3498db;
+        }
+        
+        .status {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #333;
+        }
+        
+        .winner {
+            color: #2ecc71;
+        }
+        
+        .draw {
+            color: #95a5a6;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        .loading {
+            display: none;
+            font-size: 18px;
+            color: #666;
+            margin: 10px 0;
+        }
+        
+        .file-status {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
     </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Tic Tac Toe AI</h1>
+        <div class="status" id="status">Your turn (X)</div>
+        <div class="board" id="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+        <div class="loading" id="loading">AI is thinking...</div>
+        <div id="fileStatus"></div>
+        <button onclick="resetGame()">New Game</button>
+        <button onclick="togglePlayer()">Switch First Player</button>
+    </div>
 
     <script>
-      window.dataLayer = window.dataLayer || []
+        // Game state
+        let board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let currentPlayer = 1; // 1 = X (human), 2 = O (AI)
+        let gameActive = true;
+        let aiFiles = {};
+        let humanStarts = true;
 
-      function getRedactedPathname() {
-        let p = window.location.pathname
-        p = p.replace(/(?<=\/models\/)(\w+)(\/.+)?/gi, '[redacted_id]$2')
-        p = p.replace(
-          /(\/train\/\w+\/)(\w+)(\/.+)?/gi,
-          '$1[redacted_drive_id]$3'
-        )
-        p = p.replace(/(\/drive.+)(\"\w+\")(.+)/gi, '$1[redacted_drive_id]$3')
-        p = p.replace(/(\/train.+id=)(\w+)(&.+)/gi, '$1[redacted_drive_id]$3')
-        return p
-      }
+        // Load AI files
+        async function loadAIFiles() {
+            const fileStatus = document.getElementById('fileStatus');
+            fileStatus.innerHTML = '<div class="file-status">Loading AI files...</div>';
+            
+            for (let i = 1; i <= 9; i++) {
+                try {
+                    const response = await fetch(`static/ttt/${i}.txt`);
+                    if (!response.ok) {
+                        throw new Error(`File ${i}.txt not found`);
+                    }
+                    const text = await response.text();
+                    aiFiles[i] = text.split('\n').filter(line => line.trim());
+                    fileStatus.innerHTML += `<div class="file-status">✓ Loaded ${i}.txt (${aiFiles[i].length} patterns)</div>`;
+                } catch (error) {
+                    fileStatus.innerHTML += `<div class="file-status" style="color: #e74c3c">✗ Error loading ${i}.txt: ${error.message}</div>`;
+                    console.error(`Error loading ${i}.txt:`, error);
+                }
+            }
+            
+            if (Object.keys(aiFiles).length === 9) {
+                fileStatus.innerHTML += '<div class="file-status" style="color: #2ecc71; font-weight: bold">✓ All AI files loaded successfully!</div>';
+            } else {
+                fileStatus.innerHTML += '<div class="file-status" style="color: #e74c3c; font-weight: bold">⚠ Some files failed to load. AI may not work properly.</div>';
+            }
+        }
 
-      window.dataLayer.push({
-        page_path: getRedactedPathname(),
-        page_referrer: document.referrer.split('?')[0],
-      })
+        // Initialize game
+        function initGame() {
+            loadAIFiles();
+            if (!humanStarts) {
+                setTimeout(makeAIMove, 500);
+            }
+        }
+
+        // Make a move
+        function makeMove(index) {
+            if (!gameActive || board[index] !== 0) return;
+            
+            board[index] = currentPlayer;
+            updateBoard();
+            
+            if (checkWinner()) {
+                gameActive = false;
+                document.getElementById('status').textContent = currentPlayer === 1 ? 'You win! 🎉' : 'AI wins! 😢';
+                document.getElementById('status').className = 'status winner';
+                return;
+            }
+            
+            if (checkDraw()) {
+                gameActive = false;
+                document.getElementById('status').textContent = 'Draw! 🤝';
+                document.getElementById('status').className = 'status draw';
+                return;
+            }
+            
+            currentPlayer = currentPlayer === 1 ? 2 : 1;
+            document.getElementById('status').textContent = currentPlayer === 1 ? 'Your turn (X)' : 'AI thinking... (O)';
+            
+            if (currentPlayer === 2) {
+                document.getElementById('loading').style.display = 'block';
+                setTimeout(makeAIMove, 800);
+            }
+        }
+
+        // AI move logic
+        function makeAIMove() {
+            if (!gameActive) return;
+            
+            const currentState = board.join('');
+            let aiMove = -1;
+            
+            // Search through all files to find matching state
+            for (let fileNum = 1; fileNum <= 9; fileNum++) {
+                if (!aiFiles[fileNum]) continue;
+                
+                // Check if current state exists in this file
+                if (aiFiles[fileNum].includes(currentState)) {
+                    aiMove = fileNum - 1; // Convert to 0-indexed
+                    console.log(`AI found match in ${fileNum}.txt, moving to position ${aiMove}`);
+                    break;
+                }
+            }
+            
+            // If no match found, use fallback strategy
+            if (aiMove === -1) {
+                console.log('No match found, using fallback strategy');
+                aiMove = getFallbackMove();
+            }
+            
+            // Make the move if valid
+            if (aiMove >= 0 && aiMove < 9 && board[aiMove] === 0) {
+                board[aiMove] = 2;
+                updateBoard();
+                
+                if (checkWinner()) {
+                    gameActive = false;
+                    document.getElementById('status').textContent = 'AI wins! 😢';
+                    document.getElementById('status').className = 'status winner';
+                } else if (checkDraw()) {
+                    gameActive = false;
+                    document.getElementById('status').textContent = 'Draw! 🤝';
+                    document.getElementById('status').className = 'status draw';
+                } else {
+                    currentPlayer = 1;
+                    document.getElementById('status').textContent = 'Your turn (X)';
+                }
+            } else {
+                console.error('Invalid AI move:', aiMove);
+            }
+            
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        // Fallback strategy if no pattern match
+        function getFallbackMove() {
+            // Try to win
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === 0) {
+                    board[i] = 2;
+                    if (checkWinner()) {
+                        board[i] = 0;
+                        return i;
+                    }
+                    board[i] = 0;
+                }
+            }
+            
+            // Block opponent win
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === 0) {
+                    board[i] = 1;
+                    if (checkWinner()) {
+                        board[i] = 0;
+                        return i;
+                    }
+                    board[i] = 0;
+                }
+            }
+            
+            // Take center if available
+            if (board[4] === 0) return 4;
+            
+            // Take corners
+            const corners = [0, 2, 6, 8];
+            const availableCorners = corners.filter(i => board[i] === 0);
+            if (availableCorners.length > 0) {
+                return availableCorners[Math.floor(Math.random() * availableCorners.length)];
+            }
+            
+            // Take any available spot
+            const available = board.map((val, idx) => val === 0 ? idx : -1).filter(i => i !== -1);
+            return available[Math.floor(Math.random() * available.length)];
+        }
+
+        // Update board display
+        function updateBoard() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach((cell, index) => {
+                cell.textContent = board[index] === 1 ? 'X' : board[index] === 2 ? 'O' : '';
+                cell.className = 'cell ' + (board[index] === 1 ? 'x' : board[index] === 2 ? 'o' : '');
+            });
+        }
+
+        // Check for winner
+        function checkWinner() {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                [0, 4, 8], [2, 4, 6]             // diagonals
+            ];
+            
+            return winPatterns.some(pattern => {
+                const [a, b, c] = pattern;
+                return board[a] !== 0 && board[a] === board[b] && board[a] === board[c];
+            });
+        }
+
+        // Check for draw
+        function checkDraw() {
+            return board.every(cell => cell !== 0);
+        }
+
+        // Reset game
+        function resetGame() {
+            board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+            currentPlayer = humanStarts ? 1 : 2;
+            gameActive = true;
+            document.getElementById('status').textContent = currentPlayer === 1 ? 'Your turn (X)' : 'AI thinking... (O)';
+            document.getElementById('status').className = 'status';
+            document.getElementById('loading').style.display = 'none';
+            updateBoard();
+            
+            if (currentPlayer === 2) {
+                setTimeout(makeAIMove, 500);
+            }
+        }
+
+        // Toggle who starts first
+        function togglePlayer() {
+            humanStarts = !humanStarts;
+            resetGame();
+        }
+
+        // Add click event listeners to cells
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.addEventListener('click', () => {
+                if (currentPlayer === 1 && gameActive) {
+                    makeMove(parseInt(cell.dataset.index));
+                }
+            });
+        });
+
+        // Initialize on page load
+        window.onload = initGame;
     </script>
-    <!-- Google Tag Manager -->
-    <script>
-      ;(function (w, d, s, l, i) {
-        w[l] = w[l] || []
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : ''
-        j.async = true
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
-        f.parentNode.insertBefore(j, f)
-      })(window, document, 'script', 'dataLayer', 'GTM-PJ46M7W')
-    </script>
-    <!-- End Google Tag Manager -->
-
-    <!-- Cookie Consent CSS -->
-    <link href="https://www.gstatic.com/glue/cookienotificationbar/cookienotificationbar.min.css" rel="stylesheet">
-  </head>
-
-  <body><!----><tm-model-preview-app style="
-    height: 100%;
-    display: block;
-"></tm-model-preview-app><!---->
-
-</body></html>
+</body>
+</html>
