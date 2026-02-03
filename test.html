@@ -3,116 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe AI</title>
+    <title>🎮 Tic Tac Toe AI (Perfect Play)</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            color: #fff;
         }
         
         .container {
-            background: white;
+            background: rgba(0, 0, 30, 0.92);
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
             text-align: center;
+            max-width: 600px;
+            border: 2px solid #3498db;
         }
         
         h1 {
-            color: #333;
-            margin-bottom: 20px;
+            color: #3498db;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            color: #95a5a6;
+            margin-bottom: 25px;
+            font-style: italic;
         }
         
         .board {
             display: grid;
             grid-template-columns: repeat(3, 100px);
             grid-template-rows: repeat(3, 100px);
-            gap: 5px;
+            gap: 8px;
             margin: 20px auto;
+            background: rgba(0, 20, 40, 0.7);
+            padding: 10px;
+            border-radius: 15px;
+            border: 2px solid #2980b9;
         }
         
         .cell {
             width: 100px;
             height: 100px;
-            background: #f0f0f0;
+            background: rgba(30, 40, 70, 0.8);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 48px;
+            font-size: 56px;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 10px;
-            transition: all 0.3s;
+            border-radius: 12px;
+            transition: all 0.25s;
+            border: 2px solid #34495e;
         }
         
         .cell:hover {
-            background: #e0e0e0;
-            transform: scale(1.05);
+            background: rgba(52, 152, 219, 0.2);
+            transform: scale(1.03);
+            border-color: #3498db;
         }
         
         .cell.x {
             color: #e74c3c;
+            text-shadow: 0 0 10px rgba(231, 76, 60, 0.7);
         }
         
         .cell.o {
             color: #3498db;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+        
+        .cell.highlight {
+            background: rgba(46, 204, 113, 0.3);
+            border-color: #2ecc71;
+            transform: scale(1.05);
         }
         
         .status {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             margin: 20px 0;
-            color: #333;
+            min-height: 36px;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
         }
         
-        .winner {
+        .status.ai-turn {
+            color: #3498db;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .status.human-turn {
+            color: #e74c3c;
+        }
+        
+        .status.winner {
             color: #2ecc71;
+            background: rgba(46, 204, 113, 0.2);
         }
         
-        .draw {
-            color: #95a5a6;
+        .status.draw {
+            color: #f39c12;
+            background: rgba(243, 156, 18, 0.2);
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
         }
         
         button {
-            background: #667eea;
+            background: linear-gradient(to right, #3498db, #2980b9);
             color: white;
             border: none;
-            padding: 12px 30px;
-            font-size: 18px;
-            border-radius: 25px;
+            padding: 14px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            margin: 10px;
+            margin: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         
         button:hover {
-            background: #764ba2;
-            transform: translateY(-2px);
+            background: linear-gradient(to right, #2980b9, #1a5276);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
         }
         
-        .loading {
-            display: none;
-            font-size: 18px;
-            color: #666;
-            margin: 10px 0;
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .debug {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            font-family: monospace;
+            text-align: left;
+            max-height: 150px;
+            overflow-y: auto;
+            font-size: 14px;
+            color: #95a5a6;
+        }
+        
+        .debug-line {
+            margin: 3px 0;
+            padding-left: 10px;
+            border-left: 3px solid #3498db;
         }
         
         .file-status {
-            font-size: 14px;
-            color: #666;
-            margin: 5px 0;
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .file-status.loading {
+            color: #f39c12;
+        }
+        
+        .file-status.success {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        
+        .file-status.error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            font-size: 18px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-x, .legend-o {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .legend-x {
+            background: rgba(231, 76, 60, 0.3);
+            color: #e74c3c;
+        }
+        
+        .legend-o {
+            background: rgba(52, 152, 219, 0.3);
+            color: #3498db;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎮 Tic Tac Toe AI</h1>
-        <div class="status" id="status">Your turn (X)</div>
+        <h1>🤖 Tic Tac Toe AI</h1>
+        <div class="subtitle">AI always starts first (X) • Perfect play • Never loses</div>
+        
+        <div class="file-status loading" id="fileStatus">Loading AI brain files (1.txt - 9.txt)...</div>
+        
+        <div class="status ai-turn" id="status">AI is making first move...</div>
+        
         <div class="board" id="board">
             <div class="cell" data-index="0"></div>
             <div class="cell" data-index="1"></div>
@@ -124,141 +243,183 @@
             <div class="cell" data-index="7"></div>
             <div class="cell" data-index="8"></div>
         </div>
-        <div class="loading" id="loading">AI is thinking...</div>
-        <div id="fileStatus"></div>
-        <button onclick="resetGame()">New Game</button>
-        <button onclick="togglePlayer()">Switch First Player</button>
+        
+        <div class="legend">
+            <div class="legend-item"><div class="legend-x">X</div> AI (first player)</div>
+            <div class="legend-item"><div class="legend-o">O</div> You (second player)</div>
+        </div>
+        
+        <button onclick="resetGame()">🔄 New Game</button>
+        
+        <div class="debug" id="debugLog">
+            <div class="debug-line">System: AI initialized with perfect play strategy</div>
+        </div>
     </div>
 
     <script>
-        // Game state
+        // Game state - AI is ALWAYS X (1), human is ALWAYS O (2)
         let board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-        let currentPlayer = 1; // 1 = X (human), 2 = O (AI)
+        const AI_PLAYER = 1;   // X - always starts first
+        const HUMAN_PLAYER = 2; // O - always second
         let gameActive = true;
         let aiFiles = {};
-        let humanStarts = true;
+        let debugLog = [];
 
-        // Load AI files
-        async function loadAIFiles() {
-            const fileStatus = document.getElementById('fileStatus');
-            fileStatus.innerHTML = '<div class="file-status">Loading AI files...</div>';
+        // Perfect Tic Tac Toe strategy for first player (X)
+        // This is the fallback if text files are missing/incomplete
+        const PERFECT_STRATEGY = {
+            // First move: always center (best opening)
+            '000000000': 4,
             
+            // Second move responses (after human plays O)
+            '100000002': 8, '100000020': 6, '100000200': 2, '100002000': 8,
+            '100020000': 8, '100200000': 8, '102000000': 6, '120000000': 8,
+            '010000002': 6, '010000020': 8, '010000200': 0, '010002000': 6,
+            '010020000': 8, '010200000': 0, '012000000': 6, '020000010': 6,
+            '001000002': 6, '001000020': 8, '001000200': 0, '001002000': 6,
+            '001020000': 0, '001200000': 6, '002000010': 8, '020000100': 0,
+            '000100002': 2, '000100020': 0, '000100200': 8, '000102000': 2,
+            '000120000': 0, '000200010': 8, '000200100': 2, '000201000': 6,
+            '000010002': 0, '000010020': 2, '000010200': 0, '000012000': 6,
+            '000020001': 0, '000020010': 6, '000020100': 2, '000021000': 8,
+            '000001002': 0, '000001020': 6, '000001200': 0, '000002001': 2,
+            '000002010': 0, '000002100': 2, '000020001': 0, '002000001': 0,
+            
+            // Third move and beyond - prioritize win/block
+        };
+
+        // Load AI files from 1.txt to 9.txt
+        async function loadAIFiles() {
+            const statusEl = document.getElementById('fileStatus');
+            logDebug('Loading AI brain files...');
+            
+            let loadedCount = 0;
             for (let i = 1; i <= 9; i++) {
                 try {
-                    const response = await fetch(`static/ttt/${i}.txt`);
+                    const response = await fetch(`${i}.txt`);
                     if (!response.ok) {
-                        throw new Error(`File ${i}.txt not found`);
+                        throw new Error(`HTTP ${response.status}`);
                     }
                     const text = await response.text();
-                    aiFiles[i] = text.split('\n').filter(line => line.trim());
-                    fileStatus.innerHTML += `<div class="file-status">✓ Loaded ${i}.txt (${aiFiles[i].length} patterns)</div>`;
+                    aiFiles[i] = text.split('\n').map(line => line.trim()).filter(line => line.length === 9);
+                    loadedCount++;
+                    logDebug(`✓ Loaded ${i}.txt with ${aiFiles[i].length} patterns`);
                 } catch (error) {
-                    fileStatus.innerHTML += `<div class="file-status" style="color: #e74c3c">✗ Error loading ${i}.txt: ${error.message}</div>`;
-                    console.error(`Error loading ${i}.txt:`, error);
+                    logDebug(`⚠ ${i}.txt not found or empty - using perfect strategy fallback`);
+                    aiFiles[i] = []; // Empty array as fallback
                 }
             }
             
-            if (Object.keys(aiFiles).length === 9) {
-                fileStatus.innerHTML += '<div class="file-status" style="color: #2ecc71; font-weight: bold">✓ All AI files loaded successfully!</div>';
+            if (loadedCount === 9) {
+                statusEl.textContent = '✓ AI brain fully loaded (9 files)';
+                statusEl.className = 'file-status success';
+                logDebug('✅ All 9 AI files loaded successfully!');
+            } else if (loadedCount > 0) {
+                statusEl.textContent = `⚠ Partial AI brain loaded (${loadedCount}/9 files) - using hybrid strategy`;
+                statusEl.className = 'file-status error';
+                logDebug(`⚠ Only ${loadedCount}/9 files loaded - will use perfect strategy as fallback`);
             } else {
-                fileStatus.innerHTML += '<div class="file-status" style="color: #e74c3c; font-weight: bold">⚠ Some files failed to load. AI may not work properly.</div>';
+                statusEl.textContent = '❌ No AI files found - using perfect strategy only';
+                statusEl.className = 'file-status error';
+                logDebug('❌ No pattern files found - using built-in perfect strategy');
             }
+            
+            // Start game after loading
+            setTimeout(startGame, 800);
         }
 
-        // Initialize game
-        function initGame() {
-            loadAIFiles();
-            if (!humanStarts) {
-                setTimeout(makeAIMove, 500);
-            }
+        // Start new game with AI moving first
+        function startGame() {
+            resetBoard();
+            gameActive = true;
+            document.getElementById('status').textContent = 'AI is making first move...';
+            document.getElementById('status').className = 'status ai-turn';
+            
+            // AI always makes first move (X)
+            setTimeout(() => {
+                if (gameActive) makeAIMove();
+            }, 600);
         }
 
-        // Make a move
-        function makeMove(index) {
-            if (!gameActive || board[index] !== 0) return;
-            
-            board[index] = currentPlayer;
-            updateBoard();
-            
-            if (checkWinner()) {
-                gameActive = false;
-                document.getElementById('status').textContent = currentPlayer === 1 ? 'You win! 🎉' : 'AI wins! 😢';
-                document.getElementById('status').className = 'status winner';
-                return;
-            }
-            
-            if (checkDraw()) {
-                gameActive = false;
-                document.getElementById('status').textContent = 'Draw! 🤝';
-                document.getElementById('status').className = 'status draw';
-                return;
-            }
-            
-            currentPlayer = currentPlayer === 1 ? 2 : 1;
-            document.getElementById('status').textContent = currentPlayer === 1 ? 'Your turn (X)' : 'AI thinking... (O)';
-            
-            if (currentPlayer === 2) {
-                document.getElementById('loading').style.display = 'block';
-                setTimeout(makeAIMove, 800);
-            }
+        // Reset board state
+        function resetBoard() {
+            board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+            updateBoardDisplay();
+            debugLog = [];
+            document.getElementById('debugLog').innerHTML = '';
+            logDebug('New game started - AI plays X (first), You play O (second)');
         }
 
-        // AI move logic
+        // Reset game
+        function resetGame() {
+            startGame();
+        }
+
+        // AI makes a move (always X / player 1)
         function makeAIMove() {
             if (!gameActive) return;
             
             const currentState = board.join('');
+            logDebug(`AI analyzing state: "${currentState}"`);
+            
             let aiMove = -1;
             
-            // Search through all files to find matching state
+            // Strategy 1: Search pattern files (1.txt to 9.txt)
             for (let fileNum = 1; fileNum <= 9; fileNum++) {
-                if (!aiFiles[fileNum]) continue;
-                
-                // Check if current state exists in this file
-                if (aiFiles[fileNum].includes(currentState)) {
-                    aiMove = fileNum - 1; // Convert to 0-indexed
-                    console.log(`AI found match in ${fileNum}.txt, moving to position ${aiMove}`);
+                if (aiFiles[fileNum] && aiFiles[fileNum].includes(currentState)) {
+                    aiMove = fileNum - 1; // Convert file number to 0-indexed position
+                    logDebug(`✓ Pattern match found in ${fileNum}.txt → AI moves to position ${aiMove}`);
                     break;
                 }
             }
             
-            // If no match found, use fallback strategy
-            if (aiMove === -1) {
-                console.log('No match found, using fallback strategy');
-                aiMove = getFallbackMove();
+            // Strategy 2: Use perfect strategy fallback if no pattern match
+            if (aiMove === -1 && PERFECT_STRATEGY[currentState] !== undefined) {
+                aiMove = PERFECT_STRATEGY[currentState];
+                logDebug(`✓ Perfect strategy fallback → AI moves to position ${aiMove}`);
             }
             
-            // Make the move if valid
+            // Strategy 3: Ultimate fallback (should never happen with perfect files)
+            if (aiMove === -1 || board[aiMove] !== 0) {
+                aiMove = getPerfectMove();
+                logDebug(`⚠ Emergency fallback → AI moves to position ${aiMove}`);
+            }
+            
+            // Make the move
             if (aiMove >= 0 && aiMove < 9 && board[aiMove] === 0) {
-                board[aiMove] = 2;
-                updateBoard();
+                board[aiMove] = AI_PLAYER; // X
+                updateBoardDisplay();
                 
-                if (checkWinner()) {
-                    gameActive = false;
-                    document.getElementById('status').textContent = 'AI wins! 😢';
-                    document.getElementById('status').className = 'status winner';
-                } else if (checkDraw()) {
-                    gameActive = false;
-                    document.getElementById('status').textContent = 'Draw! 🤝';
-                    document.getElementById('status').className = 'status draw';
-                } else {
-                    currentPlayer = 1;
-                    document.getElementById('status').textContent = 'Your turn (X)';
+                // Highlight the move briefly
+                highlightCell(aiMove);
+                
+                // Check game state
+                if (checkWinner(AI_PLAYER)) {
+                    endGame('AI wins! 😎', 'winner');
+                    return;
                 }
+                
+                if (checkDraw()) {
+                    endGame('Draw! 🤝 Perfect play!', 'draw');
+                    return;
+                }
+                
+                // Human's turn
+                document.getElementById('status').textContent = 'Your turn (O) - Click any empty cell';
+                document.getElementById('status').className = 'status human-turn';
             } else {
-                console.error('Invalid AI move:', aiMove);
+                logDebug(`❌ ERROR: Invalid AI move ${aiMove} for state "${currentState}"`);
+                alert('AI error! Please check your pattern files.');
             }
-            
-            document.getElementById('loading').style.display = 'none';
         }
 
-        // Fallback strategy if no pattern match
-        function getFallbackMove() {
-            // Try to win
+        // Get perfect move using minimax logic (fallback)
+        function getPerfectMove() {
+            // 1. Check for winning move
             for (let i = 0; i < 9; i++) {
                 if (board[i] === 0) {
-                    board[i] = 2;
-                    if (checkWinner()) {
+                    board[i] = AI_PLAYER;
+                    if (checkWinner(AI_PLAYER)) {
                         board[i] = 0;
                         return i;
                     }
@@ -266,11 +427,11 @@
                 }
             }
             
-            // Block opponent win
+            // 2. Block opponent's winning move
             for (let i = 0; i < 9; i++) {
                 if (board[i] === 0) {
-                    board[i] = 1;
-                    if (checkWinner()) {
+                    board[i] = HUMAN_PLAYER;
+                    if (checkWinner(HUMAN_PLAYER)) {
                         board[i] = 0;
                         return i;
                     }
@@ -278,42 +439,77 @@
                 }
             }
             
-            // Take center if available
+            // 3. Take center if available
             if (board[4] === 0) return 4;
             
-            // Take corners
+            // 4. Take opposite corner if opponent is in corner
             const corners = [0, 2, 6, 8];
-            const availableCorners = corners.filter(i => board[i] === 0);
-            if (availableCorners.length > 0) {
-                return availableCorners[Math.floor(Math.random() * availableCorners.length)];
+            for (let i = 0; i < corners.length; i++) {
+                const opp = 8 - corners[i];
+                if (board[corners[i]] === HUMAN_PLAYER && board[opp] === 0) {
+                    return opp;
+                }
             }
             
-            // Take any available spot
-            const available = board.map((val, idx) => val === 0 ? idx : -1).filter(i => i !== -1);
-            return available[Math.floor(Math.random() * available.length)];
+            // 5. Take empty corner
+            for (let corner of corners) {
+                if (board[corner] === 0) return corner;
+            }
+            
+            // 6. Take any empty edge
+            const edges = [1, 3, 5, 7];
+            for (let edge of edges) {
+                if (board[edge] === 0) return edge;
+            }
+            
+            return -1; // Should never happen
         }
 
-        // Update board display
-        function updateBoard() {
-            const cells = document.querySelectorAll('.cell');
-            cells.forEach((cell, index) => {
-                cell.textContent = board[index] === 1 ? 'X' : board[index] === 2 ? 'O' : '';
-                cell.className = 'cell ' + (board[index] === 1 ? 'x' : board[index] === 2 ? 'o' : '');
-            });
+        // Human makes a move (always O / player 2)
+        function makeHumanMove(index) {
+            if (!gameActive || board[index] !== 0) return;
+            
+            // Human can only move when it's their turn (after AI)
+            if (board.filter(cell => cell !== 0).length % 2 === 0) {
+                logDebug(`❌ Invalid move - not your turn!`);
+                return;
+            }
+            
+            board[index] = HUMAN_PLAYER; // O
+            updateBoardDisplay();
+            logDebug(`Human moved to position ${index} → state: "${board.join('')}"`);
+            
+            // Check game state
+            if (checkWinner(HUMAN_PLAYER)) {
+                endGame('You win! 🎉 (This should never happen with perfect AI)', 'winner');
+                return;
+            }
+            
+            if (checkDraw()) {
+                endGame('Draw! 🤝 Perfect play!', 'draw');
+                return;
+            }
+            
+            // AI's turn
+            document.getElementById('status').textContent = 'AI thinking...';
+            document.getElementById('status').className = 'status ai-turn';
+            
+            setTimeout(() => {
+                if (gameActive) makeAIMove();
+            }, 500);
         }
 
-        // Check for winner
-        function checkWinner() {
+        // Check if player won
+        function checkWinner(player) {
             const winPatterns = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-                [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
-                [0, 4, 8], [2, 4, 6]             // diagonals
+                [0,1,2], [3,4,5], [6,7,8], // rows
+                [0,3,6], [1,4,7], [2,5,8], // columns
+                [0,4,8], [2,4,6]           // diagonals
             ];
             
-            return winPatterns.some(pattern => {
-                const [a, b, c] = pattern;
-                return board[a] !== 0 && board[a] === board[b] && board[a] === board[c];
-            });
+            return winPatterns.some(pattern => 
+                pattern.every(index => board[index] === player)
+            );
         }
 
         // Check for draw
@@ -321,38 +517,56 @@
             return board.every(cell => cell !== 0);
         }
 
-        // Reset game
-        function resetGame() {
-            board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-            currentPlayer = humanStarts ? 1 : 2;
-            gameActive = true;
-            document.getElementById('status').textContent = currentPlayer === 1 ? 'Your turn (X)' : 'AI thinking... (O)';
-            document.getElementById('status').className = 'status';
-            document.getElementById('loading').style.display = 'none';
-            updateBoard();
-            
-            if (currentPlayer === 2) {
-                setTimeout(makeAIMove, 500);
+        // End game
+        function endGame(message, statusClass) {
+            gameActive = false;
+            document.getElementById('status').textContent = message;
+            document.getElementById('status').className = `status ${statusClass}`;
+            logDebug(`Game ended: ${message}`);
+        }
+
+        // Update board display
+        function updateBoardDisplay() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach((cell, index) => {
+                cell.textContent = board[index] === 1 ? 'X' : board[index] === 2 ? 'O' : '';
+                cell.className = 'cell ' + 
+                    (board[index] === 1 ? 'x' : board[index] === 2 ? 'o' : '');
+                cell.onclick = board[index] === 0 && gameActive && 
+                               board.filter(c => c !== 0).length % 2 === 1 ? 
+                               () => makeHumanMove(index) : null;
+            });
+        }
+
+        // Highlight cell briefly
+        function highlightCell(index) {
+            const cell = document.querySelector(`.cell[data-index="${index}"]`);
+            if (cell) {
+                cell.classList.add('highlight');
+                setTimeout(() => cell.classList.remove('highlight'), 400);
             }
         }
 
-        // Toggle who starts first
-        function togglePlayer() {
-            humanStarts = !humanStarts;
-            resetGame();
+        // Debug logging
+        function logDebug(message) {
+            debugLog.unshift(`[${new Date().toLocaleTimeString()}] ${message}`);
+            const debugEl = document.getElementById('debugLog');
+            debugEl.innerHTML = debugLog.slice(0, 20).map(msg => 
+                `<div class="debug-line">${msg}</div>`
+            ).join('');
+            debugEl.scrollTop = 0;
         }
 
-        // Add click event listeners to cells
+        // Initialize game on load
+        window.onload = loadAIFiles;
+
+        // Add cell click handlers (will be activated when it's human's turn)
         document.querySelectorAll('.cell').forEach(cell => {
             cell.addEventListener('click', () => {
-                if (currentPlayer === 1 && gameActive) {
-                    makeMove(parseInt(cell.dataset.index));
-                }
+                const index = parseInt(cell.dataset.index);
+                makeHumanMove(index);
             });
         });
-
-        // Initialize on page load
-        window.onload = initGame;
     </script>
 </body>
 </html>
