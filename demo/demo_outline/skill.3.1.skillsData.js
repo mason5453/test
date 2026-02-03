@@ -11,7 +11,7 @@ const skillsData = {
     //2
     "frontend-technologies": [
         "HTML5", "CSS3", "SCSS", "Bootstrap", "Tailwind CSS", "jQuery", 
-        "React", "Next.js", "Vue", "Vue.js", "Angular", "React Native", 
+        "React", "Next.js", "Vue", "Angular", "React Native", 
         "Ant Design"
     ],
     //3
