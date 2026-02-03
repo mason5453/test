@@ -269,27 +269,42 @@ color: #000;
 }
 
 
-/* Base link style */
+
+
+/* Base link style - with subtle shadow for depth */
 a {
     color: #0066cc; /* Blue - good contrast on white */
     text-decoration: none; /* Remove underline by default */
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
+    /* New: Subtle base shadow for depth */
+    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.08);
+    border-radius: 3px;
+    padding: 2px 4px;
 }
 
-/* Underline effect on hover */
+/* BIG SHADOW EFFECT ON HOVER - meets your requirement */
 a:hover {
     color: #004499; /* Darker blue */
-    text-decoration: none; /* Remove underline by default */
+    text-decoration: none;
     text-decoration-thickness: 2px;
     text-underline-offset: 2px;
+    /* DRAMATIC SHADOW - key change */
+    box-shadow: 0 8px 24px rgba(0, 102, 204, 0.4), 
+                0 0 0 3px rgba(0, 102, 204, 0.15);
+    /* Lift effect to make shadow visible */
+    transform: translateY(-3px);
+    /* Slight scale for depth */
+    scale: 1.02;
 }
 
 /* Active state (when clicking) */
 a:active {
     color: #003377; /* Even darker */
-    transform: scale(0.98);
+    transform: scale(0.98) translateY(0);
+    /* Keep shadow active during click */
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
 }
 
 /* Visited state */
@@ -297,9 +312,13 @@ a:visited {
     color: #009966; /* Purple - indicates visited */
 }
 
-/* Focus state (accessibility) */
+/* Focus state (accessibility) - matches hover */
 a:focus {
     outline: 2px solid #0066cc;
     outline-offset: 2px;
     border-radius: 3px;
+    /* Same big shadow for keyboard users */
+    box-shadow: 0 8px 24px rgba(0, 102, 204, 0.4),
+                0 0 0 3px rgba(0, 102, 204, 0.15);
+    transform: translateY(-3px);
 }
