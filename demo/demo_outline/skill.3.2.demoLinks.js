@@ -88,6 +88,9 @@ const demoLinks = {
     // Other
     "map technologies/apis": null,
     "3d": baseUrl1 + "3D_demo/3d.html",
+    "vr": baseUrl1 + "vr_demo/vr.html",
+
+    
     
     // Default fallback
     "default": "https://example.com/demo"
