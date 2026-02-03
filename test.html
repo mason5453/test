@@ -1,1 +1,120 @@
-<a href="#" title="Note 📝" style="transition: filter 0.3s ease;" onmouseover="this.style.filter='brightness(1.5)'" onmouseout="this.style.filter='brightness(1)'">📒</a>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<!-- Semantic button (not <a>!) + hidden accessible label + custom tooltip -->
+<button 
+  class="note-btn" 
+  aria-label="Open notes section" 
+  data-tooltip="Notes">
+  <span class="note-icon">📒</span>
+</button>
+
+<style>
+.note-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  position: relative;
+  border-radius: 4px;
+  transition: transform 0.2s, filter 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Subtle focus ring for keyboard users */
+  outline-offset: 2px;
+}
+
+/* Hover animation: gentle lift + glow */
+.note-btn:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 6px rgba(70, 130, 180, 0.7));
+}
+
+/* Shine animation on hover (subtle sweep) */
+.note-btn:hover .note-icon::after {
+  animation: shine 0.8s forwards;
+}
+
+.note-icon {
+  font-size: 1.4em;
+  position: relative;
+  display: block;
+  line-height: 1;
+}
+
+/* Shine effect layer */
+.note-icon::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -100%;
+  width: 200%; height: 200%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255,255,255,0.8) 40%, 
+    rgba(255,255,255,0.3) 60%, 
+    transparent
+  );
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+@keyframes shine {
+  to { 
+    left: 100%; 
+    opacity: 0; 
+  }
+}
+
+/* CUSTOM TOOLTIP (better than title="") */
+.note-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px) scale(0.95);
+  opacity: 0;
+  background: #2563eb;
+  color: white;
+  font-size: 0.85rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.note-btn:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+
+/* Arrow for tooltip */
+.note-btn::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% - 4px);
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg) scale(0);
+  opacity: 0;
+  width: 8px; height: 8px;
+  background: #2563eb;
+  transition: all 0.25s ease;
+  z-index: 1000;
+}
+
+.note-btn:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) rotate(45deg) scale(1);
+}
+
+/* Focus state for keyboard users */
+.note-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+</style>
