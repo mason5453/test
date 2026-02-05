@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simple Line Recognizer (SLR)</title>
+  <style>
+    canvas {
+      border: 1px solid #ccc;
+      margin: 10px;
+    }
+    #output {
+      margin-top: 10px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <input type="file" id="upload" accept="image/*" />
+  <canvas id="canvas"></canvas>
+  <canvas id="edges" width="400" height="400"></canvas>
+  <canvas id="result" width="400" height="400"></canvas>
+  <div id="output"></div>
+
+  <script>
+    const upload = document.getElementById('upload');
+    const canvas = document.getElementById('canvas');
+    const edgesCanvas = document.getElementById('edges');
+    const resultCanvas = document.getElementById('result');
+    const ctx = canvas.getContext('2d');
+    const edgesCtx = edgesCanvas.getContext('2d');
+    const resultCtx = resultCanvas.getContext('2d');
+    const output = document.getElementById('output');
+
+    let img = new Image();
+
+    upload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        img.onload = () => {
+          // Set canvas size
+          canvas.width = img.width;
+          canvas.height = img.height;
+          edgesCanvas.width = img.width;
+          edgesCanvas.height = img.height;
+          resultCanvas.width = img.width;
+          resultCanvas.height = img.height;
+
+          // Draw original image
+          ctx.drawImage(img, 0, 0);
+
+          // Convert to grayscale and detect edges
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const grayData = toGrayscale(imageData);
+          const edgeData = sobelEdgeDetection(grayData);
+
+          edgesCtx.putImageData(edgeData, 0, 0);
+
+          // Detect lines using Hough Transform
+          const lines = houghTransform(edgeData.data, edgeData.width, edgeData.height);
+
+          // Draw detected lines on result canvas
+          resultCtx.drawImage(img, 0, 0);
+          drawLines(resultCtx, lines, resultCanvas.width, resultCanvas.height);
+
+          // Output number of lines found
+          output.textContent = `Detected ${lines.length} lines.`;
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Convert image to grayscale
+    function toGrayscale(imageData) {
+      const data = imageData.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const gray = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+        data[i] = data[i + 1] = data[i + 2] = gray;
+      }
+      return imageData;
+    }
+
+    // Sobel edge detection
+    function sobelEdgeDetection(imageData) {
+      const width = imageData.width;
+      const height = imageData.height;
+      const data = imageData.data;
+      const output = new Uint8ClampedArray(data.length);
+      const sobelX = [[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]];
+      const sobelY = [[-1, -2, -1], [0, 0, 0], [1, 2, 1]];
+
+      for (let y = 1; y < height - 1; y++) {
+        for (let x = 1; x < width - 1; x++) {
+          let pixelX = 0, pixelY = 0;
+
+          for (let ky = -1; ky <= 1; ky++) {
+            for (let kx = -1; kx <= 1; kx++) {
+              const idx = ((y + ky) * width + (x + kx)) * 4;
+              const gray = data[idx];
+              pixelX += sobelX[ky + 1][kx + 1] * gray;
+              pixelY += sobelY[ky + 1][kx + 1] * gray;
+            }
+          }
+
+          const magnitude = Math.sqrt(pixelX * pixelX + pixelY * pixelY);
+          const idx = (y * width + x) * 4;
+          output[idx] = output[idx + 1] = output[idx + 2] = Math.min(255, magnitude);
+          output[idx + 3] = 255;
+        }
+      }
+
+      return new ImageData(output, width, height);
+    }
+
+    // Hough Transform to detect lines
+    function houghTransform(edgeData, width, height) {
+      const diagonal = Math.sqrt(width * width + height * height);
+      const rhoMax = Math.ceil(diagonal);
+      const thetaBins = 180;
+      const rhoBins = rhoMax * 2;
+      const accumulator = Array(rhoBins).fill().map(() => Array(thetaBins).fill(0));
+
+      const threshold = 50; // Minimum votes to consider a line
+
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          const idx = (y * width + x) * 4;
+          if (edgeData[idx] > 128) { // Edge pixel
+            for (let t = 0; t < thetaBins; t++) {
+              const theta = (t * Math.PI) / thetaBins;
+              const rho = x * Math.cos(theta) + y * Math.sin(theta);
+              const rhoIdx = Math.round(rho + rhoMax);
+              if (rhoIdx >= 0 && rhoIdx < rhoBins) {
+                accumulator[rhoIdx][t]++;
+              }
+            }
+          }
+        }
+      }
+
+      // Find peaks in accumulator
+      const lines = [];
+      for (let r = 0; r < rhoBins; r++) {
+        for (let t = 0; t < thetaBins; t++) {
+          if (accumulator[r][t] > threshold) {
+            const rho = r - rhoMax;
+            const theta = (t * Math.PI) / thetaBins;
+            lines.push({ rho, theta });
+          }
+        }
+      }
+
+      return lines;
+    }
+
+    // Draw detected lines on canvas
+    function drawLines(ctx, lines, width, height) {
+      ctx.strokeStyle = 'red';
+      ctx.lineWidth = 2;
+
+      lines.forEach(({ rho, theta }) => {
+        const cosT = Math.cos(theta);
+        const sinT = Math.sin(theta);
+
+        let x1, y1, x2, y2;
+
+        if (Math.abs(sinT) < 0.01) { // Vertical-ish line
+          x1 = x2 = rho / cosT;
+          y1 = 0;
+          y2 = height;
+        } else if (Math.abs(cosT) < 0.01) { // Horizontal-ish line
+          y1 = y2 = rho / sinT;
+          x1 = 0;
+          x2 = width;
+        } else {
+          // General case
+          x1 = 0;
+          y1 = (rho - x1 * cosT) / sinT;
+          x2 = width;
+          y2 = (rho - x2 * cosT) / sinT;
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      });
+    }
+  </script>
+</body>
+</html>
