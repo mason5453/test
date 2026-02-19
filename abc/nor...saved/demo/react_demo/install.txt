@@ -1,0 +1,14 @@
+
+pnpm create vite@latest my-react-app -- --template react
+cd my-react-app
+pnpm install
+pnpm dev
+
+choose [1] react [2] typescript [3] no for experimental
+[4] pnpm
+
+
+-----------------
+
+
+npm install -D sass

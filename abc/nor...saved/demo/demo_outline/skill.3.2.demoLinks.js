@@ -1,33 +1,42 @@
+const baseUrl1 = "demo/";
+
 const demoLinks = {
     // Programming
-    "c#": null,
-    "php": null,
-    "javascript": null,
-    "typescript": null,
-    "python": null,
-    "java": null,
-    "c++": null,
-    "kotlin": null,
-    
+    "c#":         baseUrl1 + "CS_demo/CS.png",
+    "c++":        baseUrl1 + "cpp_demo/cpp.html",
+    "java":       baseUrl1 + "java_demo/java.png",
+    "javascript": baseUrl1 + "js_demo/js.png",
+    "kotlin":     baseUrl1 + "kotlin_demo/kotlin.png",
+    "php":        baseUrl1 + "php_demo/php.png",
+    "python":     baseUrl1 + "python_demo/python.html",
+    "typescript": baseUrl1 + "ts_demo/ts.png",
+    "vbs":        baseUrl1 + "vb_demo/vb.png",
+    // OS
+    "windows":    baseUrl1 + "win_cmd_demo/win_cmd.html",
+    "bat":        baseUrl1 + "win_cmd_demo/win_cmd.html",
+    "batch":      baseUrl1 + "win_cmd_demo/win_cmd.html",
+    "linux":      baseUrl1 + "shell_demo/shell.html",
+    "shell":      baseUrl1 + "shell_demo/shell.html",
+
     // Frontend Technologies
-    "html5": null,
-    "css3": null,
-    "scss": null,
-    "bootstrap": null,
-    "tailwind css": "https://test-nine-iota-75.vercel.app/demo/tailwind_demo/tailwind_css_demo.html",
-    "jquery": null,
-    "react": null,
-    "next.js": null,
-    "vue.js": null,
-    "angular": null,
+    "html5":         baseUrl1 + "html_demo/html.html",
+    "css3":          baseUrl1 + "css_demo/css.html",
+    "scss":          baseUrl1 + "scss_demo/scss.html",
+    "bootstrap":     baseUrl1 + "bootstrap_demo/bootstrap.html",
+    "tailwind css":  baseUrl1 + "tailwind_demo/tailwind_css_demo.html",
+    "jquery":        baseUrl1 + "jquery_demo/jquery.html",
+    "react":         baseUrl1 + "react_demo/react.html",
+    "next.js":       null,
+    "vue":           baseUrl1 + "vue_demo/1_ref_vue_cert.gif",
+    "angular":       null,
     "react native": null,
     "ant design": null,
     
     // Backend Technologies
-    ".net": null,
+    ".net":          baseUrl1 + "dotnet_demo/dotnet.html",
     "asp.net": null,
-    "node.js": null,
-    "wordpress": null,
+    "node.js":       baseUrl1 + "nodejs_demo/nodejs.html",
+    "wordpress":     baseUrl1 + "wordpress_demo/wp_demo.html",
     "graphql": null,
     
     // Databases
@@ -38,7 +47,7 @@ const demoLinks = {
     // Web Servers
     "apache": null,
     "nginx": null,
-    "tomcat": null,
+    "tomcat": baseUrl1 + "java_demo/JSP.mp4",
     
     // Version Control
     "git": null,
@@ -47,13 +56,13 @@ const demoLinks = {
     // IDEs & Editors
     "visual studio code (vsc)": null,
     "intellij idea": null,
-    "android studio": null,
+    "androidstudio":     baseUrl1 + "android_demo/android_ai_demo.mp4",
     "sublime text": null,
     
     // DevOps & Tools
     "docker": null,
     "postman": null,
-    "powershell": null,
+    "powershell":        baseUrl1 + "powershell_demo/powershell.html",
     
     // Package Managers
     "npm": null,
@@ -63,6 +72,7 @@ const demoLinks = {
     "machine learning": null,
     "neural networks (nn)": null,
     "ai frameworks": null,
+    "ai": baseUrl1 + "ai_demo/ai.html",
     
     // Productivity Tools
     "excel": null,
@@ -77,6 +87,10 @@ const demoLinks = {
     
     // Other
     "map technologies/apis": null,
+    "3d": baseUrl1 + "3D_demo/3d.html",
+    "vr": baseUrl1 + "vr_demo/vr.html",
+
+    
     
     // Default fallback
     "default": "https://example.com/demo"

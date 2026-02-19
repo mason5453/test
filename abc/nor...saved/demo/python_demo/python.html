@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Developer Portfolio - Mason Tsoi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        
+        .developer-name {
+            background: linear-gradient(to right, #27ae60, #2ecc71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-top: 8px;
+        }
+        
+        .showcase-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+            gap: 35px;
+            margin: 30px 0;
+        }
+        
+        @media (max-width: 1100px) {
+            .showcase-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            padding: 20px 25px;
+            background: linear-gradient(to right, #3498db, #1a5276);
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .image-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            border: 1px solid #eee;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.4s ease;
+        }
+        
+        .image-container img:hover {
+            transform: scale(1.02);
+        }
+        
+        .caption {
+            margin-top: 12px;
+            font-style: italic;
+            color: #555;
+            font-size: 0.95rem;
+            padding: 8px 15px;
+            background: #f1f8ff;
+            border-radius: 6px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .description {
+            margin: 20px 0;
+            line-height: 1.7;
+            color: #444;
+        }
+        
+        .skills-highlight {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 0 6px 6px 0;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+            font-size: 1.05rem;
+        }
+        
+        .contact-info {
+            background: #2c3e50;
+            color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (max-width: 600px) {
+            .showcase-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .card-header {
+                font-size: 1.4rem;
+                padding: 15px 20px;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Python Development Showcase</h1>
+            <p class="subtitle">Demonstrating technical proficiency in Python development and practical AI/ML applications</p>
+            <div class="developer-name">Mason Tsoi - Full Stack Developer</div>
+        </header>
+        
+        <div class="showcase-container">
+            <!-- Python Cheat Sheet Card -->
+            <div class="card">
+                <div class="card-header">Python Language Reference</div>
+                <div class="card-content">
+                    <p class="description">Comprehensive Python syntax and command reference guide covering core language features, CLI operations, data structures, OOP principles, and essential libraries. This quick-reference sheet demonstrates deep knowledge of Python fundamentals and best practices.</p>
+                    
+                    <div class="image-container">
+                        <img src="python_cheatsheet.png" alt="Python Cheat Sheet Reference Table">
+                    </div>
+                    
+                    <div class="caption">
+                        Professional Python reference guide covering syntax, CLI commands, data types, control structures, OOP, file operations, and exception handling
+                    </div>
+                    
+                    <div class="skills-highlight">
+                        • Python 3 Proficiency • CLI Operations • OOP Implementation • Data Structures • Best Practices
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cat Detection Demo Card -->
+            <div class="card">
+                <div class="card-header">AI Image Recognition Demo</div>
+                <div class="card-content">
+                    <p class="description">Practical demonstration of computer vision implementation using Python. This terminal session shows a custom script analyzing images to detect cat presence with confidence scoring. The output includes visual confirmation of successful detection within the processed images.</p>
+                    
+                    <div class="image-container">
+                        <img src="py_cat_detection_demo.png" alt="Cat Detection Command Line Demo">
+                    </div>
+                    
+                    <div class="caption">
+                        Terminal demonstration of Python script identifying cat images with visual verification of detection results
+                    </div>
+                    
+                    <div class="skills-highlight">
+                        • Computer Vision • Script Automation • Image Processing • CLI Tools • Practical AI Implementation
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Prepared for Employment Consideration | Full Stack Developer Position</p>
+            <div class="contact-info">
+                Available for onsite/remote work in Hong Kong | Flexible for project requirements | Committed to clean, maintainable code
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

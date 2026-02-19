@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mason Tsoi | 3D Development Portfolio</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --light: #f1f5f9;
+            --dark: #0f172a;
+            --gray: #94a3b8;
+            --card-bg: white;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--light) 0%, #e2e8f0 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+            position: relative;
+        }
+
+        .container {
+            width: min(90%, 1200px);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #1d4ed8, #2563eb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Video Thumbnail */
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: #000;
+            overflow: hidden;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--primary);
+        }
+
+        /* Card Content */
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-description {
+            color: var(--gray);
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .tag-environment { background: rgba(37, 99, 235, 0.1); color: var(--primary); }
+        .tag-animation { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+        .tag-development { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+
+        /* Modal Styles */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: black;
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 90%;
+            max-height: 80vh;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background 0.2s;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .modal-video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+        }
+
+        .modal-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .modal-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Instructions */
+        .instructions {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .instructions h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .instructions ul {
+            padding-left: 1.5rem;
+            color: var(--gray);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .video-grid { gap: 1.5rem; }
+            .card-title { font-size: 1.2rem; }
+            .modal-content {
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>3D Development Portfolio</h1>
+            <p class="subtitle">Professional 3D modeling, animation, and environment development showcasing technical proficiency in spatial design and motion graphics</p>
+        </header>
+
+        <div class="video-grid">
+            <!-- Railroad Environment -->
+            <div class="video-card" data-video="1.mp4" data-title="Railroad Environment">
+                <div class="video-thumbnail">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                        Railroad Environment
+                    </h3>
+                    <p class="card-description">Immersive railroad environment with dynamic camera movement through detailed terrain and infrastructure.</p>
+                    <span class="category-tag tag-environment">Environment Design</span>
+                </div>
+            </div>
+
+            <!-- Railroad Development -->
+            <div class="video-card" data-video="2.mp4" data-title="Railroad Development Process">
+                <div class="video-thumbnail">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        Railroad Development
+                    </h3>
+                    <p class="card-description">Step-by-step development process showing creation of railroad assets, terrain sculpting, and environmental detailing.</p>
+                    <span class="category-tag tag-development">Development Process</span>
+                </div>
+            </div>
+
+            <!-- Box Animation -->
+            <div class="video-card" data-video="3.mp4" data-title="Box Animation">
+                <div class="video-thumbnail">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                        Box Animation
+                    </h3>
+                    <p class="card-description">Dynamic animation demonstrating physics-based movement, material properties, and lighting effects on geometric objects.</p>
+                    <span class="category-tag tag-animation">Object Animation</span>
+                </div>
+            </div>
+
+            <!-- Ball Animation -->
+            <div class="video-card" data-video="4.mp4" data-title="Ball Animation">
+                <div class="video-thumbnail">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        Ball Animation
+                    </h3>
+                    <p class="card-description">Fluid animation showcasing realistic ballistics, bounce physics, and surface interaction with dynamic lighting.</p>
+                    <span class="category-tag tag-animation">Physics Simulation</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>How to View This Demo</h3>
+            <ul>
+                <li><strong>Click any card</strong> to open the video in a clean modal player</li>
+                <li><strong>Click × or press Esc</strong> to close the video and return to this page</li>
+                <li>Videos are stored locally — place <code>1.mp4</code>, <code>2.mp4</code>, <code>3.mp4</code>, <code>4.mp4</code> in the same folder</li>
+                <li>All videos demonstrate professional 3D development skills using industry-standard tools</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Mason Tsoi | 3D Developer & Technical Artist</p>
+            <p>Created for technical evaluation • Demonstrates comprehensive 3D modeling, animation, and environment development expertise</p>
+        </footer>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="modalTitle">Video Title</span>
+                <button class="close-btn" id="closeModal">×</button>
+            </div>
+            <div class="modal-video-container">
+                <div class="modal-video" id="modalVideoContainer">
+                    <video controls autoplay playsinline>
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const modal = document.getElementById('videoModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalVideo = document.querySelector('#modalVideoContainer video');
+        const videoCards = document.querySelectorAll('.video-card');
+
+        // Close modal on click × or Esc
+        function closeModal() {
+            modal.classList.remove('active');
+            // Reset video source to prevent playback issues
+            modalVideo.src = '';
+            modalVideo.load();
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Open modal with video
+        videoCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const videoFile = card.getAttribute('data-video');
+                const title = card.getAttribute('data-title');
+                
+                // Set modal content
+                modalTitle.textContent = title;
+                modalVideo.src = videoFile;
+                
+                // Show modal
+                modal.classList.add('active');
+                
+                // Focus close button for accessibility
+                setTimeout(() => closeModalBtn.focus(), 100);
+            });
+        });
+
+        // Optional: Add play button click handler for better UX
+        document.querySelectorAll('.play-button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent double-trigger
+                const card = btn.closest('.video-card');
+                card.click();
+            });
+        });
+    </script>
+</body>
+</html>

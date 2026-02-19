@@ -1,0 +1,71 @@
+
+<table>
+<tr><th>TITLE</th><th>CODE</th></tr>
+<tr><td><pre>Batch: Check version</pre></td><td><pre>echo %COMSPEC% && ver</pre></td></tr>
+<tr><td><pre>Batch: Run script from PowerShell</pre></td><td><pre>powershell -Command "cmd /c myscript.bat"</pre></td></tr>
+<tr><td><pre>Batch: Switch to PowerShell from CMD</pre></td><td><pre>powershell</pre></td></tr>
+<tr><td><pre>Batch: Switch to CMD from PowerShell</pre></td><td><pre>cmd</pre></td></tr>
+<tr><td><pre>Batch: Create console app</pre></td><td><pre>echo @echo off > hello.bat && echo echo Hello World >> hello.bat</pre></td></tr>
+<tr><td><pre>Batch: Run with args</pre></td><td><pre>myapp.bat arg1 arg2</pre></td></tr>
+<tr><td><pre>Batch: Execute script</pre></td><td><pre>call myscript.bat</pre></td></tr>
+<tr><td><pre>BASIC: Comment</pre></td><td><pre>rem This is a comment</pre></td></tr>
+<tr><td><pre>BASIC: Variable</pre></td><td><pre>set str=text</pre></td></tr>
+<tr><td><pre>BASIC: Integer</pre></td><td><pre>set num=42</pre></td></tr>
+<tr><td><pre>BASIC: Float</pre></td><td><pre>N/A (CMD only supports integers)</pre></td></tr>
+<tr><td><pre>BASIC: Boolean</pre></td><td><pre>set bool=true</pre></td></tr>
+<tr><td><pre>BASIC: Constant</pre></td><td><pre>set MAX=100</pre></td></tr>
+<tr><td><pre>BASIC: Scientific notation</pre></td><td><pre>N/A (not supported)</pre></td></tr>
+<tr><td><pre>BASIC: Arithmetic operators</pre></td><td><pre>set /a result=5+3*2</pre></td></tr>
+<tr><td><pre>BASIC: Modulo (remainder)</pre></td><td><pre>set /a mod=10%%3</pre></td></tr>
+<tr><td><pre>BASIC: Comparison operators</pre></td><td><pre>EQU NEQ LSS LEQ GTR GEQ</pre></td></tr>
+<tr><td><pre>BASIC: Logical operators</pre></td><td><pre>&& || (for command chaining, not boolean logic)</pre></td></tr>
+<tr><td><pre>CODE: Print output</pre></td><td><pre>echo Hello World</pre></td></tr>
+<tr><td><pre>CODE: Read input</pre></td><td><pre>set /p input="Enter value: "</pre></td></tr>
+<tr><td><pre>CODE: Exit method</pre></td><td><pre>exit /b 0</pre></td></tr>
+<tr><td><pre>CODE: String concat</pre></td><td><pre>set combined=%str1%%str2%</pre></td></tr>
+<tr><td><pre>CODE: String length</pre></td><td><pre>N/A (requires workaround function)</pre></td></tr>
+<tr><td><pre>CODE: Substring</pre></td><td><pre>echo %str:~0,5%  (first 5 chars)</pre></td></tr>
+<tr><td><pre>CODE: String replace</pre></td><td><pre>echo %str:old=new%</pre></td></tr>
+<tr><td><pre>CODE: String to upper/lower</pre></td><td><pre>N/A (use PowerShell or external tool)</pre></td></tr>
+<tr><td><pre>CODE: if/else</pre></td><td><pre>if %x%==1 (echo one) else if %x%==2 (echo two) else (echo other)</pre></td></tr>
+<tr><td><pre>CODE: if greater than</pre></td><td><pre>if %x% GTR 10 echo Greater</pre></td></tr>
+<tr><td><pre>CODE: for loop</pre></td><td><pre>for %%i in (1 2 3) do echo %%i</pre></td></tr>
+<tr><td><pre>CODE: for /L loop (numeric)</pre></td><td><pre>for /L %%i in (1,1,10) do echo %%i</pre></td></tr>
+<tr><td><pre>CODE: while loop (simulate)</pre></td><td><pre>:loop & if %cond%==1 ( ... & goto loop )</pre></td></tr>
+<tr><td><pre>CODE: foreach file</pre></td><td><pre>for %%f in (*.txt) do echo %%f</pre></td></tr>
+<tr><td><pre>CODE: Convert string to number</pre></td><td><pre>set /a num=%str%</pre></td></tr>
+<tr><td><pre>CODE: Math: Max/Min</pre></td><td><pre>N/A (must use if comparisons)</pre></td></tr>
+<tr><td><pre>CODE: Math: Abs</pre></td><td><pre>N/A (custom logic required)</pre></td></tr>
+<tr><td><pre>CODE: Array define (simulate)</pre></td><td><pre>set arr[0]=A & set arr[1]=B</pre></td></tr>
+<tr><td><pre>CODE: Array access</pre></td><td><pre>echo %arr[0]%</pre></td></tr>
+<tr><td><pre>CODE: Array length</pre></td><td><pre>N/A (must track manually)</pre></td></tr>
+<tr><td><pre>File: Append text</pre></td><td><pre>echo line>>file.txt</pre></td></tr>
+<tr><td><pre>File: Copy file</pre></td><td><pre>copy source.txt dest.txt</pre></td></tr>
+<tr><td><pre>File: Create file</pre></td><td><pre>type nul > file.txt</pre></td></tr>
+<tr><td><pre>File: Delete file</pre></td><td><pre>del file.txt</pre></td></tr>
+<tr><td><pre>File: Exists</pre></td><td><pre>if exist file.txt echo exists</pre></td></tr>
+<tr><td><pre>File: Read all text</pre></td><td><pre>type file.txt</pre></td></tr>
+<tr><td><pre>File: Write all text</pre></td><td><pre>echo content > file.txt</pre></td></tr>
+<tr><td><pre>File: Replace file</pre></td><td><pre>move /y new.txt old.txt</pre></td></tr>
+<tr><td><pre>File: Rename file</pre></td><td><pre>rename old.txt new.txt</pre></td></tr>
+<tr><td><pre>File: Get file size</pre></td><td><pre>for %%f in (file.txt) do set size=%%~zf</pre></td></tr>
+<tr><td><pre>Directory: Create</pre></td><td><pre>mkdir mydir</pre></td></tr>
+<tr><td><pre>Directory: Delete</pre></td><td><pre>rd /s /q mydir</pre></td></tr>
+<tr><td><pre>Directory: List files</pre></td><td><pre>dir /b</pre></td></tr>
+<tr><td><pre>Error handling: Check last error</pre></td><td><pre>if errorlevel 1 echo Failed</pre></td></tr>
+<tr><td><pre>Error handling: On error</pre></td><td><pre>goto :eof or exit /b</pre></td></tr>
+<tr><td><pre>Get command-line args</pre></td><td><pre>%1 %2 %* (e.g., echo First arg: %1)</pre></td></tr>
+<tr><td><pre>Get current directory</pre></td><td><pre>echo %cd%</pre></td></tr>
+<tr><td><pre>Get script directory</pre></td><td><pre>%~dp0</pre></td></tr>
+<tr><td><pre>Pause script</pre></td><td><pre>pause</pre></td></tr>
+<tr><td><pre>Sleep (delay)</pre></td><td><pre>timeout /t 3 /nobreak >nul</pre></td></tr>
+<tr><td><pre>Run hidden command</pre></td><td><pre>start /min cmd /c myscript.bat</pre></td></tr>
+<tr><td><pre>Call subroutine</pre></td><td><pre>call :mylabel</pre></td></tr>
+<tr><td><pre>Define subroutine</pre></td><td><pre>:mylabel & echo in subroutine & goto :eof</pre></td></tr>
+<tr><td><pre>Return from subroutine</pre></td><td><pre>goto :eof</pre></td></tr>
+<tr><td><pre>Enable delayed expansion</pre></td><td><pre>setlocal enabledelayedexpansion</pre></td></tr>
+<tr><td><pre>Use delayed expansion</pre></td><td><pre>echo !var!</pre></td></tr>
+<tr><td><pre>Get date/time</pre></td><td><pre>echo %date% %time%</pre></td></tr>
+
+
+</table>

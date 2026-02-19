@@ -3,15 +3,20 @@
 // Comprehensive alias mapping for intelligent matching
 const aliasMap = {
     // Programming
-    "C#": ["c#", "csharp", "c sharp"],
-    "PHP": ["php"],
+    "C#":         ["c#", "csharp", "c sharp"],
+    "C++":        ["c++", "cpp", "c plus plus"],
+    "Java":       ["java"],
     "JavaScript": ["javascript", "js", "ecmascript"],
+    "Kotlin":     ["kotlin"],
+    "PHP":        ["php"],
+    "Python":     ["python", "py"],
     "TypeScript": ["typescript", "ts"],
-    "Python": ["python", "py"],
-    "Java": ["java"],
-    "C++": ["c++", "cpp", "c plus plus"],
-    "Kotlin": ["kotlin"],
-    
+    "Vbs":        ["vb", "vbs", "VisualBasic", "Visual Basic"],
+
+    // Operating Systems
+    "Windows": ["windows", "Windows ( bat, cmd, batch, dos )"],
+    "Linux": ["linux", "vi", "nano", "ubuntu", "centos","shell","bash","sh", "Linux (Vi, Nano, Shell)"],
+
     // Frontend Technologies
     "HTML5": ["html5", "html", "hypertext markup language"],
     "CSS3": ["css3", "css", "cascading style sheets"],
@@ -57,15 +62,14 @@ const aliasMap = {
     "Tomcat": ["tomcat", "apache tomcat"],
     
     // Version Control
-    "Git": ["git"],
-    "SVN": ["svn", "subversion"],
-    "TortoiseGit/TortoiseSVN": ["tortoise", "tortoisegit", "tortoisesvn"],
+    "Git": ["git", "tortoisegit"],
+    "SVN": ["svn", "subversion" ,"tortoisesvn"],
     
     // IDEs & Editors
     "Visual Studio Code (VSC)": ["vscode", "vsc", "visual studio code"],
     "IntelliJ IDEA": ["intellij", "idea"],
     "NetBeans": ["netbeans"],
-    "Android Studio": ["android studio"],
+    "AndroidStudio": ["android studio"],
     "Sublime Text": ["sublime", "sublime text"],
     "Notepad++ (NPP)": ["notepad++", "npp", "notepad"],
     
@@ -80,9 +84,6 @@ const aliasMap = {
     "Remote Desktop (MSTSC)": ["mstsc", "remote desktop", "rdp"],
     "Flowchart tools": ["flowchart", "diagram"],
     
-    // Operating Systems
-    "Windows": ["windows"],
-    "Linux (Vi, Nano)": ["linux", "vi", "nano", "ubuntu", "centos"],
     
     // Package Managers
     "NPM": ["npm"],
@@ -97,6 +98,7 @@ const aliasMap = {
     "AI model deployment": ["ai deployment", "model deployment"],
     "AI frameworks": ["ai framework", "tensorflow", "pytorch"],
     "AI agents": ["ai agent"],
+    "ai": ["ai"],
     "Chat AI tools (Qwen, DeepSeek, etc.)": ["chat ai", "qwen", "deepseek", "chatbot"],
     
     // Productivity Tools

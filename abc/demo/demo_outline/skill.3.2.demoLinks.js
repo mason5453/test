@@ -1,4 +1,4 @@
-const baseUrl1 = "https://test-nine-iota-75.vercel.app/demo/";
+const baseUrl1 = "demo/";
 
 const demoLinks = {
     // Programming
