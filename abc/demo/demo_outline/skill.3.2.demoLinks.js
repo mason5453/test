@@ -1,4 +1,4 @@
-const baseUrl1 = "demo/";
+const baseUrl1 = "../../demo/";
 
 const demoLinks = {
     // Programming
