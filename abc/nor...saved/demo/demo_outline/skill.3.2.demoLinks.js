@@ -26,7 +26,7 @@ const demoLinks = {
     "tailwind css":  baseUrl1 + "tailwind_demo/tailwind_css_demo.html",
     "jquery":        baseUrl1 + "jquery_demo/jquery.html",
     "react":         baseUrl1 + "react_demo/react.html",
-    "next.js":       null,
+    "next.js":       baseUrl1 + "nextjs_demo/nextjs.html",
     "vue":           baseUrl1 + "vue_demo/1_ref_vue_cert.gif",
     "angular":       null,
     "react native": null,
