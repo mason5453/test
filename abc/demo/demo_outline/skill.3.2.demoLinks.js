@@ -28,7 +28,7 @@ const demoLinks = {
     "react":         baseUrl1 + "react_demo/react.html",
     "next.js":       baseUrl1 + "nextjs_demo/nextjs.html",
     "vue":           baseUrl1 + "vue_demo/1_ref_vue_cert.gif",
-    "angular":       null,
+    "angular":       baseUrl1 + "angular_demo/angular.html",
     "react native": null,
     "ant design": null,
     

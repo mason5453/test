@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Mason Tsoi - Angular Full-Stack Developer Portfolio Demo | Component Architecture & RxJS Patterns"/>
+  <title>Mason Tsoi | Angular Developer Demo</title>
+  <style>
+    /* ===== CSS Variables & Reset ===== */
+    :root {
+      --primary: #dd0031;
+      --primary-dark: #c3002f;
+      --secondary: #0066cc;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --light: #f8fafc;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --radius: 12px;
+      --transition: all 0.2s ease;
+      --angular-red: #dd0031;
+      --angular-blue: #0066cc;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #fff5f7 0%, #f0f7ff 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      padding-bottom: 4rem;
+    }
+
+    /* ===== Layout ===== */
+    .container {
+      width: min(95%, 1200px);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* ===== Header / Hero ===== */
+    .hero {
+      text-align: center;
+      padding: 4rem 0 3rem;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      margin: 2rem 0;
+      position: relative;
+      overflow: hidden;
+      border-top: 4px solid var(--angular-red);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--angular-red), var(--angular-blue));
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--angular-red), var(--angular-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .badge {
+      background: var(--light);
+      color: var(--angular-red);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    
+    .badge.angular {
+      background: linear-gradient(135deg, rgba(221,0,49,0.1), rgba(0,102,204,0.1));
+      border-color: var(--angular-red);
+      color: var(--angular-red);
+    }
+
+    /* ===== Video Showcase Section ===== */
+    .video-section {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--angular-red);
+      position: relative;
+    }
+    
+    .video-section.angular {
+      border-left-color: var(--angular-blue);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title svg {
+      width: 24px; height: 24px;
+      fill: var(--angular-red);
+    }
+    
+    .section-title.angular svg {
+      fill: var(--angular-blue);
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      background: #0f172a;
+      margin-top: 1rem;
+      border: 2px solid var(--border);
+    }
+
+    .video-wrapper video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .video-controls {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ===== Components Grid ===== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--angular-red);
+    }
+    
+    .card.angular {
+      border-top-color: var(--angular-blue);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-header {
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-header svg {
+      width: 20px; height: 20px;
+      fill: var(--angular-red);
+    }
+    
+    .card-header.angular svg {
+      fill: var(--angular-blue);
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    /* ===== Interactive Elements ===== */
+    .counter-display {
+      font-size: 3rem;
+      font-weight: 800;
+      text-align: center;
+      color: var(--angular-red);
+      margin: 1rem 0;
+      font-variant-numeric: tabular-nums;
+      transition: transform 0.15s ease;
+    }
+    
+    .counter-display.angular {
+      color: var(--angular-blue);
+    }
+
+    .counter-display.animate {
+      animation: pulse 0.3s ease;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.6rem 1.25rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+    .btn-primary {
+      background: var(--angular-red);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--angular-red); opacity: 0.9; }
+    
+    .btn-primary.angular {
+      background: var(--angular-blue);
+    }
+    .btn-primary.angular:hover { background: var(--angular-blue); opacity: 0.9; }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+    .btn-success:hover { background: #0da271; }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--angular-red);
+      color: var(--angular-red);
+    }
+    .btn-outline.angular {
+      border-color: var(--angular-blue);
+      color: var(--angular-blue);
+    }
+    .btn-outline:hover {
+      background: rgba(221, 0, 49, 0.08);
+    }
+    .btn-outline.angular:hover {
+      background: rgba(0, 102, 204, 0.08);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+    .btn-danger:hover { background: #dc2626; }
+
+    /* ===== List Component ===== */
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .input-group input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: var(--angular-red);
+      box-shadow: 0 0 0 3px rgba(221, 0, 49, 0.15);
+    }
+    
+    .input-group input:focus.angular {
+      border-color: var(--angular-blue);
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+    }
+
+    .list-container {
+      min-height: 180px;
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      background: var(--light);
+    }
+
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: white;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      animation: slideIn 0.2s ease;
+      border-left: 3px solid var(--angular-red);
+    }
+    
+    .list-item.angular {
+      border-left-color: var(--angular-blue);
+    }
+
+    .list-item.removing {
+      animation: slideOut 0.2s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideOut {
+      to { opacity: 0; transform: translateX(20px); }
+    }
+
+    /* ===== Animation Demo ===== */
+    .animation-box {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #ffebee, #e3f2fd);
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid var(--angular-red);
+    }
+    
+    .animation-box.angular {
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      border-color: var(--angular-blue);
+    }
+
+    .animation-box.hidden {
+      opacity: 0;
+      transform: scale(0.95);
+      pointer-events: none;
+    }
+
+    /* ===== Skills Section ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .skill-tag {
+      background: white;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+    }
+    
+    .skill-tag.angular {
+      border-color: var(--angular-red);
+      color: var(--angular-red);
+    }
+    
+    .skill-tag.angular.blue {
+      border-color: var(--angular-blue);
+      color: var(--angular-blue);
+    }
+
+    .skill-tag:hover {
+      border-color: var(--angular-red);
+      transform: translateY(-2px);
+    }
+    
+    .skill-tag.angular:hover {
+      border-color: var(--angular-red);
+    }
+    
+    .skill-tag.angular.blue:hover {
+      border-color: var(--angular-blue);
+    }
+
+    /* ===== Angular Concept Badges ===== */
+    .concept-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, rgba(221,0,49,0.1), rgba(0,102,204,0.1));
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--angular-red);
+      border: 1px solid rgba(221,0,49,0.3);
+      margin: 0.25rem;
+    }
+    
+    .concept-badge.blue {
+      color: var(--angular-blue);
+      border-color: rgba(0,102,204,0.3);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--dark);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .contact-item:hover {
+      color: var(--angular-red);
+    }
+    
+    .contact-item.angular:hover {
+      color: var(--angular-blue);
+    }
+
+    .contact-item svg {
+      width: 18px; height: 18px;
+      fill: currentColor;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .hero { padding: 3rem 1.5rem 2.5rem; margin: 1rem; }
+      .video-section { padding: 1.5rem; margin: 1.5rem 1rem; }
+      .components-grid { grid-template-columns: 1fr; }
+      .btn-group { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 280px; justify-content: center; }
+    }
+
+    /* ===== Accessibility ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0);
+      white-space: nowrap; border: 0;
+    }
+    
+    /* ===== Angular Logo Animation ===== */
+    @keyframes angularPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .angular-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    
+    .angular-logo svg {
+      animation: angularPulse 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Hero Section -->
+    <header class="hero">
+      <h1 class="hero-title">
+        <span class="angular-logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7.5L4.5 19.5L12 22L19.5 19.5L22 7.5L12 2Z" stroke="url(#angular-gradient)" stroke-width="1.5" fill="none"/>
+            <path d="M12 6L7 9.5L8.5 16L12 17.5L15.5 16L17 9.5L12 6Z" fill="url(#angular-gradient)"/>
+            <defs>
+              <linearGradient id="angular-gradient" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#DD0031"/>
+                <stop offset="1" stop-color="#0066CC"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          Mason Tsoi
+        </span>
+      </h1>
+      <p class="hero-subtitle">
+        Angular Full-Stack Developer • 16+ Years Experience • TypeScript • RxJS • .NET Backend Integration
+      </p>
+      <div class="badges">
+        <span class="badge angular">🅰️ Angular 17+</span>
+        <span class="badge">Components</span>
+        <span class="badge">RxJS Observables</span>
+        <span class="badge">Dependency Injection</span>
+        <span class="badge">Standalone APIs</span>
+        <span class="badge">Signals</span>
+      </div>
+    </header>
+
+    <!-- Video Demo Section -->
+    <section class="video-section angular">
+      <h2 class="section-title angular">
+        <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+        Angular Demo Showcase
+      </h2>
+      <p style="color: var(--gray); margin-bottom: 1rem;">
+        Interactive demonstration of Angular architecture: Components, Services, RxJS patterns, and modern Standalone APIs.
+      </p>
+      
+      <div class="video-wrapper">
+        <video id="demoVideo" controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='720' viewBox='0 0 1280 720'%3E%3Crect width='1280' height='720' fill='%230f172a'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='24'%3EAngular Demo Video%3C/text%3E%3C/svg%3E">
+          <source src="angular.webm" type="video/webm">
+          <source src="angular.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+      <div class="video-controls">
+        <button class="btn btn-outline angular" onclick="document.getElementById('demoVideo').currentTime = 0">
+          <svg viewBox="0 0 24 24"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg>
+          Replay
+        </button>
+        <button class="btn btn-primary angular" onclick="toggleFullscreen()">
+          <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+          Fullscreen
+        </button>
+        <button class="btn btn-success" onclick="downloadVideo()">
+          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Download Demo
+        </button>
+      </div>
+      
+      <!-- Angular Concepts Highlight -->
+      <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed var(--border);">
+        <p style="font-weight: 600; margin-bottom: 0.5rem; color: var(--dark);">🎯 Angular Concepts Demonstrated:</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.25rem;">
+          <span class="concept-badge">🧩 Component Architecture</span>
+          <span class="concept-badge blue">🔄 Two-Way Binding [(ngModel)]</span>
+          <span class="concept-badge">⚡ Signals & Change Detection</span>
+          <span class="concept-badge blue">📡 RxJS Observables</span>
+          <span class="concept-badge">🔌 Dependency Injection</span>
+          <span class="concept-badge blue">🚀 Standalone Components</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Components (Angular Pattern Demos) -->
+    <main class="components-grid">
+      
+      <!-- Counter Component (Signal/State Pattern) -->
+      <article class="card angular" id="counterComponent">
+        <div class="card-header angular">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          Signal Counter (Angular 17+)
+        </div>
+        <div class="card-body">
+          <p style="text-align: center; color: var(--gray); margin-bottom: 0.5rem;">
+            Simulates Angular <code>signal()</code> reactive state pattern
+          </p>
+          <div class="counter-display angular" id="counterValue" aria-live="polite">0</div>
+          <div class="btn-group">
+            <button class="btn btn-primary angular" onclick="counter.increment()">
+              <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              Increment (+)
+            </button>
+            <button class="btn btn-outline angular" onclick="counter.decrement()">
+              <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+              Decrement (−)
+            </button>
+            <button class="btn btn-danger" onclick="counter.reset()">
+              <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+              Reset
+            </button>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem; text-align: center;">
+            💡 In Angular: <code>count = signal(0)</code> → <code>count.update(v => v + 1)</code>
+          </p>
+        </div>
+      </article>
+
+      <!-- Dynamic List Component (Async Pipe Pattern) -->
+      <article class="card angular" id="listComponent">
+        <div class="card-header angular">
+          <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+          Dynamic List (Async Pattern)
+        </div>
+        <div class="card-body">
+          <div class="input-group">
+            <input 
+              type="text" 
+              id="newItemInput" 
+              placeholder="Type and press Enter..."
+              aria-label="New list item"
+              class="angular"
+              onkeypress="if(event.key==='Enter') listManager.addItem()"
+            >
+            <button class="btn btn-success" onclick="listManager.addItem()">
+              <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              Add
+            </button>
+          </div>
+          <div class="list-container" id="itemList" role="list" aria-live="polite">
+            <div style="text-align: center; color: var(--gray); padding: 2rem;">
+              No items yet • Start adding!
+            </div>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem; text-align: center;">
+            💡 In Angular: <code>*ngFor="let item of items$ | async"</code> with RxJS
+          </p>
+        </div>
+      </article>
+
+      <!-- Animation / Visibility Toggle (Structural Directive Pattern) -->
+      <article class="card angular">
+        <div class="card-header angular">
+          <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+          Structural Directive (*ngIf)
+        </div>
+        <div class="card-body">
+          <div class="btn-group" style="margin-bottom: 1.25rem;">
+            <button class="btn btn-primary angular" onclick="animationDemo.show()">*ngIf="true"</button>
+            <button class="btn btn-warning" style="background: var(--warning); color: black;" onclick="animationDemo.hide()">*ngIf="false"</button>
+            <button class="btn btn-outline angular" onclick="animationDemo.toggle()">Toggle</button>
+          </div>
+          <div id="animatedElement" class="animation-box angular" role="status" aria-live="polite">
+            🅰️ This element demonstrates Angular structural directives<br/>
+            <small style="display: block; margin-top: 0.5rem; opacity: 0.8;">
+              State: <strong id="visibilityState">visible</strong> • 
+              <code>&lt;div *ngIf="isVisible"&gt;</code>
+            </small>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--gray); margin-top: 1rem; text-align: center;">
+            💡 Angular removes/inserts DOM elements efficiently with change detection
+          </p>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- Skills & Tech Stack -->
+    <section class="video-section angular" style="margin-top: 1rem;">
+      <h2 class="section-title angular">
+        <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+        Angular Ecosystem & Backend Integration
+      </h2>
+      <div class="skills-grid">
+        <div class="skill-tag angular">🅰️ Angular 17+</div>
+        <div class="skill-tag angular blue">TypeScript</div>
+        <div class="skill-tag angular">RxJS</div>
+        <div class="skill-tag angular blue">NgRx / Signals</div>
+        <div class="skill-tag">C# / .NET Web API</div>
+        <div class="skill-tag angular blue">REST / GraphQL</div>
+        <div class="skill-tag">MSSQL / MySQL</div>
+        <div class="skill-tag angular">Angular Material</div>
+        <div class="skill-tag angular blue">Jest / Karma</div>
+        <div class="skill-tag">Azure DevOps / CI/CD</div>
+      </div>
+      <div style="margin-top: 1.5rem; padding: 1rem; background: linear-gradient(135deg, rgba(221,0,49,0.05), rgba(0,102,204,0.05)); border-radius: var(--radius); border: 1px dashed var(--border);">
+        <p style="color: var(--dark); font-weight: 600; margin-bottom: 0.5rem;">🔧 Development Workflow:</p>
+        <p style="color: var(--gray); font-size: 0.95rem; line-height: 1.7;">
+          <code>ng new</code> → Feature Modules / Standalone Components → 
+          <code>HttpClient</code> + Interceptors → 
+          RxJS Operators (<code>switchMap</code>, <code>catchError</code>) → 
+          Lazy Loading → 
+          Production Build with Optimizations
+        </p>
+      </div>
+      <p style="margin-top: 1.5rem; color: var(--gray); font-size: 0.95rem;">
+        💡 <strong>Note:</strong> This demo uses vanilla JavaScript to illustrate Angular conceptual patterns 
+        (components, reactive state, dependency injection, structural directives) without build dependencies — 
+        optimized for quick employer review and conceptual clarity.
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 Mason Tsoi • Angular Full-Stack Developer • Hong Kong</p>
+      <div class="contact-info">
+        <a href="mailto:your.email@example.com" class="contact-item angular">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email
+        </a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" class="contact-item angular">
+          <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="contact-item angular">
+          <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.1 0 4.7-2.8 5.7-5.5 6 .5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"/></svg>
+          GitHub
+        </a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ===== Angular Pattern Simulation (Vanilla JS Implementation) ===== -->
+  <script>
+    /**
+     * 🎯 ANGULAR CONCEPTUAL DEMO (Vanilla JS)
+     * 
+     * This demo illustrates Angular architectural patterns using vanilla JavaScript:
+     * • Components = Objects with state + render() + lifecycle hooks
+     * • Signals = Reactive properties with change detection simulation
+     * • Services = Shared state managers (Dependency Injection pattern)
+     * • Structural Directives = Conditional DOM manipulation
+     * • RxJS Observables = Callback-based async patterns
+     * 
+     * ✅ Why this approach for employer demo:
+     * • Zero build dependencies (no Node/Angular CLI required)
+     * • Instant load in any browser
+     * • Clear conceptual mapping to Angular patterns
+     * • Easy to audit and understand the architecture
+     */
+
+    // ===== COUNTER COMPONENT (Angular Signal Pattern Simulation) =====
+    const counter = {
+      // Simulates: count = signal(0)
+      _state: 0,
+      element: document.getElementById('counterValue'),
+      
+      // Simulates: count() getter
+      get value() {
+        return this._state;
+      },
+      
+      // Simulates: count.update(fn) or count.set(value)
+      increment() {
+        this._state++;
+        this._detectChanges();
+      },
+      
+      decrement() {
+        if (this._state > 0) {
+          this._state--;
+          this._detectChanges();
+        }
+      },
+      
+      reset() {
+        this._state = 0;
+        this._detectChanges();
+      },
+      
+      // Simulates Angular change detection cycle
+      _detectChanges() {
+        this.render();
+        // Optional: trigger effects (like Angular effects())
+        this.onStateChange?.(this._state);
+      },
+      
+      render() {
+        this.element.textContent = this.value;
+        // Visual feedback (like Angular animations)
+        this.element.classList.add('animate');
+        setTimeout(() => this.element.classList.remove('animate'), 300);
+      },
+      
+      // Effect callback (like Angular effect())
+      onStateChange: null
+    };
+
+    // ===== LIST MANAGER (Async Pipe / Observable Pattern) =====
+    const listManager = {
+      // Simulates: items$ = BehaviorSubject<Item[]>([])
+      _state: [],
+      listElement: document.getElementById('itemList'),
+      inputElement: document.getElementById('newItemInput'),
+      
+      // Simulates: addItem() service method
+      addItem() {
+        const text = this.inputElement.value.trim();
+        if (!text) return;
+        
+        // Immutable update (Angular best practice)
+        const newItem = { 
+          id: Date.now(), 
+          text,
+          createdAt: new Date().toISOString()
+        };
+        
+        // Simulate async operation (like HttpClient)
+        setTimeout(() => {
+          this._state = [...this._state, newItem];
+          this._detectChanges();
+        }, 50); // Minimal delay to simulate async
+        
+        this.inputElement.value = '';
+        this.inputElement.focus();
+      },
+      
+      removeItem(id) {
+        const item = this.listElement.querySelector(`[data-id="${id}"]`);
+        if (!item) return;
+        
+        // Animation before removal (like Angular animations)
+        item.classList.add('removing');
+        setTimeout(() => {
+          this._state = this._state.filter(i => i.id !== id);
+          this._detectChanges();
+        }, 200);
+      },
+      
+      // Simulates Angular change detection for template
+      _detectChanges() {
+        this.render();
+      },
+      
+      render() {
+        if (this._state.length === 0) {
+          this.listElement.innerHTML = `
+            <div style="text-align: center; color: var(--gray); padding: 2rem;">
+              No items yet • Start adding!
+            </div>`;
+          return;
+        }
+        
+        // Simulates *ngFor template rendering
+        this.listElement.innerHTML = this._state.map(item => `
+          <div class="list-item angular" data-id="${item.id}" role="listitem">
+            <span>${this.escapeHtml(item.text)}</span>
+            <button class="btn btn-danger btn-sm" 
+                    onclick="listManager.removeItem(${item.id})"
+                    aria-label="Remove ${this.escapeHtml(item.text)}">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+            </button>
+          </div>
+        `).join('');
+      },
+      
+      // XSS protection (like Angular's built-in sanitization)
+      escapeHtml(unsafe) {
+        return unsafe
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+    };
+
+    // ===== ANIMATION / VISIBILITY (Structural Directive *ngIf Pattern) =====
+    const animationDemo = {
+      element: document.getElementById('animatedElement'),
+      stateElement: document.getElementById('visibilityState'),
+      isVisible: true,
+      
+      // Simulates: *ngIf="isVisible"
+      show() {
+        this.isVisible = true;
+        this._detectChanges();
+      },
+      
+      hide() {
+        this.isVisible = false;
+        this._detectChanges();
+      },
+      
+      toggle() {
+        this.isVisible = !this.isVisible;
+        this._detectChanges();
+      },
+      
+      // Simulates Angular change detection for structural directives
+      _detectChanges() {
+        this.updateDOM();
+      },
+      
+      updateDOM() {
+        // Angular removes/inserts elements from DOM
+        this.element.classList.toggle('hidden', !this.isVisible);
+        this.stateElement.textContent = this.isVisible ? 'visible' : 'hidden';
+        
+        // Accessibility: announce state change (like Angular CDK)
+        this.element.setAttribute('aria-hidden', !this.isVisible);
+      }
+    };
+
+    // ===== VIDEO UTILITIES =====
+    function toggleFullscreen() {
+      const video = document.getElementById('demoVideo');
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+      }
+    }
+
+    function downloadVideo() {
+      const link = document.createElement('a');
+      link.href = 'angular.webm';
+      link.download = 'MasonTsoi_Angular_Demo.webm';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // ===== INITIALIZATION (Simulates Angular bootstrap) =====
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initial renders (like ngOnInit)
+      counter.render();
+      listManager.render();
+      animationDemo.updateDOM();
+      
+      // Keyboard shortcuts for demo flow (like @HostListener)
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT') return;
+        
+        if (e.key === 'ArrowUp') counter.increment();
+        if (e.key === 'ArrowDown') counter.decrement();
+        if (e.key === 'r' || e.key === 'R') counter.reset();
+      });
+      
+      // Console log for employer/developer review
+      console.log('✅ Mason Tsoi Angular Demo Loaded');
+      console.log('🅰️ Patterns: Signals, Components, Services, Structural Directives');
+      console.log('🔧 Implementation: Vanilla JS simulating Angular architecture');
+      console.log('🎯 Purpose: Employer showcase - zero dependencies, instant conceptual review');
+      console.log('💡 Tip: View source to see pattern mapping comments!');
+    });
+  </script>
+</body>
+</html>
