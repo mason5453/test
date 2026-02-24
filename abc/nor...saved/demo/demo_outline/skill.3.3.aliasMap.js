@@ -28,7 +28,7 @@ const aliasMap = {
     "Next.js": ["next.js", "nextjs", "next"],
     "Vue.js": ["vue.js", "vuejs", "vue"],
     "Angular": ["angular"],
-    "React Native": ["react native", "reactnative"],
+    //"React Native": ["react native", "reactnative"],
     "Ant Design": ["ant design", "antdesign", "ant"],
     
     // Backend Technologies

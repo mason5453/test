@@ -29,7 +29,7 @@ const demoLinks = {
     "next.js":       baseUrl1 + "nextjs_demo/nextjs.html",
     "vue":           baseUrl1 + "vue_demo/1_ref_vue_cert.gif",
     "angular":       baseUrl1 + "angular_demo/angular.html",
-    "react native": null,
+    // "react native": null,
     "ant design": null,
     
     // Backend Technologies

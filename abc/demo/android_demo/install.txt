@@ -1,0 +1,38 @@
+
+[DONE]
+# chk android installed
+  ls ~/android-studio/bin/studio.sh
+  echo $ANDROID_HOME
+  adb --version
+[DONE]
+#install android 
+  sudo apt update && sudo apt upgrade -y
+# chk java 
+  java -version
+# install java sdk 
+  sudo apt install openjdk-17-jdk -y
+# Should output something like "openjdk 17.x.x"
+# dl - https://developer.android.com/studio
+[DONE]
+# open terminal in dowload folder 
+  mkdir ~/android-studio
+  tar -xvzf android-studio-*.tar.gz -C ~/
+  cd ~/android-studio/bin
+./studio.sh
+
+# option 1 is just one of the step not full step
+# above is option 1 .. not work ask for option 2
+
+#Configure → SDK Manager → Android SDK.
+
+#Select the latest Android SDK
+
+Select the latest Android SDK
+ - Android SDK Tools
+ - Android SDK Platform-Tools
+ - Android SDK Build-Tools
+ **✅ Must-Install (Core Requirements)
+ - Android SDK Platform (e.g., Android SDK Platform 36.1)
+ - Android SDK Build-Tools (e.g., Android SDK Build-Tools 36.1)
+ - Android SDK Platform-Tools
+
