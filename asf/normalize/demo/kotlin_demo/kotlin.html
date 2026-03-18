@@ -1,0 +1,102 @@
+
+<table>
+<tr><th>TITLE</th><th>CODE</th></tr>
+<tr><td><pre>Kotlin CLI: Check version</pre></td><td><pre>kotlinc -version</pre></td></tr>
+<tr><td><pre>Kotlin CLI: Install SDK</pre></td><td><pre>sudo apt update && sudo apt install -y kotlin</pre></td></tr>
+<tr><td><pre>Kotlin CLI: Create console app</pre></td><td><pre>echo 'fun main(args: Array<String>) { println("Hello World") }' > App.kt</pre></td></tr>
+<tr><td><pre>Kotlin CLI: Build project</pre></td><td><pre>kotlinc App.kt -include-runtime -d app.jar</pre></td></tr>
+<tr><td><pre>Kotlin CLI: Run with args</pre></td><td><pre>kotlin AppKt 1 2 (after compilation) or kotlinc -script App.kt -- 1 2</pre></td></tr>
+<tr><td><pre>Kotlin CLI: Execute script</pre></td><td><pre>kotlin -script App.kt</pre></td></tr>
+<tr><td><pre>BASIC: Import</pre></td><td><pre>import java.util.*</pre></td></tr>
+<tr><td><pre>BASIC: Package</pre></td><td><pre>package com.example</pre></td></tr>
+<tr><td><pre>BASIC: Class</pre></td><td><pre>class Program { }</pre></td></tr>
+<tr><td><pre>BASIC: Main method</pre></td><td><pre>fun main(args: Array<String>) { } (top-level function)</pre></td></tr>
+<tr><td><pre>BASIC: String</pre></td><td><pre>val str = "text"</pre></td></tr>
+<tr><td><pre>BASIC: Integer</pre></td><td><pre>val num = 42 (Int)</pre></td></tr>
+<tr><td><pre>BASIC: Long</pre></td><td><pre>val num = 100L (Long)</pre></td></tr>
+<tr><td><pre>BASIC: Float</pre></td><td><pre>val num = 3.14F (Float)</pre></td></tr>
+<tr><td><pre>BASIC: Double</pre></td><td><pre>val num = 3.14 (Double)</pre></td></tr>
+<tr><td><pre>BASIC: Char</pre></td><td><pre>val c = 'C' (Char)</pre></td></tr>
+<tr><td><pre>BASIC: Boolean</pre></td><td><pre>val bool = true (Boolean)</pre></td></tr>
+<tr><td><pre>BASIC: Constant</pre></td><td><pre>const val MAX = 100 (compile-time constant)</pre></td></tr>
+<tr><td><pre>BASIC: Scientific notation (positive)</pre></td><td><pre>35000</pre></td></tr>
+<tr><td><pre>BASIC: Scientific notation (negative)</pre></td><td><pre>0.035</pre></td></tr>
+<tr><td><pre>BASIC: Implicit casting</pre></td><td><pre>Not allowed (strict type system)</pre></td></tr>
+<tr><td><pre>BASIC: Explicit casting</pre></td><td><pre>num.toInt(), num.toDouble(), num.toString()</pre></td></tr>
+<tr><td><pre>BASIC: Arithmetic operators</pre></td><td><pre>+ - * / % ++ --</pre></td></tr>
+<tr><td><pre>BASIC: Assignment operators</pre></td><td><pre>// = += -= *= /= %=</pre></td></tr>
+<tr><td><pre>BASIC: Comparison operators</pre></td><td><pre>// == != > < >= <= === !== (structural vs referential equality)</pre></td></tr>
+<tr><td><pre>BASIC: Logical operators</pre></td><td><pre>&& || !</pre></td></tr>
+<tr><td><pre>CODE: Print output</pre></td><td><pre>println("text") or print("text")</pre></td></tr>
+<tr><td><pre>CODE: Read input</pre></td><td><pre>readLine() (returns String?)</pre></td></tr>
+<tr><td><pre>CODE: Exit method</pre></td><td><pre>exitProcess(0)</pre></td></tr>
+<tr><td><pre>CODE: String concat (operator)</pre></td><td><pre>str1 + str2</pre></td></tr>
+<tr><td><pre>CODE: String concat (method)</pre></td><td><pre>str1.plus(str2) or buildString { append(str1); append(str2) }</pre></td></tr>
+<tr><td><pre>CODE: String interpolation</pre></td><td><pre>Hello $name" or "Hello ${user.name}</pre></td></tr>
+<tr><td><pre>CODE: Access string char</pre></td><td><pre>str[0]</pre></td></tr>
+<tr><td><pre>CODE: String IndexOf</pre></td><td><pre>str.indexOf("e")</pre></td></tr>
+<tr><td><pre>CODE: String Substring</pre></td><td><pre>str.substring(startIndex, endIndex)</pre></td></tr>
+<tr><td><pre>CODE: String Length</pre></td><td><pre>str.length</pre></td></tr>
+<tr><td><pre>CODE: String ToUpper</pre></td><td><pre>str.uppercase()</pre></td></tr>
+<tr><td><pre>CODE: String ToLower</pre></td><td><pre>str.lowercase()</pre></td></tr>
+<tr><td><pre>CODE: String escape chars</pre></td><td><pre>\' \" \\ \n \t \b \r \$</pre></td></tr>
+<tr><td><pre>CODE: if/else</pre></td><td><pre>if (cond) { } else if (cond2) { } else { }</pre></td></tr>
+<tr><td><pre>CODE: Ternary operator</pre></td><td><pre>if (cond) trueVal else falseVal (no ternary operator)</pre></td></tr>
+<tr><td><pre>CODE: switch</pre></td><td><pre>when (x) { 1 -> println("one"); else -> println("other") }</pre></td></tr>
+<tr><td><pre>CODE: break</pre></td><td><pre>break (with labels for nested loops)</pre></td></tr>
+<tr><td><pre>CODE: continue</pre></td><td><pre>continue (with labels for nested loops)</pre></td></tr>
+<tr><td><pre>CODE: for loop</pre></td><td><pre>for (i in 0 until n) { } or for (item in collection) { }</pre></td></tr>
+<tr><td><pre>CODE: while loop</pre></td><td><pre>while (cond) { }</pre></td></tr>
+<tr><td><pre>CODE: do-while loop</pre></td><td><pre>do { } while (cond)</pre></td></tr>
+<tr><td><pre>CODE: foreach loop</pre></td><td><pre>for (item in collection) { } (same as for loop)</pre></td></tr>
+<tr><td><pre>CODE: Convert type</pre></td><td><pre>str.toInt(), num.toString(), str.toDoubleOrNull()</pre></td></tr>
+<tr><td><pre>CODE: Math.Max</pre></td><td><pre>maxOf(a, b)</pre></td></tr>
+<tr><td><pre>CODE: Math.Min</pre></td><td><pre>minOf(a, b)</pre></td></tr>
+<tr><td><pre>CODE: Math.Sqrt</pre></td><td><pre>sqrt(64.0) (import kotlin.math.sqrt)</pre></td></tr>
+<tr><td><pre>CODE: Math.Abs</pre></td><td><pre>abs(-4.7) (import kotlin.math.abs)</pre></td></tr>
+<tr><td><pre>CODE: Math.Round</pre></td><td><pre>round(9.99) (import kotlin.math.round)</pre></td></tr>
+<tr><td><pre>CODE: Array define (init)</pre></td><td><pre>val arr = arrayOf(1, 2, 3) or intArrayOf(1, 2, 3)</pre></td></tr>
+<tr><td><pre>CODE: Array define (new)</pre></td><td><pre>val arr = Array(5) { 0 }</pre></td></tr>
+<tr><td><pre>CODE: Array element</pre></td><td><pre>arr[i]</pre></td></tr>
+<tr><td><pre>CODE: Array Length</pre></td><td><pre>arr.size</pre></td></tr>
+<tr><td><pre>CODE: Array Sort</pre></td><td><pre>arr.sort() (mutable) or arr.sorted() (returns new list)</pre></td></tr>
+<tr><td><pre>CODE: Array Max</pre></td><td><pre>arr.maxOrNull()</pre></td></tr>
+<tr><td><pre>CODE: Array Min</pre></td><td><pre>arr.minOrNull()</pre></td></tr>
+<tr><td><pre>CODE: Array Sum</pre></td><td><pre>arr.sum()</pre></td></tr>
+<tr><td><pre>CODE: 2D Array define</pre></td><td><pre>val mat = arrayOf(arrayOf(1,2), arrayOf(3,4))</pre></td></tr>
+<tr><td><pre>CODE: 2D Array access</pre></td><td><pre>mat[0][1]</pre></td></tr>
+<tr><td><pre>CODE: 2D Array GetLength</pre></td><td><pre>mat.size / mat[0].size</pre></td></tr>
+<tr><td><pre>CODE: Method definition</pre></td><td><pre>fun myFunc() { }</pre></td></tr>
+<tr><td><pre>CODE: Method params</pre></td><td><pre>fun m(a: Int, b: String) { }</pre></td></tr>
+<tr><td><pre>CODE: Method default param</pre></td><td><pre>fun m(c: String = "default") { }</pre></td></tr>
+<tr><td><pre>CODE: Method return</pre></td><td><pre>return value</pre></td></tr>
+<tr><td><pre>CODE: Method return type</pre></td><td><pre>fun add(a: Int, b: Int): Int { return a + b }</pre></td></tr>
+<tr><td><pre>CODE: Method overloading</pre></td><td><pre>fun m(a: Int) { } and fun m(s: String) { } (same name, different params)</pre></td></tr>
+<tr><td><pre>OOP: Definition</pre></td><td><pre>Encapsulation, inheritance, polymorphism (with open classes)</pre></td></tr>
+<tr><td><pre>OOP: Field/Member</pre></td><td><pre>class Car { var color: String = "red" }</pre></td></tr>
+<tr><td><pre>OOP: Constructor</pre></td><td><pre>class Car(val color: String) { } (primary constructor)</pre></td></tr>
+<tr><td><pre>OOP: Access modifiers</pre></td><td><pre>public (default), private, protected, internal</pre></td></tr>
+<tr><td><pre>OOP: Property</pre></td><td><pre>val/var with custom getters/setters (built-in property system)</pre></td></tr>
+<tr><td><pre>OOP: Inheritance</pre></td><td><pre>open class Parent { } / class Child : Parent() { } (parent must be open)</pre></td></tr>
+<tr><td><pre>OOP: Polymorphism</pre></td><td><pre>open fun m() { } / override fun m() { }</pre></td></tr>
+<tr><td><pre>OOP: Abstract class</pre></td><td><pre>abstract class A { abstract fun m() }</pre></td></tr>
+<tr><td><pre>OOP: Interface</pre></td><td><pre>interface I { fun m() }</pre></td></tr>
+<tr><td><pre>OOP: Multiple interfaces</pre></td><td><pre>class C : I1, I2 { }</pre></td></tr>
+<tr><td><pre>OOP: Enum</pre></td><td><pre>enum class Level { LOW, MEDIUM, HIGH }</pre></td></tr>
+<tr><td><pre>IMPORT: Collections</pre></td><td><pre>import kotlin.collections.*</pre></td></tr>
+<tr><td><pre>IMPORT: File I/O</pre></td><td><pre>import java.io.* or import kotlin.io.*</pre></td></tr>
+<tr><td><pre>File: Append text</pre></td><td><pre>File("file.txt").appendText("text")</pre></td></tr>
+<tr><td><pre>File: Copy file</pre></td><td><pre>File("src").copyTo(File("dest"), overwrite = true)</pre></td></tr>
+<tr><td><pre>File: Create file</pre></td><td><pre>File("file.txt").createNewFile()</pre></td></tr>
+<tr><td><pre>File: Delete file</pre></td><td><pre>File("file.txt").delete()</pre></td></tr>
+<tr><td><pre>File: Exists</pre></td><td><pre>File("file.txt").exists()</pre></td></tr>
+<tr><td><pre>File: Read all text</pre></td><td><pre>File("file.txt").readText()</pre></td></tr>
+<tr><td><pre>File: Replace file</pre></td><td><pre>File("src").copyTo(File("dest"), overwrite = true) then File("src").delete()</pre></td></tr>
+<tr><td><pre>File: Write all text</pre></td><td><pre>File("file.txt").writeText("content")</pre></td></tr>
+<tr><td><pre>Exception: try-catch</pre></td><td><pre>try { } catch (e: Exception) { }</pre></td></tr>
+<tr><td><pre>Exception: finally</pre></td><td><pre>try { } finally { }</pre></td></tr>
+<tr><td><pre>Exception: throw</pre></td><td><pre>throw Exception("msg")</pre></td></tr>
+<tr><td><pre>Exception: Catch general</pre></td><td><pre>catch (e: Exception)</pre></td></tr>
+<tr><td><pre>Exception: Catch specific</pre></td><td><pre>catch (e: IOException) or catch (e: ArithmeticException)</pre></td></tr>
+
+</table>

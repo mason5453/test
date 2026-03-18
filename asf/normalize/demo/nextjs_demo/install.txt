@@ -1,0 +1,31 @@
+
+npx create-next-app@latest my-next-app
+
+( i just default ...)
+
+
+TypeScript? → Choose No (unless you want TypeScript).
+ESLint? → Choose Yes (recommended).
+Tailwind CSS? → Choose Yes (optional, but great for styling).
+src/ directory? → Choose Yes (cleaner structure).
+App Router? → Choose Yes (recommended, instead of old Pages Router).
+Custom alias? → Choose @/* (convenient for imports).
+
+✔ Would you like to use TypeScript? … No
+✔ Would you like to use ESLint? … Yes
+✔ Would you like to use Tailwind CSS? … Yes
+✔ Would you like to use `src/` directory? … Yes
+✔ Would you like to use App Router? … Yes
+✔ Would you like to customize the default import alias? … Yes
+✔ What import alias would you like configured? … @/*
+
+cd my-next-app
+npm run dev
+
+
+test installed or not by:
+npm list tailwindcss
+
+if missing :
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p  # Creates config files

@@ -1,0 +1,103 @@
+
+<table>
+<tr><th>TITLE</th><th>CODE</th></tr>
+
+<tr><td><pre>PowerShell CLI: Check version</pre></td><td><pre>$PSVersionTable.PSVersion or pwsh --version</pre></td></tr>
+<tr><td><pre>PowerShell CLI: Install SDK</pre></td><td><pre>Windows: built-in / Linux: sudo apt install -y powershell</pre></td></tr>
+<tr><td><pre>PowerShell CLI: Create console app</pre></td><td><pre>Set-Content app.ps1 'Write-Output "Hello World"'</pre></td></tr>
+<tr><td><pre>PowerShell CLI: Build project</pre></td><td><pre>N/A (interpreted language)</pre></td></tr>
+<tr><td><pre>PowerShell CLI: Run with args</pre></td><td><pre>powershell -File app.ps1 1 2 (Windows) or pwsh -File app.ps1 1 2 (cross-platform)</pre></td></tr>
+<tr><td><pre>PowerShell CLI: Execute script</pre></td><td><pre>.\app.ps1 (Windows, after Set-ExecutionPolicy) or pwsh app.ps1 (Linux/macOS)</pre></td></tr>
+<tr><td><pre>BASIC: Import</pre></td><td><pre>Import-Module ModuleName</pre></td></tr>
+<tr><td><pre>BASIC: Package</pre></td><td><pre>No package manager (use PowerShell Gallery: Install-Module)</pre></td></tr>
+<tr><td><pre>BASIC: Class</pre></td><td><pre>class Program { }</pre></td></tr>
+<tr><td><pre>BASIC: Main method</pre></td><td><pre>Top-down execution (no explicit main required)</pre></td></tr>
+<tr><td><pre>BASIC: String</pre></td><td><pre>$str = "text"</pre></td></tr>
+<tr><td><pre>BASIC: Integer</pre></td><td><pre>$num = 42</pre></td></tr>
+<tr><td><pre>BASIC: Long</pre></td><td><pre>$num = 9223372036854775807 (Int64)</pre></td></tr>
+<tr><td><pre>BASIC: Float</pre></td><td><pre>$num = 3.14f</pre></td></tr>
+<tr><td><pre>BASIC: Double</pre></td><td><pre>$num = 3.14 (default numeric type)</pre></td></tr>
+<tr><td><pre>BASIC: Char</pre></td><td><pre>$c = 'C' (single-character string)</pre></td></tr>
+<tr><td><pre>BASIC: Boolean</pre></td><td><pre>$bool = $true</pre></td></tr>
+<tr><td><pre>BASIC: Constant</pre></td><td><pre>Set-Variable -Name MAX -Value 100 -Option Constant</pre></td></tr>
+<tr><td><pre>BASIC: Scientific notation (positive)</pre></td><td><pre>35000</pre></td></tr>
+<tr><td><pre>BASIC: Scientific notation (negative)</pre></td><td><pre>0.035</pre></td></tr>
+<tr><td><pre>BASIC: Implicit casting</pre></td><td><pre>Automatic in many contexts (e.g., "5" * 2 → 10)</pre></td></tr>
+<tr><td><pre>BASIC: Explicit casting</pre></td><td><pre>[int]$str, [string]$num, [double]$val</pre></td></tr>
+<tr><td><pre>BASIC: Arithmetic operators</pre></td><td><pre>+ - * / % ++ -- (post-increment/decrement)</pre></td></tr>
+Err:510
+<tr><td><pre>BASIC: Comparison operators</pre></td><td><pre>-eq -ne -gt -lt -ge -le (not ==/!=)</pre></td></tr>
+<tr><td><pre>BASIC: Logical operators</pre></td><td><pre>-and -or -not -xor</pre></td></tr>
+<tr><td><pre>CODE: Print output</pre></td><td><pre>Write-Output "text" or Write-Host "text"</pre></td></tr>
+<tr><td><pre>CODE: Read input</pre></td><td><pre>Read-Host "Prompt" (user) or $args[0] (script arguments)</pre></td></tr>
+<tr><td><pre>CODE: Exit method</pre></td><td><pre>exit or return</pre></td></tr>
+<tr><td><pre>CODE: String concat (operator)</pre></td><td><pre>$str1 + $str2 or "$str1$str2"</pre></td></tr>
+<tr><td><pre>CODE: String concat (method)</pre></td><td><pre>-join @($str1, $str2) or [string]::Join("", $str1, $str2)</pre></td></tr>
+<tr><td><pre>CODE: String interpolation</pre></td><td><pre>Hello $name" or "Hello $($obj.Name)</pre></td></tr>
+<tr><td><pre>CODE: Access string char</pre></td><td><pre>$str[0]</pre></td></tr>
+<tr><td><pre>CODE: String IndexOf</pre></td><td><pre>$str.IndexOf("e")</pre></td></tr>
+<tr><td><pre>CODE: String Substring</pre></td><td><pre>$str.Substring($start, $length)</pre></td></tr>
+<tr><td><pre>CODE: String Length</pre></td><td><pre>$str.Length</pre></td></tr>
+<tr><td><pre>CODE: String ToUpper</pre></td><td><pre>$str.ToUpper()</pre></td></tr>
+<tr><td><pre>CODE: String ToLower</pre></td><td><pre>$str.ToLower()</pre></td></tr>
+<tr><td><pre>CODE: String escape chars</pre></td><td><pre>`" `' `` `n `t `b `r `$ (backtick-based)</pre></td></tr>
+<tr><td><pre>CODE: if/else</pre></td><td><pre>if ($cond) { } elseif ($cond2) { } else { }</pre></td></tr>
+<tr><td><pre>CODE: Ternary operator</pre></td><td><pre>$cond ? $trueVal : $falseVal (PowerShell 7+)</pre></td></tr>
+<tr><td><pre>CODE: switch</pre></td><td><pre>switch ($x) { 1 { "one" } default { "other" } }</pre></td></tr>
+<tr><td><pre>CODE: break</pre></td><td><pre>break</pre></td></tr>
+<tr><td><pre>CODE: continue</pre></td><td><pre>continue</pre></td></tr>
+<tr><td><pre>CODE: for loop</pre></td><td><pre>for ($i = 0; $i -lt $n; $i++) { }</pre></td></tr>
+<tr><td><pre>CODE: while loop</pre></td><td><pre>while ($cond) { }</pre></td></tr>
+<tr><td><pre>CODE: do-while loop</pre></td><td><pre>do { } while ($cond)</pre></td></tr>
+<tr><td><pre>CODE: foreach loop</pre></td><td><pre>foreach ($item in $collection) { } or $collection | ForEach-Object { $_ }</pre></td></tr>
+<tr><td><pre>CODE: Convert type</pre></td><td><pre>[int]"42", [string]42, [double]"3.14"</pre></td></tr>
+<tr><td><pre>CODE: Math.Max</pre></td><td><pre>[Math]::Max($a, $b)</pre></td></tr>
+<tr><td><pre>CODE: Math.Min</pre></td><td><pre>[Math]::Min($a, $b)</pre></td></tr>
+<tr><td><pre>CODE: Math.Sqrt</pre></td><td><pre>[Math]::Sqrt(64)</pre></td></tr>
+<tr><td><pre>CODE: Math.Abs</pre></td><td><pre>[Math]::Abs(-4.7)</pre></td></tr>
+<tr><td><pre>CODE: Math.Round</pre></td><td><pre>[Math]::Round(9.99)</pre></td></tr>
+<tr><td><pre>CODE: Array define (init)</pre></td><td><pre>$arr = @(1, 2, 3) or $arr = 1,2,3</pre></td></tr>
+<tr><td><pre>CODE: Array define (new)</pre></td><td><pre>$arr = @(0) * 5</pre></td></tr>
+<tr><td><pre>CODE: Array element</pre></td><td><pre>$arr[$i]</pre></td></tr>
+<tr><td><pre>CODE: Array Length</pre></td><td><pre>$arr.Length</pre></td></tr>
+<tr><td><pre>CODE: Array Sort</pre></td><td><pre>$arr = $arr | Sort-Object</pre></td></tr>
+<tr><td><pre>CODE: Array Max</pre></td><td><pre>($arr | Measure-Object -Maximum).Maximum</pre></td></tr>
+<tr><td><pre>CODE: Array Min</pre></td><td><pre>($arr | Measure-Object -Minimum).Minimum</pre></td></tr>
+<tr><td><pre>CODE: Array Sum</pre></td><td><pre>($arr | Measure-Object -Sum).Sum</pre></td></tr>
+<tr><td><pre>CODE: 2D Array define</pre></td><td><pre>$mat = @( @(1,2), @(3,4) )</pre></td></tr>
+<tr><td><pre>CODE: 2D Array access</pre></td><td><pre>$mat[0][1]</pre></td></tr>
+<tr><td><pre>CODE: 2D Array GetLength</pre></td><td><pre>$mat.Length / $mat[0].Length</pre></td></tr>
+<tr><td><pre>CODE: Method definition</pre></td><td><pre>function My-Function { param($a, $b) process { } }</pre></td></tr>
+<tr><td><pre>CODE: Method params</pre></td><td><pre>function M { param($a, $b) }</pre></td></tr>
+<tr><td><pre>CODE: Method default param</pre></td><td><pre>function M { param($c = "default") }</pre></td></tr>
+<tr><td><pre>CODE: Method return</pre></td><td><pre>return $value</pre></td></tr>
+<tr><td><pre>CODE: Method return type</pre></td><td><pre>No native types (document with comment-based help)</pre></td></tr>
+<tr><td><pre>CODE: Method overloading</pre></td><td><pre>Not supported (use parameter sets with [Parameter()])</pre></td></tr>
+<tr><td><pre>OOP: Definition</pre></td><td><pre>Encapsulation, inheritance, polymorphism (via .NET integration)</pre></td></tr>
+<tr><td><pre>OOP: Field/Member</pre></td><td><pre>class Car { [string]$Color = "red" }</pre></td></tr>
+<tr><td><pre>OOP: Constructor</pre></td><td><pre>class Car { Car([string]$color) { $this.Color = $color } }</pre></td></tr>
+<tr><td><pre>OOP: Access modifiers</pre></td><td><pre>No public/private (all public by default; use `hidden` keyword)</pre></td></tr>
+<tr><td><pre>OOP: Property</pre></td><td><pre>Built-in property syntax with getters/setters in classes</pre></td></tr>
+<tr><td><pre>OOP: Inheritance</pre></td><td><pre>class Child : Parent { }</pre></td></tr>
+<tr><td><pre>OOP: Polymorphism</pre></td><td><pre>Override methods using `virtual`/`override` patterns (limited)</pre></td></tr>
+<tr><td><pre>OOP: Abstract class</pre></td><td><pre>No native support (simulate with base class throwing exceptions)</pre></td></tr>
+<tr><td><pre>OOP: Interface</pre></td><td><pre>No native interfaces (use .NET interfaces via Add-Type)</pre></td></tr>
+<tr><td><pre>OOP: Multiple interfaces</pre></td><td><pre>Not supported natively</pre></td></tr>
+<tr><td><pre>OOP: Enum</pre></td><td><pre>enum Level { Low; Medium; High }</pre></td></tr>
+<tr><td><pre>IMPORT: Collections</pre></td><td><pre>Built-in cmdlets (Where-Object, Select-Object, Group-Object)</pre></td></tr>
+<tr><td><pre>IMPORT: File I/O</pre></td><td><pre>Built-in cmdlets (no import needed)</pre></td></tr>
+<tr><td><pre>File: Append text</pre></td><td><pre>Add-Content -Path "file.txt" -Value "text"</pre></td></tr>
+<tr><td><pre>File: Copy file</pre></td><td><pre>Copy-Item -Path "src" -Destination "dest"</pre></td></tr>
+<tr><td><pre>File: Create file</pre></td><td><pre>New-Item -Path "file.txt" -ItemType File</pre></td></tr>
+<tr><td><pre>File: Delete file</pre></td><td><pre>Remove-Item -Path "file.txt"</pre></td></tr>
+<tr><td><pre>File: Exists</pre></td><td><pre>Test-Path -Path "file.txt"</pre></td></tr>
+<tr><td><pre>File: Read all text</pre></td><td><pre>Get-Content -Path "file.txt" -Raw</pre></td></tr>
+<tr><td><pre>File: Replace file</pre></td><td><pre>Move-Item -Path "src" -Destination "dest" -Force</pre></td></tr>
+<tr><td><pre>File: Write all text</pre></td><td><pre>Set-Content -Path "file.txt" -Value "content"</pre></td></tr>
+<tr><td><pre>Exception: try-catch</pre></td><td><pre>try { } catch { $_.Exception.Message }</pre></td></tr>
+<tr><td><pre>Exception: finally</pre></td><td><pre>try { } finally { }</pre></td></tr>
+<tr><td><pre>Exception: throw</pre></td><td><pre>throw "msg" or throw [System.Exception]::new("msg")</pre></td></tr>
+<tr><td><pre>Exception: Catch general</pre></td><td><pre>catch { $_.Exception }</pre></td></tr>
+<tr><td><pre>Exception: Catch specific</pre></td><td><pre>catch [System.IO.FileNotFoundException] { $_.Exception }</pre></td></tr>
+
+</table>

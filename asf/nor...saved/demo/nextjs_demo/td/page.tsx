@@ -70,7 +70,7 @@ export default function ExternalThreeLoader() {
       <div className="max-w-2xl mx-auto space-y-8">
         {/* Header */}
         <header className="space-y-2">
-          <h1 className="text-4xl font-bold">Hello, I'm Mason</h1>
+          <h1 className="text-4xl font-bold">Hello, I'm Tsoi</h1>
           <p className="text-lg text-gray-600 dark:text-gray-400">
             Building modern web experiences with Next.js
           </p>

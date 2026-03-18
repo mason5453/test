@@ -1,0 +1,69 @@
+
+node --version # v18+
+npm --version # v9+
+
+
+npm install -g @angular/cli
+
+ng version
+
+ng new my-first-app
+
+[1] Y
+[2] N
+[3] up to me , css | tail | sass (scss) | sass (indented) | less
+[4] N skip ssg ssr
+[5] None ? none , agents .md , claude, cursor , gemini , github copilot , jetbrains ai  , windsurf???
+
+cd my-first-app
+ng serve
+
+
+--- 
+
+
+pnpm --version  # Should be v8+
+pnpm add -g @angular/cli
+
+ng version  # Should show Angular CLI version
+ng new my-first-app --package-manager=pnpm
+
+cd my-first-app
+pnpm start  # or `ng serve` (both work, pnpm is faster)
+
+
+
+----
+
+create page:
+ng generate component index
+ng generate component about
+
+create service:
+ng generate service my-service
+# or shorthand
+ng g s my-service
+
+
+----
+
+- <app-root></app-root> of src/index.html is starting point
+- main
+- app/app.config  for library
+- app/app.routes  add json after command run
+- app/app.spec.ts default 
+  [1] beforeEach <- import outer app <app-root>
+  [2] Should create - validate each page component 
+  [3] render - check tag text exists
+- app/app.ts      is for config of html css import 
+- app/app.css     local css 
+- app/app.html    global html or 2nd level global
+- command         to create new page e.g. about 
+- about           like app has its *.ts *.css *.html *.spec.ts
+- service         usually is js
+- main            seldom change 
+- :host           is learnt
+- more new        i learn...
+- @for (item of (json)  <- this is easier to learn to generate 
+                  multiple layout
+----
